@@ -9,36 +9,36 @@ import org.mockito.Mockito;
 public class ArenaTest {
     private Screen screen;
     private Arena arena;
-    private TextGraphics tg;
+    private TextGraphics graphics;
 
     @BeforeEach
     void setUp() {
         screen = Mockito.mock(Screen.class);
-        tg = Mockito.mock(TextGraphics.class);
+        graphics = Mockito.mock(TextGraphics.class);
 
-        Mockito.when(screen.newTextGraphics()).thenReturn(tg);
+        Mockito.when(screen.newTextGraphics()).thenReturn(graphics);
 
         arena = new Arena(screen);
     }
 
     @Test
-    void drawText() {
+    void drawTextTest() {
         arena.drawText(new Position(1, 1), "Hello Frog Friends!", "#336699");
 
         //TODO: ver se funciona
-        Mockito.verify(tg, Mockito.times(1)).setForegroundColor(TextColor.Factory.fromString("#336699"));
+        Mockito.verify(graphics, Mockito.times(1)).setForegroundColor(TextColor.Factory.fromString("#336699"));
         //Mockito.verify(tg, Mockito.times(1)).setForegroundColor(new TextColor.RGB(51, 102, 153));
-        Mockito.verify(tg, Mockito.times(1)).putString(1, 1, "Hello Frog Friends!");
+        Mockito.verify(graphics, Mockito.times(1)).putString(1, 1, "Hello Frog Friends!");
     }
 
     @Test
-    void drawFrog() {
+    void drawFrogTest() {
         arena.drawFrog(new Position(1, 1));
 
         //TODO: ver se funciona
-        Mockito.verify(tg, Mockito.times(1)).setForegroundColor(TextColor.Factory.fromString("#33cc33"));
+        Mockito.verify(graphics, Mockito.times(1)).setForegroundColor(TextColor.Factory.fromString("#33cc33"));
         //Mockito.verify(tg, Mockito.times(1)).setForegroundColor(new TextColor.RGB(51, 204, 51));
-        Mockito.verify(tg, Mockito.times(1)).putString(1, 2, "F");
+        Mockito.verify(graphics, Mockito.times(1)).putString(1, 2, "F");
     }
 
     //TODO: completar testes draw para os outros elementos
