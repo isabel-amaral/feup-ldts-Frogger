@@ -1,8 +1,5 @@
-import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.screen.Screen;
-import com.googlecode.lanterna.input.KeyStroke;
-import com.googlecode.lanterna.input.KeyType;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -13,25 +10,27 @@ public class GameTest {
     private Screen screen;
     private Game game;
     private Arena arena;
-    private TextGraphics graphics;
+    //private TextGraphics graphics;
 
     @BeforeEach
-    void setUp() {
-        screen = Mockito.mock(Screen.class);
-        graphics = Mockito.mock(TextGraphics.class);
-        arena = Mockito.mock(Arena.class);
-
-        Mockito.when(screen.newTextGraphics()).thenReturn(graphics);
+    public void setUp() {
+        //???
+        //screen = Mockito.mock(Screen.class);
+        //graphics = Mockito.mock(TextGraphics.class);
+        //arena = Mockito.mock(Arena.class);
+        //Mockito.when(screen.newTextGraphics()).thenReturn(graphics);
 
         game = new Game();
+        screen = game.getScreen();
+        arena = game.getArena();
     }
 
     @Test
-    void drawTest() {
+    public void drawTest() {
         game.draw();
 
         Mockito.verify(screen, Mockito.times(1)).clear();
-        Mockito.verify(arena, Mockito.times(1)).draw();
+        Mockito.verify(arena, Mockito.times(1)).draw(screen.newTextGraphics());
         try {
             Mockito.verify(screen, Mockito.times(1)).refresh();
         } catch (IOException e) {
@@ -39,34 +38,31 @@ public class GameTest {
         }
     }
 
-    @Test
-    void moveFrogTest() {
-        Position position = new Position(1,1);
-        game.moveFrog(position);
-        Mockito.verify(arena, Mockito.times(1)).moveFrog(position);
+  @Test
+    public void processArrowUpTest() {
+        Frog frog = arena.getFrog();
+        arena.moveFrog(frog.moveUp());
+        Mockito.verify(frog, Mockito.times(1)).moveUp();
     }
 
     @Test
-    void processArrowUpTest() {
-        game.moveFrog(arena.moveUp());
-        Mockito.verify(arena, Mockito.times(1)).moveUp();
+    public void processArrowDownTest() {
+        Frog frog = arena.getFrog();
+        arena.moveFrog(frog.moveDown());
+        Mockito.verify(frog, Mockito.times(1)).moveDown();
     }
 
     @Test
-    void processArrowDownTest() {
-        game.moveFrog(arena.moveDown());
-        Mockito.verify(arena, Mockito.times(1)).moveDown();
+    public void processArrowRightTest() {
+        Frog frog = arena.getFrog();
+        game.moveFrog(frog.moveRight());
+        Mockito.verify(frog, Mockito.times(1)).moveRight();
     }
 
     @Test
-    void processArrowRightTest() {
-        game.moveFrog(arena.moveRight());
-        Mockito.verify(arena, Mockito.times(1)).moveRight();
-    }
-
-    @Test
-    void processArrowLeftTest() {
-        game.moveFrog(arena.moveLeft());
-        Mockito.verify(arena, Mockito.times(1)).moveLeft();
+    public void processArrowLeftTest() {
+        Frog frog = arena.getFrog();
+        game.moveFrog(frog.moveLeft());
+        Mockito.verify(frog, Mockito.times(1)).moveLeft();
     }
 }

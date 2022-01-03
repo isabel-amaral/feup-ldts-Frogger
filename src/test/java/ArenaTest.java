@@ -48,12 +48,17 @@ public class ArenaTest {
         List<Car> cars = arena.getCars();
         List<Turtle> turtles = arena.getTurtles();
         List<TreeTrunk> treeTrunks = arena.getTreeTrunks();
-        
+
         for (Car car: cars)
             Mockito.verify(car, Mockito.times(1)).draw(screen.newTextGraphics());
         for (Turtle turtle: turtles)
             Mockito.verify(turtle, Mockito.times(1).draw(screen.newTextGraphics()));
         for (TreeTrunk treeTrunk: treeTrunks)
             Mockito.verify(treeTrunk, Mockito.times(1).draw(screen.newTextGraphics()));
+    }
+
+    @Test
+    public void moveFrogTest() {
+        //TODO
     }
 }
