@@ -69,5 +69,4 @@ public class GameTest {
         game.moveFrog(arena.moveLeft());
         Mockito.verify(arena, Mockito.times(1)).moveLeft();
     }
-
 }

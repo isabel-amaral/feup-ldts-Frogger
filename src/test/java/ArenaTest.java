@@ -40,57 +40,45 @@ public class ArenaTest {
         Mockito.verify(graphics, Mockito.times(1)).putString(1, 2, "F");
     }
 
-    ///////////////////////////////////////////////////////////////////////
-
-    @Test
-    void drawArenaTest() {
-        arena.drawArena(new Position(1, 1));
-        Mockito.verify(graphics, Mockito.times(1)).setForegroundColor(TextColor.Factory.fromString("#000000"));
-        Mockito.verify(graphics, Mockito.times(1)).putString(1, 2, "A");
-    }
-
     @Test
     void drawCarTest() {
-        arena.drawFrog(new Position(1, 1));
+        arena.drawCar(new Position(1, 1));
         Mockito.verify(graphics, Mockito.times(1)).setForegroundColor(TextColor.Factory.fromString("#cb4335"));
         Mockito.verify(graphics, Mockito.times(1)).putString(1, 2, "C");
     }
 
     @Test
     void drawTurtleTest() {
-        arena.drawFrog(new Position(1, 1));
+        arena.drawTurtle(new Position(1, 1));
         Mockito.verify(graphics, Mockito.times(1)).setForegroundColor(TextColor.Factory.fromString("#e67e22"));
         Mockito.verify(graphics, Mockito.times(1)).putString(1, 2, "T");
     }
 
     @Test
     void drawTreeTrunkTest() {
-        arena.drawFrog(new Position(1, 1));
+        arena.drawTreeTrunk(new Position(1, 1));
         Mockito.verify(graphics, Mockito.times(1)).setForegroundColor(TextColor.Factory.fromString("#7e5109"));
         Mockito.verify(graphics, Mockito.times(1)).putString(1, 2, "TT");
     }
 
     @Test
     void drawWaterTest() {
-        arena.drawFrog(new Position(1, 1));
+        arena.drawWater(new Position(1, 1));
         Mockito.verify(graphics, Mockito.times(1)).setForegroundColor(TextColor.Factory.fromString("#5dade2"));
         Mockito.verify(graphics, Mockito.times(1)).putString(1, 2, "W");
     }
 
     @Test
     void drawGrassTest() {
-        arena.drawFrog(new Position(1, 1));
+        arena.drawGrass(new Position(1, 1));
         Mockito.verify(graphics, Mockito.times(1)).setForegroundColor(TextColor.Factory.fromString("#1e8449"));
         Mockito.verify(graphics, Mockito.times(1)).putString(1, 2, "G");
     }
 
     @Test
     void drawSideWalkTest() {
-        arena.drawFrog(new Position(1, 1));
+        arena.drawSidewalk(new Position(1, 1));
         Mockito.verify(graphics, Mockito.times(1)).setForegroundColor(TextColor.Factory.fromString("#b175ff"));
         Mockito.verify(graphics, Mockito.times(1)).putString(1, 2, "SDW");
     }
-
-
-    //TODO: completar testes draw para os outros elementos
 }
