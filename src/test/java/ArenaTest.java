@@ -1,9 +1,10 @@
-
+import java.util.List;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.screen.Screen;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.ArgumentMatchers;
 import org.mockito.Mockito;
 
 public class ArenaTest {
@@ -12,18 +13,17 @@ public class ArenaTest {
     private TextGraphics graphics;
 
     @BeforeEach
-    void setUp() {
+    public void setUp() {
         screen = Mockito.mock(Screen.class);
         graphics = Mockito.mock(TextGraphics.class);
-
         Mockito.when(screen.newTextGraphics()).thenReturn(graphics);
 
         arena = new Arena(screen);
     }
 
     @Test
-    void drawTextTest() {
-        arena.drawText(new Position(1, 1), "Hello Frog Friends!", "#336699");
+    public void drawTextTest() {
+        arena.drawText(screen.newTextGraphics(), new Position(1, 1), "Hello Frog Friends!", "#336699");
 
         //TODO: ver se funciona
         Mockito.verify(graphics, Mockito.times(1)).setForegroundColor(TextColor.Factory.fromString("#336699"));
@@ -32,53 +32,28 @@ public class ArenaTest {
     }
 
     @Test
-    void drawFrogTest() {
-        arena.drawFrog(new Position(1, 1));
-        //TODO: ver se funciona
-        Mockito.verify(graphics, Mockito.times(1)).setForegroundColor(TextColor.Factory.fromString("#33cc33"));
-        //Mockito.verify(tg, Mockito.times(1)).setForegroundColor(new TextColor.RGB(51, 204, 51));
-        Mockito.verify(graphics, Mockito.times(1)).putString(1, 2, "F");
-    }
+    public void drawArenaTest() {
+        Water water = arena.getWater();
+        Grass grass = arena.getGrass();
+        List<Sidewalk> sidewalks = arena.getSidewalks();
 
-    @Test
-    void drawCarTest() {
-        arena.drawCar(new Position(1, 1));
-        Mockito.verify(graphics, Mockito.times(1)).setForegroundColor(TextColor.Factory.fromString("#cb4335"));
-        Mockito.verify(graphics, Mockito.times(1)).putString(1, 2, "C");
-    }
+        Mockito.verify(water, Mockito.times(1)).draw(screen.newTextGraphics());
+        Mockito.verify(grass, Mockito.times(1)).draw(screen.newTextGraphics());
+        for (Sidewalk sidewalk: sidewalks)
+            Mockito.verify(sidewalk, Mockito.times(1)).draw(screen.newTextGraphics());
 
-    @Test
-    void drawTurtleTest() {
-        arena.drawTurtle(new Position(1, 1));
-        Mockito.verify(graphics, Mockito.times(1)).setForegroundColor(TextColor.Factory.fromString("#e67e22"));
-        Mockito.verify(graphics, Mockito.times(1)).putString(1, 2, "T");
-    }
+        Frog frog = arena.getFrog();
+        Mockito.verify(frog, Mockito.times(1)).draw(screen.newTextGraphics());
 
-    @Test
-    void drawTreeTrunkTest() {
-        arena.drawTreeTrunk(new Position(1, 1));
-        Mockito.verify(graphics, Mockito.times(1)).setForegroundColor(TextColor.Factory.fromString("#7e5109"));
-        Mockito.verify(graphics, Mockito.times(1)).putString(1, 2, "TT");
-    }
-
-    @Test
-    void drawWaterTest() {
-        arena.drawWater(new Position(1, 1));
-        Mockito.verify(graphics, Mockito.times(1)).setForegroundColor(TextColor.Factory.fromString("#5dade2"));
-        Mockito.verify(graphics, Mockito.times(1)).putString(1, 2, "W");
-    }
-
-    @Test
-    void drawGrassTest() {
-        arena.drawGrass(new Position(1, 1));
-        Mockito.verify(graphics, Mockito.times(1)).setForegroundColor(TextColor.Factory.fromString("#1e8449"));
-        Mockito.verify(graphics, Mockito.times(1)).putString(1, 2, "G");
-    }
-
-    @Test
-    void drawSideWalkTest() {
-        arena.drawSidewalk(new Position(1, 1));
-        Mockito.verify(graphics, Mockito.times(1)).setForegroundColor(TextColor.Factory.fromString("#b175ff"));
-        Mockito.verify(graphics, Mockito.times(1)).putString(1, 2, "SDW");
+        List<Car> cars = arena.getCars();
+        List<Turtle> turtles = arena.getTurtles();
+        List<TreeTrunk> treeTrunks = arena.getTreeTrunks();
+        
+        for (Car car: cars)
+            Mockito.verify(car, Mockito.times(1)).draw(screen.newTextGraphics());
+        for (Turtle turtle: turtles)
+            Mockito.verify(turtle, Mockito.times(1).draw(screen.newTextGraphics()));
+        for (TreeTrunk treeTrunk: treeTrunks)
+            Mockito.verify(treeTrunk, Mockito.times(1).draw(screen.newTextGraphics()));
     }
 }
