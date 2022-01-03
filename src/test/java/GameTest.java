@@ -1,4 +1,6 @@
 import com.googlecode.lanterna.graphics.TextGraphics;
+import com.googlecode.lanterna.input.KeyStroke;
+import com.googlecode.lanterna.input.KeyType;
 import com.googlecode.lanterna.screen.Screen;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -38,31 +40,10 @@ public class GameTest {
         }
     }
 
-  @Test
-    public void processArrowUpTest() {
-        Frog frog = arena.getFrog();
-        arena.moveFrog(frog.moveUp());
-        Mockito.verify(frog, Mockito.times(1)).moveUp();
-    }
-
     @Test
-    public void processArrowDownTest() {
-        Frog frog = arena.getFrog();
-        arena.moveFrog(frog.moveDown());
-        Mockito.verify(frog, Mockito.times(1)).moveDown();
-    }
-
-    @Test
-    public void processArrowRightTest() {
-        Frog frog = arena.getFrog();
-        game.moveFrog(frog.moveRight());
-        Mockito.verify(frog, Mockito.times(1)).moveRight();
-    }
-
-    @Test
-    public void processArrowLeftTest() {
-        Frog frog = arena.getFrog();
-        game.moveFrog(frog.moveLeft());
-        Mockito.verify(frog, Mockito.times(1)).moveLeft();
+    public void processKey() {
+        //TODO
+        KeyType keyType = KeyType.ArrowUp;
+        game.processKey();
     }
 }
