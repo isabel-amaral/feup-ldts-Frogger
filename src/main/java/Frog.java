@@ -8,10 +8,7 @@ public class Frog {
     private Position position;
 
     public Frog(int x, int y){
-        position = new Position(x,y);
-        position.setY(y);
-        position.setX(x);
-        //Deve ter alguma forma mais fácil e "bonita" de inicializar isso! Mas depois vê-se
+        position = new Position(x, y);
     }
 
     public Position moveUp(){
@@ -32,6 +29,5 @@ public class Frog {
         graphics.enableModifiers(SGR.BOLD);
         graphics.putString(new TerminalPosition(position.getX(), position.getY()),"F");
     }
-
 }
 
