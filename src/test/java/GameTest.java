@@ -12,15 +12,12 @@ public class GameTest {
     private Screen screen;
     private Game game;
     private Arena arena;
-    //private TextGraphics graphics;
+    private TextGraphics graphics;
 
     @BeforeEach
     public void setUp() {
-        //???
-        //screen = Mockito.mock(Screen.class);
-        //graphics = Mockito.mock(TextGraphics.class);
-        //arena = Mockito.mock(Arena.class);
-        //Mockito.when(screen.newTextGraphics()).thenReturn(graphics);
+        graphics = Mockito.mock(TextGraphics.class);
+        Mockito.when(screen.newTextGraphics()).thenReturn(graphics);
 
         game = new Game();
         screen = game.getScreen();
