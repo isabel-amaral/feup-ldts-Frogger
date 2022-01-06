@@ -141,7 +141,7 @@ public class Arena {
     }
 
     //Possibly to change after implementing the state pattern
-    public boolean verifyCarCollisions() {
+    public boolean verifyCarCollision() {
         for(Car car: cars) {
             if (car.getPosition().equals(frog.getPosition())) {
                 //State = lose
@@ -153,7 +153,7 @@ public class Arena {
     }
 
     //Possibly to change after implementing the state pattern
-    public boolean verifyTurtleCollisions(){
+    public boolean verifyTurtleCollision() {
         for(Turtle turtle : turtles){
             if(turtle.getPosition().equals(frog.getPosition())){
                 return true;
@@ -163,7 +163,7 @@ public class Arena {
     }
 
     //Possibly to change after implementing the state pattern
-    public boolean verifyTreeTrunksCollisions(){
+    public boolean verifyTreeTrunkCollision() {
         for (TreeTrunk treeTrunk : treeTrunks)
             if (treeTrunk.getPosition().equals(frog.getPosition()))
                 return true;
@@ -171,7 +171,7 @@ public class Arena {
     }
 
     //Possibly to change after implementing the state pattern
-    public boolean verifyWaterCollisions() {
+    public boolean verifyWaterCollision() {
         if (water.getPosition().equals(frog.getPosition())) {
             //State = lose
             System.out.println("GAME OVER");
@@ -180,8 +180,13 @@ public class Arena {
         return false;
     }
 
+    public boolean verifySidewalkCollision() {
+        //TODO
+        return false;
+    }
+
     //Possibly to change after implementing the state pattern
-    public boolean verifyGrassCollisions() {
+    public boolean verifyGrassCollision() {
         if (grass.getPosition().equals(frog.getPosition())) {
             //State = win
             System.out.println("YOU WON");
