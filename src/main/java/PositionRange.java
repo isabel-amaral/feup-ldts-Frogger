@@ -7,10 +7,10 @@ public class PositionRange {
         this.yMax = max;
     }
 
-    public int getyMin() {
+    public int getYMin() {
         return yMin;
     }
-    public int getyMax() {
+    public int getYMax() {
         return yMax;
     }
 }
