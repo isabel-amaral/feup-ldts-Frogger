@@ -6,6 +6,10 @@ import com.googlecode.lanterna.graphics.TextGraphics;
 public class SideWalk {
     private Position position;
 
+    public SideWalk(int x, int y) {
+        this.position = new Position(x, y);
+    }
+
     public void draw(TextGraphics graphics){
         graphics.setForegroundColor(TextColor.Factory.fromString("#b175ff"));
         graphics.enableModifiers(SGR.BOLD);

@@ -6,6 +6,10 @@ import com.googlecode.lanterna.graphics.TextGraphics;
 public class TreeTrunk {
     private Position position;
 
+    public TreeTrunk(int x, int y) {
+        this.position = new Position(x, y);
+    }
+
     public void draw(TextGraphics graphics){
         graphics.setForegroundColor(TextColor.Factory.fromString("#7e5109"));
         graphics.enableModifiers(SGR.BOLD);

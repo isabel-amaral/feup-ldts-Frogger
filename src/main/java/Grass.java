@@ -6,6 +6,10 @@ import com.googlecode.lanterna.graphics.TextGraphics;
 public class Grass {
     private Position position;
 
+    public Grass(int x, int y) {
+        this.position = new Position(x, y);
+    }
+
     public void draw(TextGraphics graphics){
         graphics.setForegroundColor(TextColor.Factory.fromString("#1e8449"));
         graphics.enableModifiers(SGR.BOLD);

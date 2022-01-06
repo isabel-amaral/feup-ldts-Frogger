@@ -4,11 +4,10 @@ import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 
 public class Frog {
-
     private Position position;
 
     public Frog(int x, int y){
-        position = new Position(x, y);
+        this.position = new Position(x, y);
     }
 
     public Position moveUp(){
