@@ -6,6 +6,10 @@ import com.googlecode.lanterna.graphics.TextGraphics;
 public class Turtle {
     private Position position;
 
+    public Turtle(int x, int y) {
+        this.position = new Position(x, y);
+    }
+
     public void draw(TextGraphics graphics){
         graphics.setForegroundColor(TextColor.Factory.fromString("#e67e22"));
         graphics.enableModifiers(SGR.BOLD);

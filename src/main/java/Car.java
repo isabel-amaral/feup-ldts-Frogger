@@ -4,8 +4,11 @@ import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 
 public class Car {
-
     private Position position;
+
+    public Car(int x, int y) {
+        this.position = new Position(x, y);
+    }
 
     public void draw(TextGraphics graphics){
         graphics.setForegroundColor(TextColor.Factory.fromString("#cb4335"));

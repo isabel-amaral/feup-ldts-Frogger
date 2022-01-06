@@ -3,12 +3,18 @@ import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 
-public class SideWalk {
-    private Position position;
+public class Sidewalk {
+    private PositionRange position;
+
+    public Sidewalk(int min, int max) {
+        this.position = new PositionRange(min, max);
+    }
 
     public void draw(TextGraphics graphics){
+        //TODO: corrigir
+        /*
         graphics.setForegroundColor(TextColor.Factory.fromString("#b175ff"));
         graphics.enableModifiers(SGR.BOLD);
-        graphics.putString(new TerminalPosition(position.getX(), position.getY()),"SDW");
+        graphics.putString(new TerminalPosition(position.getYMin(), position.getYMax()),"SDW");*/
     }
 }

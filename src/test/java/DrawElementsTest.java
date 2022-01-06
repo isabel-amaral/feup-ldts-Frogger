@@ -18,7 +18,7 @@ public class DrawElementsTest {
 
     @Test
     public void drawFrogTest() {
-        Frog frog = new Frog();
+        Frog frog = new Frog(1, 2);
         frog.draw(screen.newTextGraphics());
 
         Mockito.verify(graphics, Mockito.times(1)).setForegroundColor(TextColor.Factory.fromString("#33cc33"));
@@ -27,7 +27,7 @@ public class DrawElementsTest {
 
     @Test
     public void drawCarTest() {
-        Car car = new Car();
+        Car car = new Car(1, 2);
         car.draw(screen.newTextGraphics());
 
         Mockito.verify(graphics, Mockito.times(1)).setForegroundColor(TextColor.Factory.fromString("#cb4335"));
@@ -36,7 +36,7 @@ public class DrawElementsTest {
 
     @Test
     public void drawTurtleTest() {
-        Turtle turtle = new Turtle();
+        Turtle turtle = new Turtle(1, 2);
         turtle.draw(screen.newTextGraphics());
 
         Mockito.verify(graphics, Mockito.times(1)).setForegroundColor(TextColor.Factory.fromString("#e67e22"));
@@ -45,7 +45,7 @@ public class DrawElementsTest {
 
     @Test
     public void drawTreeTrunkTest() {
-        TreeTrunk treeTrunk = new TreeTrunk();
+        TreeTrunk treeTrunk = new TreeTrunk(1, 2);
         treeTrunk.draw(screen.newTextGraphics());
 
         Mockito.verify(graphics, Mockito.times(1)).setForegroundColor(TextColor.Factory.fromString("#7e5109"));
@@ -54,7 +54,7 @@ public class DrawElementsTest {
 
     @Test
     public void drawWaterTest() {
-        Water water = new Water();
+        Water water = new Water(1, 2);
         water.draw(screen.newTextGraphics());
 
         Mockito.verify(graphics, Mockito.times(1)).setForegroundColor(TextColor.Factory.fromString("#5dade2"));
@@ -63,7 +63,7 @@ public class DrawElementsTest {
 
     @Test
     public void drawGrassTest() {
-        Grass grass = new Grass();
+        Grass grass = new Grass(1, 2);
         grass.draw(screen.newTextGraphics());
 
         Mockito.verify(graphics, Mockito.times(1)).setForegroundColor(TextColor.Factory.fromString("#1e8449"));
@@ -72,7 +72,7 @@ public class DrawElementsTest {
 
     @Test
     public void drawSideWalkTest() {
-        Sidewalk sidewalk = new Sidewalk();
+        Sidewalk sidewalk = new Sidewalk(1, 2);
         sidewalk.draw(screen.newTextGraphics());
 
         Mockito.verify(graphics, Mockito.times(1)).setForegroundColor(TextColor.Factory.fromString("#b175ff"));
