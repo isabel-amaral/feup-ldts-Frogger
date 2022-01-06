@@ -11,7 +11,7 @@ import java.util.Random;
 public class Arena {
     private int width;
     private int height;
-    private Frog frog = new Frog(10, 10);
+    private Frog frog = new Frog(30, 1);
     private List<Car> cars;
     private List<TreeTrunk> treeTrunks;
     private List<Turtle> turtles;
@@ -19,9 +19,10 @@ public class Arena {
     private Grass grass;
     private Sidewalk sidewalk;
 
-    public Arena (int new_width, int new_height){
-        width = new_width;
-        height = new_height;
+    public Arena (int width, int height){
+        this.width = width;
+        this.height = height;
+        //later to be created using the factory method!
         this.cars = createCars();
         this.treeTrunks = createTreeTrunks();
         this.turtles = createTurtles();
@@ -30,57 +31,51 @@ public class Arena {
     public int getWidth(){
         return width;
     }
-
     public int getHeight(){
         return height;
     }
-
     public Frog getFrog(){
         return frog;
     }
-
     public List<Car> getCars(){
         return cars;
     }
-
     public List<TreeTrunk> getTreeTrunks(){
         return treeTrunks;
     }
-
     public List<Turtle> getTurtles(){
         return turtles;
     }
-
     public Water getWater(){
         return water;
     }
-
     public Grass getGrass(){
         return grass;
     }
-
     public Sidewalk getSidewalks(){
         return sidewalk;
-    }
+    }  //TODO: discutir se vamos ter mais de um passeio
 
     public void draw(TextGraphics graphics){
         graphics.setBackgroundColor(TextColor.Factory.fromString("#FFFFFF"));
         graphics.fillRectangle(new TerminalPosition(0, 0), new TerminalSize(width, height), ' ');
         frog.draw(graphics);
-        for (Car car : cars)
+        for (Car car: cars)
             car.draw(graphics);
-        for(TreeTrunk treeTrunk : treeTrunks){
+        for(TreeTrunk treeTrunk: treeTrunks){
             treeTrunk.draw(graphics);
         }
-        for(Turtle turtle : turtles)
+        for(Turtle turtle: turtles)
             turtle.draw(graphics);
     }
 
-    public void drawText(TextGraphics graphics, Position position, String text, String color){
-
+    public void drawText(TextGraphics graphics, Position position, String text, String color) {
+        //TODO
     }
 
+    //Later we will use a random method to create the cars, treeTrunks and Turtles
     public List<Car> createCars() {
+        //TODO: arranjar forma de apenas criar os carros dentro das estradas
         List<Car> cars = new ArrayList<>();
         List<Position> positions = new ArrayList<>();
         for (int i = 0; i < 20; i++) {
@@ -93,7 +88,9 @@ public class Arena {
         return cars;
     }
 
+    //Later we will use a random method to create the cars, treeTrunks and Turtles
     public List<TreeTrunk> createTreeTrunks() {
+        //TODO: arranjar forma de apenas criar os troncos dentro da água
         List<TreeTrunk> treeTrunks = new ArrayList<>();
         List<Position> positions = new ArrayList<>();
         for (int i = 0; i < 15; i++) {
@@ -106,12 +103,14 @@ public class Arena {
         return treeTrunks;
     }
 
+    //Later we will use a random method to create the cars, treeTrunks and Turtles
     public List<Turtle> createTurtles() {
+        //TODO: arranjar forma de apenas criar as tartarugas dentro da água
         List<Turtle> turtles = new ArrayList<>();
         List<Position> positions = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
             Turtle turtle = new Turtle(i, i);
-            if((!positions.contains(turtle.getPosition())) && turtle.getPosition()!=frog.getPosition()){
+            if ((!positions.contains(turtle.getPosition())) && turtle.getPosition()!=frog.getPosition()) {
                 turtles.add(turtle);
                 positions.add(turtle.getPosition());
             }
@@ -127,27 +126,24 @@ public class Arena {
     public boolean canFrogMove(Position position) {
         int x = position.getX();
         int y = position.getY();
-        if((x >= 0 && x < width) && ( y >= 0 && y < height)){
-            for(int i = 0; i < cars.size(); i++){
-                if (cars.get(i).getPosition().equals(position)){
-                    return false;
-                }
-            }
-            for(int i = 0; i < turtles.size(); i++){
-                if (turtles.get(i).getPosition().equals(position)){
-                    return false;
-                }
-            }
-           //Water restriction
-            //Grass restriction
-            return true;
-        }
-        return false;
+
+        if (x <= 0 || x > width || y <= 0 || y > height)
+            return false;
+
+        for (Car car : cars)
+            if (car.getPosition().equals(position))
+                return false;
+        for (Turtle turtle : turtles)
+            if (turtle.getPosition().equals(position))
+                return false;
+        //TODO: Water restriction and Grass restriction
+        return true;
     }
 
-    public boolean verifyCarCollisions(){
-        for(Car car : cars){
-            if(car.getPosition().equals(frog.getPosition())){
+    //Possibly to change after implementing the state pattern
+    public boolean verifyCarCollisions() {
+        for(Car car: cars) {
+            if (car.getPosition().equals(frog.getPosition())) {
                 //State = lose
                 System.out.println("GAME OVER");
                 return true;
@@ -156,6 +152,7 @@ public class Arena {
         return false;
     }
 
+    //Possibly to change after implementing the state pattern
     public boolean verifyTurtleCollisions(){
         for(Turtle turtle : turtles){
             if(turtle.getPosition().equals(frog.getPosition())){
@@ -165,17 +162,17 @@ public class Arena {
         return false;
     }
 
+    //Possibly to change after implementing the state pattern
     public boolean verifyTreeTrunksCollisions(){
-        for(TreeTrunk treeTrunk : treeTrunks){
-            if(treeTrunk.getPosition().equals(frog.getPosition())){
+        for (TreeTrunk treeTrunk : treeTrunks)
+            if (treeTrunk.getPosition().equals(frog.getPosition()))
                 return true;
-            }
-        }
         return false;
     }
 
-    public boolean verifyWaterCollisions(){
-        if(water.getPosition().equals(frog.getPosition())){
+    //Possibly to change after implementing the state pattern
+    public boolean verifyWaterCollisions() {
+        if (water.getPosition().equals(frog.getPosition())) {
             //State = lose
             System.out.println("GAME OVER");
             return true;
@@ -183,13 +180,13 @@ public class Arena {
         return false;
     }
 
-    public boolean verifyGrassCollisions(){
-        if(grass.getPosition().equals(frog.getPosition())){
+    //Possibly to change after implementing the state pattern
+    public boolean verifyGrassCollisions() {
+        if (grass.getPosition().equals(frog.getPosition())) {
             //State = win
             System.out.println("YOU WON");
             return true;
         }
         return false;
     }
-
 }
