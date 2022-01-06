@@ -10,6 +10,13 @@ public class TreeTrunk {
         this.position = new Position(x, y);
     }
 
+    public void setPosition(Position position) {
+        this.position = position;
+    }
+    public Position getPosition() {
+        return position;
+    }
+
     public void draw(TextGraphics graphics){
         graphics.setForegroundColor(TextColor.Factory.fromString("#7e5109"));
         graphics.enableModifiers(SGR.BOLD);

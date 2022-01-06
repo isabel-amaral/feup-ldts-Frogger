@@ -16,6 +16,7 @@ public class Frog {
     public void setPosition(Position position) {
         this.position = position;
     }
+
     public Position moveUp(){
         return new Position(position.getX(), position.getY() + 1);
     }

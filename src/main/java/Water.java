@@ -10,6 +10,10 @@ public class Water {
         this.position = new PositionRange(min, max);
     }
 
+    public PositionRange getPosition() {
+        return position;
+    }
+
     public void draw(TextGraphics graphics){
         //TODO: corrigir
         /*
