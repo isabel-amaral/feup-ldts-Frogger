@@ -19,7 +19,7 @@ public class ArenaMovementsTest {
         //TODO: confirmar se funciona
         Mockito.when(arena.canFrogMove(Mockito.any())).thenReturn(true);
 
-        arena.getFrog().setPosition(2, 1);
+        arena.getFrog().setPosition(new Position(2, 1));
         //positions the frog will be moving to
         Position availablePosition1 = new Position (2, 2); //move up
         Position availablePosition2 = new Position(1, 1);  //move left
@@ -28,15 +28,15 @@ public class ArenaMovementsTest {
         arena.moveFrog(availablePosition1);
         Mockito.verify(arena, Mockito.times(1).canFrogMove(availablePosition1));
         Mockito.verify(arena.getFrog(), Mockito.times(1).setPosition(availablePosition1));
-        Assertions.assertEquals(arena.getFrog.getPosition(), availablePosition1);
+        Assertions.assertEquals(arena.getFrog().getPosition(), availablePosition1);
 
-        arena.getFrog().setPosition(2, 1);
+        arena.getFrog().setPosition(new Position(2, 1));
         arena.moveFrog(availablePosition2);
-        Assertions.assertEquals(arena.getFrog.getPosition(), availablePosition2);
+        Assertions.assertEquals(arena.getFrog().getPosition(), availablePosition2);
 
-        arena.getFrog().setPosition(2, 1);
+        arena.getFrog().setPosition(new Position(2, 1));
         arena.moveFrog(availablePosition3);
-        Assertions.assertEquals(arena.getFrog.getPosition(), availablePosition3);
+        Assertions.assertEquals(arena.getFrog().getPosition(), availablePosition3);
     }
 
     @Test
@@ -45,7 +45,7 @@ public class ArenaMovementsTest {
         //TODO: confirmar se funciona
         Mockito.when(arena.canFrogMove(Mockito.any())).thenReturn(false);
 
-        arena.getFrog().setPosition(2, 1);
+        arena.getFrog().setPosition(new Position(2, 1));
         //positions the frog will be trying to move to
         Position unavailablePosition1 = new Position (2, 2); //try to move up
         Position unavailablePosition2 = new Position(1, 1);  //try to move left
@@ -54,14 +54,14 @@ public class ArenaMovementsTest {
 
         arena.moveFrog(unavailablePosition1);
         Mockito.verify(arena, Mockito.times(1).canFrogMove(unavailablePosition1));
-        Mockito.verify(arena.getFrog(), Mockito.times(0).setPosition(unavailablePosition1));
+        Mockito.verify(arena.getFrog(), Mockito.times(1).setPosition(unavailablePosition1));
         Assertions.assertEquals(arena.getFrog().getPosition(), expectedPosition);
 
-        arena.getFrog().setPosition(2, 1);
+        arena.getFrog().setPosition(new Position(2, 1));
         arena.moveFrog(unavailablePosition2);
         Assertions.assertEquals(arena.getFrog().getPosition(), expectedPosition);
 
-        arena.getFrog().setPosition(2, 1);
+        arena.getFrog().setPosition(new Position(2, 1));
         arena.moveFrog(unavailablePosition3);
         Assertions.assertEquals(arena.getFrog().getPosition(), expectedPosition);
     }
