@@ -6,6 +6,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.Mockito;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -20,7 +21,8 @@ public class ArenaTest {
         graphics = Mockito.mock(TextGraphics.class);
         Mockito.when(screen.newTextGraphics()).thenReturn(graphics);
 
-        arena = new Arena(screen);
+        arena = new Arena(30, 60);
+        arena.draw(graphics);
     }
 
     @Test
@@ -37,7 +39,7 @@ public class ArenaTest {
     public void drawArenaTest() {
         Water water = arena.getWater();
         Grass grass = arena.getGrass();
-        List<Sidewalk> sidewalks = arena.getSidewalks();
+        List<Sidewalk> sidewalks = (List<Sidewalk>) arena.getSidewalks();
 
         Mockito.verify(water, Mockito.times(1)).draw(screen.newTextGraphics());
         Mockito.verify(grass, Mockito.times(1)).draw(screen.newTextGraphics());
@@ -54,8 +56,8 @@ public class ArenaTest {
         for (Car car: cars)
             Mockito.verify(car, Mockito.times(1)).draw(screen.newTextGraphics());
         for (Turtle turtle: turtles)
-            Mockito.verify(turtle, Mockito.times(1).draw(screen.newTextGraphics()));
+            Mockito.verify(turtle, Mockito.times(1)).draw(screen.newTextGraphics());
         for (TreeTrunk treeTrunk: treeTrunks)
-            Mockito.verify(treeTrunk, Mockito.times(1).draw(screen.newTextGraphics()));
+            Mockito.verify(treeTrunk, Mockito.times(1)).draw(screen.newTextGraphics());
     }
 }

@@ -10,7 +10,7 @@ public class MoveFrogTest {
 
     @BeforeEach
     public void setUp() {
-        Frog frog = new Frog();
+        Frog frog = new Frog(1, 1);
         position = frog.getPosition();
     }
 
