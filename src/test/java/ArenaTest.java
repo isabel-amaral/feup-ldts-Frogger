@@ -5,6 +5,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 public class ArenaTest {
     private Screen screen;
     private Arena arena;
@@ -57,6 +59,33 @@ public class ArenaTest {
 
     @Test
     public void moveFrogTest() {
-        //TODO
+        //can move
+        Position availablePosition = new Position (2, 2);
+        arena.moveFrog(availablePosition);
+        Mockito.verify(arena, Mockito.times(1).canFrogMove(availablePosition));
+        Mockito.verify(frog, Mockito.times(1).setPosition(availablePosition));
+
+        //can't move
+        Position unavailablePosition = new Position (2, 2);
+        arena.moveFrog(unavailablePosition);
+        Mockito.verify(arena, Mockito.times(1).canFrogMove(unavailablePosition));
+        Mockito.verify(frog, Mockito.times(0).setPosition(unavailablePosition));
+    }
+
+    @Test
+    public void verifyCollision() {
+        arena.draw();
+        Frog frog = arena.getFrog();
+        Position frogPosition = frog.getPosition();
+        Car car = arena.getCars().get(1);
+
+        //assume that car is in position (2,2) and frog starts at position (1,1)
+        frog.moveFrog(3,3);
+        Mockito.verify(arena, Mockito.times(1).verifyCollision());
+        assertEquals(false, arena.verifyCollision());
+
+        frog.moveFrog(2,2);
+        Mockito.verify(arena, Mockito.times(1).verifyCollision());
+        assertEquals(true, arena.verifyCollision());
     }
 }
