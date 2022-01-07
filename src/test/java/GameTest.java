@@ -15,7 +15,7 @@ public class GameTest {
     private TextGraphics graphics;
 
     @BeforeEach
-    public void setUp() {
+    public void setUp() throws IOException {
         graphics = Mockito.mock(TextGraphics.class);
         Mockito.when(screen.newTextGraphics()).thenReturn(graphics);
 
@@ -25,7 +25,7 @@ public class GameTest {
     }
 
     @Test
-    public void drawTest() {
+    public void drawTest() throws IOException {
         game.draw();
 
         Mockito.verify(screen, Mockito.times(1)).clear();
@@ -41,6 +41,6 @@ public class GameTest {
     public void processKey() {
         //TODO
         KeyType keyType = KeyType.ArrowUp;
-        game.processKey();
+        //game.processKey();
     }
 }

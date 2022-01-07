@@ -20,13 +20,21 @@ public class Game {
     private Arena arena = new Arena(60, 30);
     //Add Game State
 
+    public Screen getScreen() {
+        return screen;
+    }
+
+    public Arena getArena() {
+        return arena;
+    }
+
     public Game() throws IOException {
         screen.setCursorPosition(null); // we don't need a cursor
         screen.startScreen(); // screens must be started
         screen.doResizeIfNecessary(); // resize screen if necessary
     }
 
-    private void draw() throws IOException {
+    public void draw() throws IOException {
         screen.clear();
         arena.draw(graphics);
         screen.refresh();
@@ -76,4 +84,6 @@ public class Game {
 
         }
     }
+
+
 }

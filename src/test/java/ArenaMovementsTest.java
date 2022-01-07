@@ -119,8 +119,8 @@ public class ArenaMovementsTest {
     public void verifyWaterCollision1() {
         //water is always at yMin = 15 and yMax = 25
         //the frog never collides with either a tree trunk or a turtle, therefore it always collides with water
-        Mockito.when(arena.verifyTreeTrunkCollision()).thenReturn(false);
-        Mockito.when(arena.verifyTurtleCollision()).thenReturn(false);
+        //Mockito.when(arena.verifyTreeTrunkCollision()).thenReturn(false);
+        //Mockito.when(arena.verifyTurtleCollision()).thenReturn(false);
 
         Assertions.assertEquals(arena.verifyWaterCollision(new Position(25, 25)), true);
         Assertions.assertEquals(arena.verifyWaterCollision(new Position(15, 25)), true);
@@ -138,8 +138,8 @@ public class ArenaMovementsTest {
     public void verifyWaterCollision2() {
         //water is always at yMin = 15 and yMax = 25
         //the frog always collides with either a tree trunk or a turtle, therefore it never collides with water
-        Mockito.when(arena.verifyTreeTrunkCollision()).thenReturn(true);
-        Mockito.when(arena.verifyTurtleCollision()).thenReturn(true);
+        //Mockito.when(arena.verifyTreeTrunkCollision()).thenReturn(true);
+        //Mockito.when(arena.verifyTurtleCollision()).thenReturn(true);
 
         Assertions.assertEquals(arena.verifyWaterCollision(new Position(25, 25)), false);
         Assertions.assertEquals(arena.verifyWaterCollision(new Position(15, 25)), false);
@@ -190,13 +190,13 @@ public class ArenaMovementsTest {
         Mockito.when(arena.verifyGrassCollision(Mockito.any())).thenReturn(false); //the game ends when the frog moves to grass
 
         arena.canFrogMove(new Position(1, 2));
-        Mockito.verify(arena, Mockito.times(1)).verifyCarCollision();
-        Mockito.verify(arena, Mockito.times(1)).verifyWaterCollision();
-        Mockito.verify(arena, Mockito.times(1)).verifyGrassCollision();
+        Mockito.verify(arena, Mockito.times(1)).verifyCarCollision(new Position (1,2));
+        Mockito.verify(arena, Mockito.times(1)).verifyWaterCollision(new Position (1,2));
+        Mockito.verify(arena, Mockito.times(1)).verifyGrassCollision(new Position (1,2));
 
-        Assertions.assertEquals(canFrogMove(new Position(1, 2)), true);
-        Assertions.assertEquals(canFrogMove(new Position(3, 3)), true);
-        Assertions.assertEquals(canFrogMove(new Position(12, 9)), true);
+        Assertions.assertEquals(arena.canFrogMove(new Position(1, 2)), true);
+        Assertions.assertEquals(arena.canFrogMove(new Position(3, 3)), true);
+        Assertions.assertEquals(arena.canFrogMove(new Position(12, 9)), true);
     }
 
     @Test
@@ -206,9 +206,9 @@ public class ArenaMovementsTest {
         Mockito.when(arena.verifyWaterCollision(Mockito.any())).thenReturn(false);
         Mockito.when(arena.verifyGrassCollision(Mockito.any())).thenReturn(false);
 
-        Assertions.assertEquals(canFrogMove(new Position(1, 2)), false);
-        Assertions.assertEquals(canFrogMove(new Position(3, 3)), false);
-        Assertions.assertEquals(canFrogMove(new Position(12, 9)), false);
+        Assertions.assertEquals(arena.canFrogMove(new Position(1, 2)), false);
+        Assertions.assertEquals(arena.canFrogMove(new Position(3, 3)), false);
+        Assertions.assertEquals(arena.canFrogMove(new Position(12, 9)), false);
     }
 
     @Test
@@ -218,9 +218,9 @@ public class ArenaMovementsTest {
         Mockito.when(arena.verifyWaterCollision(Mockito.any())).thenReturn(true);
         Mockito.when(arena.verifyGrassCollision(Mockito.any())).thenReturn(false);
 
-        Assertions.assertEquals(canFrogMove(new Position(1, 2)), false);
-        Assertions.assertEquals(canFrogMove(new Position(3, 3)), false);
-        Assertions.assertEquals(canFrogMove(new Position(12, 9)), false);
+        Assertions.assertEquals(arena.canFrogMove(new Position(1, 2)), false);
+        Assertions.assertEquals(arena.canFrogMove(new Position(3, 3)), false);
+        Assertions.assertEquals(arena.canFrogMove(new Position(12, 9)), false);
     }
 }
 
