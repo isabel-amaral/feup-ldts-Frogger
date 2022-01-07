@@ -3,31 +3,23 @@ import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 
-public class Frog {
-    private Position position;
+public class Frog extends MovableElement{
 
     public Frog(int x, int y){
-        this.position = new Position(x, y);
-    }
-
-    public Position getPosition() {
-        return position;
-    }
-    public void setPosition(Position position) {
-        this.position = position;
+        super(x,y);
     }
 
     public Position moveUp(){
-        return new Position(position.getX(), position.getY() + 1);
+        return new Position(getPosition().getX(), getPosition().getY() + 1);
     }
     public Position moveDown(){
-        return new Position(position.getX(), position.getY() - 1);
+        return new Position(getPosition().getX(), getPosition().getY() - 1);
     }
     public Position moveLeft(){
-        return new Position(position.getX() - 1, position.getY());
+        return new Position(getPosition().getX() - 1, getPosition().getY());
     }
     public Position moveRight() {
-        return new Position(position.getX() + 1, position.getY());
+        return new Position(getPosition().getX() + 1, getPosition().getY());
     }
 
     public void draw(TextGraphics graphics){

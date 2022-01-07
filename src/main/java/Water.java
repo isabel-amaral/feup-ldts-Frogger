@@ -3,11 +3,10 @@ import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 
-public class Water {
-    private PositionRange position;
+public class Water extends NonMovableElement{
 
     public Water(int min, int max) {
-        this.position = new PositionRange(min, max);
+        super(min, max);
     }
 
     public PositionRange getPosition() {

@@ -49,7 +49,7 @@ public class Game {
                 arena.moveFrog(arena.getFrog().moveLeft());
                 break;
             case ArrowUp:
-                arena.moveFrog(arena.getFrog().moveUp());
+                arena.moveFrog(arena.getFrog().moveRight());
                 break;
             case ArrowDown:
                 arena.moveFrog(arena.getFrog().moveDown());

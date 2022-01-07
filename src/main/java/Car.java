@@ -3,18 +3,9 @@ import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 
-public class Car {
-    private Position position;
-
+public class Car extends MovableElement{
     public Car(int x, int y) {
-        this.position = new Position(x, y);
-    }
-
-    public Position getPosition() {
-        return position;
-    }
-    public void setPosition(Position position) {
-        this.position = position;
+        super(x,y);
     }
 
     public void draw(TextGraphics graphics){
@@ -22,6 +13,5 @@ public class Car {
         graphics.enableModifiers(SGR.BOLD);
         graphics.putString(new TerminalPosition(position.getX(), position.getY()),"C");
     }
-
 
 }

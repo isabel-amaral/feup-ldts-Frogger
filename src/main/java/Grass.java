@@ -3,11 +3,10 @@ import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 
-public class Grass {
-    private PositionRange position;
+public class Grass extends NonMovableElement{
 
     public Grass(int min, int max) {
-        this.position = new PositionRange(min, max);
+        super(min, max);
     }
 
     public PositionRange getPosition() {
