@@ -73,6 +73,22 @@ public class Arena {
         //TODO
     }
 
+    public Position moveUp(){
+        return frog.moveUp();
+    }
+
+    public Position moveDown(){
+        return frog.moveDown();
+    }
+
+    public Position moveRight(){
+        return frog.moveRight();
+    }
+
+    public Position moveLeft(){
+        return frog.moveLeft();
+    }
+
     //Later we will use a random method to create the cars, treeTrunks and Turtles
     public List<Car> createCars() {
         //TODO: arranjar forma de apenas criar os carros dentro das estradas
