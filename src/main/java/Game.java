@@ -43,16 +43,16 @@ public class Game {
     private void processKey(KeyStroke key) {
         switch(key.getKeyType()){
             case ArrowRight:
-                arena.moveRight();
+                arena.moveFrog(arena.getFrog().moveUp());
                 break;
             case ArrowLeft:
-                arena.moveLeft();
+                arena.moveFrog(arena.getFrog().moveLeft());
                 break;
             case ArrowUp:
-                arena.moveUp();
+                arena.moveFrog(arena.getFrog().moveUp());
                 break;
             case ArrowDown:
-                arena.moveDown();
+                arena.moveFrog(arena.getFrog().moveDown());
                 break;
             default:
                 break;
@@ -65,15 +65,6 @@ public class Game {
             this.draw();
             KeyStroke key = screen.readInput();
             this.processKey(key);
-            if(arena.verifyCarCollision()){
-                screen.close();
-                break;
-            }
-
-            if(arena.verifyWaterCollision()){
-                screen.close();
-                break;
-            }
 
             if (key.getKeyType() == KeyType.Character && key.getCharacter() == 'q'){
                 screen.close();

@@ -73,22 +73,6 @@ public class Arena {
         //TODO
     }
 
-    public Position moveUp(){
-        return frog.moveUp();
-    }
-
-    public Position moveDown(){
-        return frog.moveDown();
-    }
-
-    public Position moveRight(){
-        return frog.moveRight();
-    }
-
-    public Position moveLeft(){
-        return frog.moveLeft();
-    }
-
     //Later we will use a random method to create the cars, treeTrunks and Turtles
     public List<Car> createCars() {
         //TODO: arranjar forma de apenas criar os carros dentro das estradas
@@ -146,12 +130,24 @@ public class Arena {
         if (x <= 0 || x > width || y <= 0 || y > height)
             return false;
 
-        for (Car car : cars)
-            if (car.getPosition().equals(position))
-                return false;
-        for (Turtle turtle : turtles)
-            if (turtle.getPosition().equals(position))
-                return false;
+        if (this.verifyCarCollision(position)) {
+            return false;
+        }
+        if (this.verifyWaterCollision(position)) {
+            return false;
+        }
+        if (this.verifyGrassCollision(position)) {
+            return true;
+        }
+        if (this.verifyTreeTrunkCollision(position)) {
+            return true;
+        }
+        if (this.verifyTurtleCollision(position)) {
+            return true;
+        }
+        if (this.verifySidewalkCollision(position)) {
+            return true;
+        }
         //TODO: Water restriction and Grass restriction
         return true;
     }

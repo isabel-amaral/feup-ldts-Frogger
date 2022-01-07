@@ -119,8 +119,8 @@ public class ArenaMovementsTest {
     public void verifyWaterCollision1() {
         //water is always at yMin = 15 and yMax = 25
         //the frog never collides with either a tree trunk or a turtle, therefore it always collides with water
-        //Mockito.when(arena.verifyTreeTrunkCollision()).thenReturn(false);
-        //Mockito.when(arena.verifyTurtleCollision()).thenReturn(false);
+        Mockito.when(arena.verifyTreeTrunkCollision(Mockito.any())).thenReturn(false);
+        Mockito.when(arena.verifyTurtleCollision(Mockito.any())).thenReturn(false);
 
         Assertions.assertEquals(arena.verifyWaterCollision(new Position(25, 25)), true);
         Assertions.assertEquals(arena.verifyWaterCollision(new Position(15, 25)), true);
@@ -138,8 +138,8 @@ public class ArenaMovementsTest {
     public void verifyWaterCollision2() {
         //water is always at yMin = 15 and yMax = 25
         //the frog always collides with either a tree trunk or a turtle, therefore it never collides with water
-        //Mockito.when(arena.verifyTreeTrunkCollision()).thenReturn(true);
-        //Mockito.when(arena.verifyTurtleCollision()).thenReturn(true);
+        Mockito.when(arena.verifyTreeTrunkCollision(Mockito.any())).thenReturn(true);
+        Mockito.when(arena.verifyTurtleCollision(Mockito.any())).thenReturn(true);
 
         Assertions.assertEquals(arena.verifyWaterCollision(new Position(25, 25)), false);
         Assertions.assertEquals(arena.verifyWaterCollision(new Position(15, 25)), false);
