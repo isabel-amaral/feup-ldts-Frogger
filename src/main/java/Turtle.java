@@ -17,7 +17,6 @@ public class Turtle {
         this.position = position;
     }
 
-
     public void draw(TextGraphics graphics){
         graphics.setForegroundColor(TextColor.Factory.fromString("#e67e22"));
         graphics.enableModifiers(SGR.BOLD);

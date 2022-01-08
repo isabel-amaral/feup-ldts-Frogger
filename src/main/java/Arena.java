@@ -11,7 +11,7 @@ import java.util.Random;
 public class Arena {
     private int width;
     private int height;
-    private Frog frog = new Frog(30, 1);
+    private Frog frog = new Frog(30, 30);
     private List<Car> cars;
     private List<TreeTrunk> treeTrunks;
     private List<Turtle> turtles;
