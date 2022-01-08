@@ -3,18 +3,10 @@ import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 
-public class TreeTrunk {
-    private Position position;
+public class TreeTrunk extends MovableElement {
 
     public TreeTrunk(int x, int y) {
-        this.position = new Position(x, y);
-    }
-
-    public void setPosition(Position position) {
-        this.position = position;
-    }
-    public Position getPosition() {
-        return position;
+        super(x,y);
     }
 
     public void draw(TextGraphics graphics){
@@ -22,6 +14,4 @@ public class TreeTrunk {
         graphics.enableModifiers(SGR.BOLD);
         graphics.putString(new TerminalPosition(position.getX(), position.getY()),"TT");
     }
-
-
 }

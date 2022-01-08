@@ -1,24 +1,17 @@
-import com.googlecode.lanterna.SGR;
-import com.googlecode.lanterna.TerminalPosition;
+import com.googlecode.lanterna.Symbols;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 
-public class Grass {
-    private PositionRange position;
-
+public class Grass extends NonMovableElement {
     public Grass(int min, int max) {
-        this.position = new PositionRange(min, max);
-    }
-
-    public PositionRange getPosition() {
-        return position;
+        super(min, max);
     }
 
     public void draw(TextGraphics graphics){
-        //TODO: corrigir
-        /*
-        graphics.setForegroundColor(TextColor.Factory.fromString("#1e8449"));
-        graphics.enableModifiers(SGR.BOLD);
-        graphics.putString(new TerminalPosition(position.getYMin(), position.getYMax()),"G");*/
+        for (int y = position.getYMin(); y <= position.getYMax(); y++) {
+            graphics.setForegroundColor(TextColor.Factory.fromString("#1e8449"));
+            for (int x = 1; x <= 60; x++)
+                graphics.putString(x, y, String.valueOf(Symbols.BLOCK_SOLID));
+        }
     }
 }

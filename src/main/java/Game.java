@@ -1,5 +1,4 @@
 import com.googlecode.lanterna.TerminalSize;
-import com.googlecode.lanterna.TextCharacter;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
@@ -11,14 +10,23 @@ import com.googlecode.lanterna.terminal.Terminal;
 import java.io.IOException;
 
 public class Game {
-
-    TerminalSize terminalSize = new TerminalSize(60, 30);
-    DefaultTerminalFactory terminalFactory = new DefaultTerminalFactory().setInitialTerminalSize(terminalSize);
-    Terminal terminal = terminalFactory.createTerminal();
-    Screen screen = new TerminalScreen(terminal);
-    TextGraphics graphics = screen.newTextGraphics();
+    private Screen screen;
+    private TextGraphics graphics;
     private Arena arena = new Arena(60, 30);
     //Add Game State
+
+    public Game() throws IOException {
+        TerminalSize terminalSize = new TerminalSize(60, 30);
+        DefaultTerminalFactory terminalFactory = new DefaultTerminalFactory().setInitialTerminalSize(terminalSize);
+        Terminal terminal = terminalFactory.createTerminal();
+        screen = new TerminalScreen(terminal);
+
+        screen.setCursorPosition(null); // we don't need a cursor
+        screen.startScreen(); // screens must be started
+        screen.doResizeIfNecessary(); // resize screen if necessary
+
+        graphics = screen.newTextGraphics();
+    }
 
     public Screen getScreen() {
         return screen;
@@ -26,12 +34,6 @@ public class Game {
 
     public Arena getArena() {
         return arena;
-    }
-
-    public Game() throws IOException {
-        screen.setCursorPosition(null); // we don't need a cursor
-        screen.startScreen(); // screens must be started
-        screen.doResizeIfNecessary(); // resize screen if necessary
     }
 
     public void draw() throws IOException {
@@ -49,7 +51,7 @@ public class Game {
                 arena.moveFrog(arena.getFrog().moveLeft());
                 break;
             case ArrowUp:
-                arena.moveFrog(arena.getFrog().moveUp());
+                arena.moveFrog(arena.getFrog().moveRight());
                 break;
             case ArrowDown:
                 arena.moveFrog(arena.getFrog().moveDown());
@@ -65,16 +67,10 @@ public class Game {
             this.draw();
             KeyStroke key = screen.readInput();
             this.processKey(key);
-
-            if (key.getKeyType() == KeyType.Character && key.getCharacter() == 'q'){
+            if (key.getKeyType() == KeyType.Character && key.getCharacter() == 'q')
                 screen.close();
-            }
-            if (key.getKeyType() == KeyType.EOF){
+            if (key.getKeyType() == KeyType.EOF)
                 break;
-            }
-
         }
     }
-
-
 }
