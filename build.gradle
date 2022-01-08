@@ -4,7 +4,7 @@ plugins {
     id 'application'
 }
 
-group 'org.example'
+group 'pt.up.fe.ldts.cars'
 version '1.0-SNAPSHOT'
 
 
@@ -14,6 +14,7 @@ repositories {
 
 pitest {
     junit5PluginVersion = '0.12'
+    pitestVersion = '1.6.7'
 }
 
 dependencies {
@@ -27,3 +28,6 @@ test {
     useJUnitPlatform()
 }
 
+application {
+    mainClass.set("pt.up.fe.ldts.cars.Application")
+}

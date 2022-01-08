@@ -1,8 +1,8 @@
 # LDTS_T06_G07 - FROGGER
 
-## Game Description
+## pt.up.fe.ldts.cars.Game Description
 
-The objective of the game is to direct Mr. Frog to its home (the grass) across three different levels. The final destination is reached by crossing a busy road and navigating a river full of dangers while avoiding being run over or falling into the water, which would result in the loss of a life. The only player control is the 4-direction arrow keys on the keyboard, used to navigate the frog. Each click in one direction causes the frog to hop once in that same direction.
+The objective of the game is to direct Mr. pt.up.fe.ldts.cars.Frog to its home (the grass) across three different levels. The final destination is reached by crossing a busy road and navigating a river full of dangers while avoiding being run over or falling into the water, which would result in the loss of a life. The only player control is the 4-direction arrow keys on the keyboard, used to navigate the frog. Each click in one direction causes the frog to hop once in that same direction.
 This game is based on the classic Frogger game (https://www.free80sarcade.com/atari7800.php?cart=Froggie).
 
 This project was developed by Anete Pereira (202008856@edu.fe.up.pt), Isabel Amaral (up202006677@edu.fe.up.pt) and Mafalda Magalhães (up201707066@edu.fe.up.pt) for LDTS 2021-22.
@@ -19,9 +19,9 @@ This project was developed by Anete Pereira (202008856@edu.fe.up.pt), Isabel Ama
 
 - **Keyboard Control** -The keyboard inputs are received through the respective events.
 - **Player control** - The player may move with the keyboard control.
-- **Arena creation** - The arena is drawn in the Game class.
+- **pt.up.fe.ldts.cars.Arena creation** - The arena is drawn in the pt.up.fe.ldts.cars.Game class.
 - **Elements creation** - All elements (movable and non-movable) are created at the beginning of the game.
-- **Collisions detection** - Collisions between the frog and the remaining elements are verified. (Ex: Frog, Car, Turtle, Water, TreeTrunk, Grass).
+- **Collisions detection** - Collisions between the frog and the remaining elements are verified. (Ex: pt.up.fe.ldts.cars.Frog, pt.up.fe.ldts.cars.Car, pt.up.fe.ldts.cars.Turtle, pt.up.fe.ldts.cars.Water, pt.up.fe.ldts.cars.TreeTrunk, pt.up.fe.ldts.cars.Grass).
 
 
 ## Planned Features
@@ -38,7 +38,7 @@ This project was developed by Anete Pereira (202008856@edu.fe.up.pt), Isabel Ama
 
 ### Introduction
 
-We began this project by doing some tests for the basic classes - Game and Arena. Then, we made a UML to help us understand better the structure of our game. Since our game is dealing with a GUI and is divided by different gameStates, we found three design patterns that would be able to fullfil our features to be implemented in our game.
+We began this project by doing some tests for the basic classes - pt.up.fe.ldts.cars.Game and pt.up.fe.ldts.cars.Arena. Then, we made a UML to help us understand better the structure of our game. Since our game is dealing with a GUI and is divided by different gameStates, we found three design patterns that would be able to fullfil our features to be implemented in our game.
 
 The three main patterns that were applied to the project, the **_Factory Method Pattern_**, which will be used to create the movable elements in our project, the **_Command Pattern_** which will allow us to keep constantly moving cars, turtles and tree trunks either to the left or to the right and the **_State Pattern_** which is a behavioral design pattern that lets an object alter its behavior as its internal state changes - in this case the four states are GameState (the user is playing), MenuState (the user is in the Menu screen), WinState (the user won the game) and the loseState (the user lost the game). There may be the need to add more states as we implement new features.
 
@@ -48,7 +48,7 @@ The three main patterns that were applied to the project, the **_Factory Method 
 Our game arena consists in a large agglomeration of movable elements such as cars, tree trunks and turtles,
 as well as a single frog. Given the need of having different arenas with different complexities in each one of
 the three levels, we found that having one single factory class (MovableElementsFactory) responsible for randomly
-creating the different instances of MovableElement objects according to the current game level, passed to this class as an attribute,
+creating the different instances of pt.up.fe.ldts.cars.MovableElement objects according to the current game level, passed to this class as an attribute,
 was an easier solution than just having a concrete creator for each level.
 
 #### The Pattern:
@@ -71,9 +71,9 @@ to fix bugs and easier to change.
 
 ### Two Different Types of Commands 
 #### Problem in Context:
-Most of our MovableElement objects (the cars, tree trunks and turtles) will be in constant motion, either to the
-left or to the right. This movement will be independent of the object's class. Whether the object is a Car, a TreeTrunk
-or a Turtle, it will always move either to the left or to the right, according to the lane traffic/river lane
+Most of our pt.up.fe.ldts.cars.MovableElement objects (the cars, tree trunks and turtles) will be in constant motion, either to the
+left or to the right. This movement will be independent of the object's class. Whether the object is a pt.up.fe.ldts.cars.Car, a pt.up.fe.ldts.cars.TreeTrunk
+or a pt.up.fe.ldts.cars.Turtle, it will always move either to the left or to the right, according to the lane traffic/river lane
 where it's located, and in a certain speed.
 
 #### The Pattern:
@@ -94,7 +94,7 @@ Some consequences of using the stated pattern:
 accountable for moving the elements mentioned above since they have similar behaviour.
 - Clean code.
 
-### State of the Game
+### State of the pt.up.fe.ldts.cars.Game
 #### Problem in Context:
 In our game we need to be able to change between the menu, the game itself, the 'victory' screen and the 'game over' screen.
 The easiest way to do this without duplicating code is to have a state attribute that allows us to know what are we 
@@ -119,7 +119,7 @@ The benefits of applying the above pattern are:
 
 ## Known Code Smells And Refactoring Suggestions
 #### **Large Class**
-The class Arena contain many methods. In our opinion, we need to implement it this way because the Arena class needs various methods because its were most of the action occurs (movements of Frog and verify collisions).
+The class pt.up.fe.ldts.cars.Arena contain many methods. In our opinion, we need to implement it this way because the pt.up.fe.ldts.cars.Arena class needs various methods because its were most of the action occurs (movements of pt.up.fe.ldts.cars.Frog and verify collisions).
 
 #### **Refused bequest**
 In an attempt to generalize and simplify our code, we created two abstract classes and one interface so far, resulting in the rising of the **Refused bequest** smell. As a result, some subclasses inherited methods from its parent classes which are neither defined nor used (setPosition(), getPosition()).

@@ -1,3 +1,5 @@
+package pt.up.fe.ldts.cars;
+
 import java.io.IOException;
 
 public class Application {

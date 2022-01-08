@@ -1,3 +1,5 @@
+package pt.up.fe.ldts.cars;
+
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.input.KeyStroke;
@@ -13,7 +15,7 @@ public class Game {
     private Screen screen;
     private TextGraphics graphics;
     private Arena arena = new Arena(60, 30);
-    //Add Game State
+    //Add pt.up.fe.ldts.cars.Game State
 
     public Game() throws IOException {
         TerminalSize terminalSize = new TerminalSize(60, 30);

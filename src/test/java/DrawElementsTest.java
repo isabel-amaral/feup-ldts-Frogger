@@ -4,6 +4,7 @@ import com.googlecode.lanterna.screen.Screen;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
+import pt.up.fe.ldts.cars.*;
 
 public class DrawElementsTest {
     private Screen screen;

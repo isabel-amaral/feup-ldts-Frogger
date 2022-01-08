@@ -1,3 +1,5 @@
+package pt.up.fe.ldts.cars;
+
 public class Position {
     private int x;
     private int y;

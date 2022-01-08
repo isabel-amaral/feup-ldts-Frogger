@@ -1,3 +1,5 @@
+package pt.up.fe.ldts.cars;
+
 import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
@@ -140,7 +142,7 @@ public class Arena {
             return true;
         if (this.verifySidewalkCollision(position))
             return true;
-        //TODO: Water restriction and Grass restriction
+        //TODO: pt.up.fe.ldts.cars.Water restriction and pt.up.fe.ldts.cars.Grass restriction
         return true;
     }
 

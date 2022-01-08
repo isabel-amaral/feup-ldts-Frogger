@@ -1,3 +1,5 @@
+package pt.up.fe.ldts.cars;
+
 public class PositionRange {
     int yMin;
     int yMax;

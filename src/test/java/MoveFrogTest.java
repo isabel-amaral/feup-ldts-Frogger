@@ -1,6 +1,8 @@
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import pt.up.fe.ldts.cars.Frog;
+import pt.up.fe.ldts.cars.Position;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

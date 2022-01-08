@@ -1,3 +1,5 @@
+package pt.up.fe.ldts.cars;
+
 public abstract class NonMovableElement implements Element{
     protected PositionRange position;
 
