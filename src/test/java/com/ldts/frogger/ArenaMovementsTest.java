@@ -10,9 +10,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ArenaMovementsTest {
-    private Arena arena;
+    private static Arena arena;
     @BeforeAll
-    public void setUp() {
+    public static void setUp() {
         arena = Mockito.mock(Arena.class);
     }
 

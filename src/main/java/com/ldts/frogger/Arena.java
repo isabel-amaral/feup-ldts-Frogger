@@ -11,21 +11,28 @@ import java.util.List;
 public class Arena {
     private int width;
     private int height;
-    private Frog frog = new Frog(30, 30);
+    private Frog frog;
     private List<Car> cars;
     private List<TreeTrunk> treeTrunks;
     private List<Turtle> turtles;
     private Water water;
     private Grass grass;
-    private Sidewalk sidewalk;
+    private Sidewalk sidewalkSecond;
+    private Sidewalk sidewalkFirst;
 
     public Arena (int width, int height){
         this.width = width;
         this.height = height;
         //later to be created using the factory method!
+        this.frog = new Frog(30, 29);
         this.cars = createCars();
         this.treeTrunks = createTreeTrunks();
         this.turtles = createTurtles();
+
+        this.water = new Water(5, 15);
+        this.grass = new Grass(1, 4);
+        this.sidewalkFirst = new Sidewalk(27, 29);
+        this.sidewalkSecond = new Sidewalk(14, 16);
     }
 
     public int getWidth(){
@@ -52,14 +59,21 @@ public class Arena {
     public Grass getGrass(){
         return grass;
     }
-    public Sidewalk getSidewalks(){
-        return sidewalk;
-    }  //TODO: mudar para lista de passeios
+    public Sidewalk getSidewalkFirst(){
+        return sidewalkFirst;
+    }
+    public Sidewalk getSidewalkSecond(){
+        return sidewalkSecond;
+    }
 
     public void draw(TextGraphics graphics){
         graphics.setBackgroundColor(TextColor.Factory.fromString("#FFFFFF"));
         graphics.fillRectangle(new TerminalPosition(0, 0), new TerminalSize(width, height), ' ');
 
+        water.draw(graphics);
+        sidewalkFirst.draw(graphics);
+        sidewalkSecond.draw(graphics);
+        grass.draw(graphics);
         frog.draw(graphics);
         for (Car car: cars)
             car.draw(graphics);
@@ -67,10 +81,6 @@ public class Arena {
             treeTrunk.draw(graphics);
         for(Turtle turtle: turtles)
             turtle.draw(graphics);
-    }
-
-    public void drawText(TextGraphics graphics, Position position, String text, String color) {
-        //TODO
     }
 
     //Later we will use a random method to create the cars, treeTrunks and Turtles

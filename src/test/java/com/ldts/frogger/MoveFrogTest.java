@@ -12,7 +12,7 @@ public class MoveFrogTest {
 
     @BeforeEach
     public void setUp() {
-        Frog frog = new Frog(1, 1);
+        frog = new Frog(1, 1);
         position = frog.getPosition();
     }
 
@@ -24,19 +24,19 @@ public class MoveFrogTest {
 
     @Test
     void moveDownTest() {
-        assertEquals(position.getY()+1, frog.moveUp().getY()); //y aumenta
-        assertEquals(position.getX(), frog.moveUp().getX());   //x mantém-se
+        assertEquals(position.getY()+1, frog.moveDown().getY()); //y aumenta
+        assertEquals(position.getX(), frog.moveDown().getX());   //x mantém-se
     }
 
     @Test
     void moveRight() {
-        assertEquals(position.getY(), frog.moveUp().getY());   //y mantém-se
-        assertEquals(position.getX()+1, frog.moveUp().getX()); //x aumenta
+        assertEquals(position.getY(), frog.moveRight().getY());   //y mantém-se
+        assertEquals(position.getX()+1, frog.moveRight().getX()); //x aumenta
     }
 
     @Test
     void moveLeft() {
-        assertEquals(position.getY(), frog.moveUp().getY());   //y mantém-se
-        assertEquals(position.getX()-1, frog.moveUp().getX()); //x diminui
+        assertEquals(position.getY(), frog.moveLeft().getY());   //y mantém-se
+        assertEquals(position.getX()-1, frog.moveLeft().getX()); //x diminui
     }
 }

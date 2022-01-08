@@ -1,6 +1,7 @@
 package com.ldts.frogger;
 
 import com.googlecode.lanterna.graphics.TextGraphics;
+import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
 import com.googlecode.lanterna.screen.Screen;
 import org.junit.jupiter.api.BeforeEach;
@@ -17,15 +18,14 @@ public class GameTest {
 
     @BeforeEach
     public void setUp() throws IOException {
+        game = new Game();
+        arena = Mockito.mock(Arena.class);
+        screen = Mockito.mock(Screen.class);
         graphics = Mockito.mock(TextGraphics.class);
         Mockito.when(screen.newTextGraphics()).thenReturn(graphics);
-
-        game = new Game();
-        screen = game.getScreen();
-        arena = game.getArena();
     }
 
-    @Test
+   @Test
     public void drawTest() throws IOException {
         game.draw();
 
@@ -39,9 +39,38 @@ public class GameTest {
     }
 
     @Test
-    public void processKey() {
-        //TODO
-        KeyType keyType = KeyType.ArrowUp;
-        //game.processKey();
+    public void processKeyArrowUp() {
+        KeyStroke key = Mockito.mock(KeyStroke.class);
+        Mockito.when(key.getKeyType()).thenReturn(KeyType.ArrowUp);
+
+        game.processKey(key);
+        Mockito.verify( arena, Mockito.times(1)).moveFrog(arena.getFrog().moveUp());
+    }
+
+    @Test
+    public void processKeyArrowDown() {
+        KeyStroke key = Mockito.mock(KeyStroke.class);
+        Mockito.when(key.getKeyType()).thenReturn(KeyType.ArrowDown);
+
+        game.processKey(key);
+        Mockito.verify( arena, Mockito.times(1)).moveFrog(arena.getFrog().moveDown());
+    }
+
+    @Test
+    public void processKeyArrowRight() {
+        KeyStroke key = Mockito.mock(KeyStroke.class);
+        Mockito.when(key.getKeyType()).thenReturn(KeyType.ArrowRight);
+
+        game.processKey(key);
+        Mockito.verify( arena, Mockito.times(1)).moveFrog(arena.getFrog().moveRight());
+    }
+
+    @Test
+    public void processKeyArrowLeft() {
+        KeyStroke key = Mockito.mock(KeyStroke.class);
+        Mockito.when(key.getKeyType()).thenReturn(KeyType.ArrowLeft);
+
+        game.processKey(key);
+        Mockito.verify( arena, Mockito.times(1)).moveFrog(arena.getFrog().moveLeft());
     }
 }

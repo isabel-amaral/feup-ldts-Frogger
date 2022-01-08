@@ -44,16 +44,16 @@ public class Game {
         screen.refresh();
     }
 
-    private void processKey(KeyStroke key) {
+    public void processKey(KeyStroke key) {
         switch(key.getKeyType()){
             case ArrowRight:
-                arena.moveFrog(arena.getFrog().moveUp());
+                arena.moveFrog(arena.getFrog().moveRight());
                 break;
             case ArrowLeft:
                 arena.moveFrog(arena.getFrog().moveLeft());
                 break;
             case ArrowUp:
-                arena.moveFrog(arena.getFrog().moveRight());
+                arena.moveFrog(arena.getFrog().moveUp());
                 break;
             case ArrowDown:
                 arena.moveFrog(arena.getFrog().moveDown());

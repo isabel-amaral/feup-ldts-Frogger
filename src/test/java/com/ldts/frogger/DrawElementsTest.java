@@ -1,5 +1,6 @@
 package com.ldts.frogger;
 
+import com.googlecode.lanterna.Symbols;
 import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
@@ -61,8 +62,17 @@ public class DrawElementsTest {
         Water water = new Water(1, 2);
         water.draw(screen.newTextGraphics());
 
-        Mockito.verify(graphics, Mockito.times(1)).setForegroundColor(TextColor.Factory.fromString("#5dade2"));
-        Mockito.verify(graphics, Mockito.times(1)).putString(new TerminalPosition(1, 2), "W");
+        Mockito.verify(graphics, Mockito.times(2)).setForegroundColor(TextColor.Factory.fromString("#5dade2"));
+        //Blocks in line y=1
+        Mockito.verify(graphics, Mockito.times(1)).putString(new TerminalPosition(1, 1), String.valueOf(Symbols.BLOCK_SOLID));
+        Mockito.verify(graphics, Mockito.times(1)).putString(new TerminalPosition(2, 1), String.valueOf(Symbols.BLOCK_SOLID));
+        Mockito.verify(graphics, Mockito.times(1)).putString(new TerminalPosition(3, 1), String.valueOf(Symbols.BLOCK_SOLID));
+        Mockito.verify(graphics, Mockito.times(1)).putString(new TerminalPosition(4, 1), String.valueOf(Symbols.BLOCK_SOLID));
+        //Blocks in line y=2
+        Mockito.verify(graphics, Mockito.times(1)).putString(new TerminalPosition(1, 2), String.valueOf(Symbols.BLOCK_SOLID));
+        Mockito.verify(graphics, Mockito.times(1)).putString(new TerminalPosition(2, 2), String.valueOf(Symbols.BLOCK_SOLID));
+        Mockito.verify(graphics, Mockito.times(1)).putString(new TerminalPosition(3, 2), String.valueOf(Symbols.BLOCK_SOLID));
+        Mockito.verify(graphics, Mockito.times(1)).putString(new TerminalPosition(4, 2), String.valueOf(Symbols.BLOCK_SOLID));
     }
 
     @Test
@@ -70,8 +80,18 @@ public class DrawElementsTest {
         Grass grass = new Grass(1, 2);
         grass.draw(screen.newTextGraphics());
 
-        Mockito.verify(graphics, Mockito.times(1)).setForegroundColor(TextColor.Factory.fromString("#1e8449"));
-        Mockito.verify(graphics, Mockito.times(1)).putString(new TerminalPosition(1, 2), "G");
+        Mockito.verify(graphics, Mockito.times(2)).setForegroundColor(TextColor.Factory.fromString("#1e8449"));
+
+        //Blocks in line y=1
+        Mockito.verify(graphics, Mockito.times(1)).putString(new TerminalPosition(1, 1), String.valueOf(Symbols.BLOCK_SOLID));
+        Mockito.verify(graphics, Mockito.times(1)).putString(new TerminalPosition(2, 1), String.valueOf(Symbols.BLOCK_SOLID));
+        Mockito.verify(graphics, Mockito.times(1)).putString(new TerminalPosition(3, 1), String.valueOf(Symbols.BLOCK_SOLID));
+        Mockito.verify(graphics, Mockito.times(1)).putString(new TerminalPosition(4, 1), String.valueOf(Symbols.BLOCK_SOLID));
+        //Blocks in line y=2
+        Mockito.verify(graphics, Mockito.times(1)).putString(new TerminalPosition(1, 2), String.valueOf(Symbols.BLOCK_SOLID));
+        Mockito.verify(graphics, Mockito.times(1)).putString(new TerminalPosition(2, 2), String.valueOf(Symbols.BLOCK_SOLID));
+        Mockito.verify(graphics, Mockito.times(1)).putString(new TerminalPosition(3, 2), String.valueOf(Symbols.BLOCK_SOLID));
+        Mockito.verify(graphics, Mockito.times(1)).putString(new TerminalPosition(4, 2), String.valueOf(Symbols.BLOCK_SOLID));
     }
 
     @Test
@@ -79,7 +99,17 @@ public class DrawElementsTest {
         Sidewalk sidewalk = new Sidewalk(1, 2);
         sidewalk.draw(screen.newTextGraphics());
 
-        Mockito.verify(graphics, Mockito.times(1)).setForegroundColor(TextColor.Factory.fromString("#b175ff"));
-        Mockito.verify(graphics, Mockito.times(1)).putString(new TerminalPosition(1, 2), "SDW");
+        Mockito.verify(graphics, Mockito.times(2)).setForegroundColor(TextColor.Factory.fromString("#b175ff"));
+
+        //Blocks in line y=1
+        Mockito.verify(graphics, Mockito.times(1)).putString(new TerminalPosition(1, 1), String.valueOf(Symbols.BLOCK_SOLID));
+        Mockito.verify(graphics, Mockito.times(1)).putString(new TerminalPosition(2, 1), String.valueOf(Symbols.BLOCK_SOLID));
+        Mockito.verify(graphics, Mockito.times(1)).putString(new TerminalPosition(3, 1), String.valueOf(Symbols.BLOCK_SOLID));
+        Mockito.verify(graphics, Mockito.times(1)).putString(new TerminalPosition(4, 1), String.valueOf(Symbols.BLOCK_SOLID));
+        //Blocks in line y=2
+        Mockito.verify(graphics, Mockito.times(1)).putString(new TerminalPosition(1, 2), String.valueOf(Symbols.BLOCK_SOLID));
+        Mockito.verify(graphics, Mockito.times(1)).putString(new TerminalPosition(2, 2), String.valueOf(Symbols.BLOCK_SOLID));
+        Mockito.verify(graphics, Mockito.times(1)).putString(new TerminalPosition(3, 2), String.valueOf(Symbols.BLOCK_SOLID));
+        Mockito.verify(graphics, Mockito.times(1)).putString(new TerminalPosition(4, 2), String.valueOf(Symbols.BLOCK_SOLID));
     }
 }
