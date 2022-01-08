@@ -119,31 +119,19 @@ The benefits of applying the above pattern are:
 
 ## Known Code Smells And Refactoring Suggestions
 #### **Large Class**
-Some classes (e.g. Game, Battlefield, Player) contain many fields and others (e.g. GUI interface) contain many methods. In both cases, we find it justifiable as the classes require these fields, in one hand the Game class is the main class of the program and it needs to store a considerable amount of data, on the other hand various methods are needed for the interface and it wouldn't make sense to split it into two separate ones (extract method).
-
-#### **Data Class**
-All model classes are Data Classes, as they contain only fields, and no behavior (dumb classes). This is caused by the **MVC** (Model-View-Controller) architectural pattern which holds the responsibility to the controller to implement the logic functionalities of each model.
-This is not a bad code smell because it only exits due to the chosen design pattern.
-
-#### **Alternative classes with different interfaces and Lazy Classes**
-When we conceived the project ideas, we aspired various enemy types with different behaviours. However, with the project development, we decided to generalize our **Enemy Class** and differenciate, the divergent characteristics, from contrasting enemies based on their fields. As this classes only differ in the values passed to the **Enemy Class** constructor and have no other significant functions they are an example of **Alternative Classes with different interfaces and Lazy Classes**.
+The class Arena contain many methods. In our opinion, we need to implement it this way because the Arena class needs various methods because its were most of the action occurs (movements of Frog and verify collisions).
 
 #### **Refused bequest**
-In an attempt to generalize and simplify our code, various abstract classes and interfaces were created. Nevertheless this resulted in the rising of the **Refused bequest** smell. As a result, some subclasses inherited methods from its parent classes which are neither defined nor used. For example, the [**SwapCommand Class**](../src/main/java/com/g57/model/item/command/SwapCommand.java#L31).
+In an attempt to generalize and simplify our code, we created two abstract classes and one interface so far, resulting in the rising of the **Refused bequest** smell. As a result, some subclasses inherited methods from its parent classes which are neither defined nor used (setPosition(), getPosition()).
 
-#### **Feature envy and message chains**
-As the result of the **MVC** (Model-View-Controller) pattern some of the controllers use is narrowed to its model method calls. Our controller envies its model.
-Also, in order to access a certain model's parameter it is mandatory to start by making a request to its controller.
+#### **Switch statements**
+We use instances of switch cases to handle Key Actions. However, we could not find an easier way to read the input given by the user and the switch statement performs a really simple task.
+
 
 ## Testing
 
 ### Screenshot of coverage report
-<p align="center" justify="center">
-  <img src="images/screenshots/codeCoverage"/>
-</p>
-<p align="center">
-  <b><i>Fig 6. Code coverage screenshot</i></b>
-</p>
+
 
 ### Link to mutation testing report
 [Mutation tests](../build/reports/pitest/202105302045/index.html)
