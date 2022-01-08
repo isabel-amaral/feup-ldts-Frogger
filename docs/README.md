@@ -119,10 +119,10 @@ The benefits of applying the above pattern are:
 
 ## Known Code Smells And Refactoring Suggestions
 #### **Large Class**
-The class Arena contain many methods. In our opinion, we need to implement it this way because the Arena class needs various methods because its were most of the action occurs (movements of Frog and verify collisions).
+The class Arena contains many methods. In our opinion, we need to implement it this way because it is in this class that most of the action occurs (movements of Frog and verify collisions).
 
 #### **Refused bequest**
-In an attempt to generalize and simplify our code, we created two abstract classes and one interface so far, resulting in the rising of the **Refused bequest** smell. As a result, some subclasses inherited methods from its parent classes which are neither defined nor used (setPosition(), getPosition()).
+In an attempt to generalize and simplify our code, we created two abstract classes and one interface so far, resulting in the rising of the **Refused bequest** smell. As a result, some subclasses inherited methods from its parent classes which are neither defined nor used (setPosition()).
 
 #### **Switch statements**
 We use instances of switch cases to handle Key Actions. However, we could not find an easier way to read the input given by the user and the switch statement performs a really simple task.
