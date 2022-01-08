@@ -2,11 +2,9 @@ import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
-import com.googlecode.lanterna.screen.Screen;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class Arena {
     private int width;
@@ -54,17 +52,17 @@ public class Arena {
     }
     public Sidewalk getSidewalks(){
         return sidewalk;
-    }  //TODO: discutir se vamos ter mais de um passeio
+    }  //TODO: mudar para lista de passeios
 
     public void draw(TextGraphics graphics){
         graphics.setBackgroundColor(TextColor.Factory.fromString("#FFFFFF"));
         graphics.fillRectangle(new TerminalPosition(0, 0), new TerminalSize(width, height), ' ');
+
         frog.draw(graphics);
         for (Car car: cars)
             car.draw(graphics);
-        for(TreeTrunk treeTrunk: treeTrunks){
+        for(TreeTrunk treeTrunk: treeTrunks)
             treeTrunk.draw(graphics);
-        }
         for(Turtle turtle: turtles)
             turtle.draw(graphics);
     }
@@ -80,7 +78,7 @@ public class Arena {
         List<Position> positions = new ArrayList<>();
         for (int i = 0; i < 20; i++) {
             Car car = new Car(i, i);
-            if((!positions.contains(car.getPosition())) && car.getPosition()!=frog.getPosition()){
+            if((!positions.contains(car.getPosition())) && car.getPosition()!=frog.getPosition()) {
                 cars.add(car);
                 positions.add(car.getPosition());
             }
@@ -130,20 +128,26 @@ public class Arena {
         if (x <= 0 || x > width || y <= 0 || y > height)
             return false;
 
-        for (Car car : cars)
-            if (car.getPosition().equals(position))
-                return false;
-        for (Turtle turtle : turtles)
-            if (turtle.getPosition().equals(position))
-                return false;
+        if (this.verifyCarCollision(position))
+            return false;
+        if (this.verifyWaterCollision(position))
+            return false;
+        if (this.verifyGrassCollision(position))
+            return true;
+        if (this.verifyTreeTrunkCollision(position))
+            return true;
+        if (this.verifyTurtleCollision(position))
+            return true;
+        if (this.verifySidewalkCollision(position))
+            return true;
         //TODO: Water restriction and Grass restriction
         return true;
     }
 
     //Possibly to change after implementing the state pattern
-    public boolean verifyCarCollision() {
+    public boolean verifyCarCollision(Position frogNewPosition) {
         for(Car car: cars) {
-            if (car.getPosition().equals(frog.getPosition())) {
+            if (car.getPosition().equals(frogNewPosition)) {
                 //State = lose
                 System.out.println("GAME OVER");
                 return true;
@@ -153,26 +157,26 @@ public class Arena {
     }
 
     //Possibly to change after implementing the state pattern
-    public boolean verifyTurtleCollision() {
-        for(Turtle turtle : turtles){
-            if(turtle.getPosition().equals(frog.getPosition())){
+    public boolean verifyTurtleCollision(Position frogNewPosition) {
+        for(Turtle turtle : turtles) {
+            if (turtle.getPosition().equals(frogNewPosition))
                 return true;
-            }
         }
         return false;
     }
 
     //Possibly to change after implementing the state pattern
-    public boolean verifyTreeTrunkCollision() {
-        for (TreeTrunk treeTrunk : treeTrunks)
-            if (treeTrunk.getPosition().equals(frog.getPosition()))
+    public boolean verifyTreeTrunkCollision(Position frogNewPosition) {
+        for (TreeTrunk treeTrunk : treeTrunks) {
+            if (treeTrunk.getPosition().equals(frogNewPosition))
                 return true;
+        }
         return false;
     }
 
     //Possibly to change after implementing the state pattern
-    public boolean verifyWaterCollision() {
-        if (water.getPosition().equals(frog.getPosition())) {
+    public boolean verifyWaterCollision(Position frogNewPosition) {
+        if (water.getPosition().equals(frogNewPosition)) {
             //State = lose
             System.out.println("GAME OVER");
             return true;
@@ -180,14 +184,14 @@ public class Arena {
         return false;
     }
 
-    public boolean verifySidewalkCollision() {
+    public boolean verifySidewalkCollision(Position frogNewPosition) {
         //TODO
         return false;
     }
 
     //Possibly to change after implementing the state pattern
-    public boolean verifyGrassCollision() {
-        if (grass.getPosition().equals(frog.getPosition())) {
+    public boolean verifyGrassCollision(Position frogNewPosition) {
+        if (grass.getPosition().equals(frogNewPosition)) {
             //State = win
             System.out.println("YOU WON");
             return true;

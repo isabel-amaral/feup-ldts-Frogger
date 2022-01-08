@@ -1,18 +1,10 @@
-import com.googlecode.lanterna.SGR;
 import com.googlecode.lanterna.Symbols;
-import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 
-public class Sidewalk {
-    private final PositionRange position;
-
+public class Sidewalk extends NonMovableElement {
     public Sidewalk(int min, int max) {
-        this.position = new PositionRange(min, max);
-    }
-
-    public PositionRange getPosition() {
-        return position;
+        super(min,max);
     }
 
     public void draw(TextGraphics graphics){
