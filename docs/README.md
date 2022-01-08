@@ -9,27 +9,28 @@ This project was developed by Donal Knuth (knuth@edu.fe.up.pt), Timothy J. Berne
 
 ## Implemented Features
 
-- **Connected Menus** - The user has the capability of browsing through the different menus including in game ones. (Ex: Main Menu, Instructions, Play, Shop and Pause).
-- **Buttons** - Functional and interactive buttons.
-- **Mouse and Keyboard control** - The mouse and keyboard inputs are received through the respective events and interpreted according to the current game state.
-- **Player control** - The player may move with the keyboard control and shoot his gun when the left mouse button is pressed.
-- **Collisions detection** - Collisions between different objects are verified. (Ex: Player, Bombs, Enemies, Obstacles).
-- **Different levels** - 7 different levels with an increasing difficulty were implemented.
-- **Shop interaction and money management** - The player may buy new items in the in game shop, some of which consist of new weapons, power ups and potions.
-- **Animations** - Several animations are incorporated in this game, from bomb explosions to level loading and the effects of consuming potions.
+- **Keyboard control** - The keyboard inputs are received through the respective events and interpreted according to the current game state.
+- **Player control** - The player may move with the keyboard control.
+- **Arena creation** - The arena is drawn in the Game class.
+- **Elements creation** - All elements (movable and non movable) are created at the beggining of the game.
+- **Collisions detection** - Collisions between different objects are verified. (Ex: Frog, Car, Turtle, Water, Treetrunk, Grass).
+
 
 ## Planned Features
 
-All the planned features were successfully implemented.
+- **Buttons on Menu** - Functional and interactive buttons.
+- **Connected Menus** - The user has the capability of browsing through the different menus including in game ones. (Ex: Main Menu, Instructions, Play, Shop and Pause).
+- **Different levels** - 3 different levels with an increasing difficulty to be implemented (the velocity of the cars, treetrunks and turtles willl be higher).
+- **Animations** - Some cool animations will be incorporated in this game, when you win the game, when you loose or when you loose a life.
 
 ## Design
 
 ### General Structure
 #### Problem in Context:
-The first concern of our project was how the structure would look like. Since our game is dealling with a GUI and is divided by different gameStates some specific patterns came to mind in order to fullfil our needs the best way possible.
+We began this project by doing some tests for the basic classes - Game, Arena. Then, we made an UML to help us understand better the structure of our game. Since our game is dealling with a GUI and is divided by different gameStates, we found three design patterns that would be able to fullfil our features to be implemented in our game.
 
 #### The Pattern:
-Two main patterns were applied to the project, the **_Architectural Pattern_**, more specifically the Model-View-Controller style which is commonly used in a GUI and the **_State Pattern_** which is a behavioral design pattern that lets an object alter its behavior when its internal state changes.  
+Three main patterns were applied to the project, the **_Factory Method Pattern_**, wich will be used to create the movable elements in our project, the **_Command Pattern_** which will alow us to move cars, turtles in treetrunks and the **_State Pattern_** which is a behavioral design pattern that lets an object alter its behavior when its internal state changes- in this case the four states are gameState (the user is playing), MenuState (the user is in the Menu screen), WinState (the user won the game) and the loseState (the user lost the game).  
 
 #### Implementation:
 Regarding the implementation, we now have classes which main purpose is to store data (model), classes that control the logic of the game (controllers) and classes that are responsible for the visual effects on the screen (viewers), these types of classes associate with each other in the following manner:
