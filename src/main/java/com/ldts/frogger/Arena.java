@@ -150,8 +150,6 @@ public class Arena {
             return true;
         if (this.verifyTurtleCollision(position))
             return true;
-        if (this.verifySidewalkCollision(position))
-            return true;
         //TODO: ldts.frogger.Water restriction and ldts.frogger.Grass restriction
         return true;
     }
@@ -193,11 +191,6 @@ public class Arena {
             System.out.println("GAME OVER");
             return true;
         }
-        return false;
-    }
-
-    public boolean verifySidewalkCollision(Position frogNewPosition) {
-        //TODO
         return false;
     }
 

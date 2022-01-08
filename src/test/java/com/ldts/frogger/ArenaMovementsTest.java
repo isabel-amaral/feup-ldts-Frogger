@@ -11,6 +11,7 @@ import java.util.List;
 
 public class ArenaMovementsTest {
     private static Arena arena;
+
     @BeforeAll
     public static void setUp() {
         arena = Mockito.mock(Arena.class);
@@ -19,7 +20,7 @@ public class ArenaMovementsTest {
     @Test
     public void canMoveFrogTest() {
         //can move
-        Mockito.when(arena.canFrogMove(Mockito.any())).thenReturn(true);
+        Mockito.when(arena.canFrogMove(new Position (1, 2))).thenReturn(true);
 
         arena.getFrog().setPosition(new Position(2, 1));
         //positions the frog will be moving to
@@ -120,26 +121,26 @@ public class ArenaMovementsTest {
 
     @Test
     public void verifyWaterCollision1() {
-        //water is always at yMin = 15 and yMax = 25
+        //water is always at yMin = 5 and yMax = 15
         //the frog never collides with either a tree trunk or a turtle, therefore it always collides with water
         Mockito.when(arena.verifyTreeTrunkCollision(Mockito.any())).thenReturn(false);
         Mockito.when(arena.verifyTurtleCollision(Mockito.any())).thenReturn(false);
 
-        Assertions.assertEquals(arena.verifyWaterCollision(new Position(25, 25)), true);
-        Assertions.assertEquals(arena.verifyWaterCollision(new Position(15, 25)), true);
-        Assertions.assertEquals(arena.verifyWaterCollision(new Position(25, 24)), true);
-        Assertions.assertEquals(arena.verifyWaterCollision(new Position(15, 24)), true);
-        Assertions.assertEquals(arena.verifyWaterCollision(new Position(25, 19)), true);
-        Assertions.assertEquals(arena.verifyWaterCollision(new Position(40, 19)), true);
-        Assertions.assertEquals(arena.verifyWaterCollision(new Position(1, 1)), false);
+        Assertions.assertEquals(arena.verifyWaterCollision(new Position(25, 15)), true);
+        Assertions.assertEquals(arena.verifyWaterCollision(new Position(15, 15)), true);
+        Assertions.assertEquals(arena.verifyWaterCollision(new Position(25, 14)), true);
+        Assertions.assertEquals(arena.verifyWaterCollision(new Position(15, 14)), true);
+        Assertions.assertEquals(arena.verifyWaterCollision(new Position(25, 9)), true);
+        Assertions.assertEquals(arena.verifyWaterCollision(new Position(40, 9)), true);
+        Assertions.assertEquals(arena.verifyWaterCollision(new Position(1, 20)), false);
         Assertions.assertEquals(arena.verifyWaterCollision(new Position(40, 1)), false);
         Assertions.assertEquals(arena.verifyWaterCollision(new Position(20, 13)), false);
-        Assertions.assertEquals(arena.verifyWaterCollision(new Position(15, 7)), false);
+        Assertions.assertEquals(arena.verifyWaterCollision(new Position(15, 1)), false);
     }
 
     @Test
     public void verifyWaterCollision2() {
-        //water is always at yMin = 15 and yMax = 25
+        //water is always at yMin = 5 and yMax = 15
         //the frog always collides with either a tree trunk or a turtle, therefore it never collides with water
         Mockito.when(arena.verifyTreeTrunkCollision(Mockito.any())).thenReturn(true);
         Mockito.when(arena.verifyTurtleCollision(Mockito.any())).thenReturn(true);
@@ -149,40 +150,26 @@ public class ArenaMovementsTest {
         Assertions.assertEquals(arena.verifyWaterCollision(new Position(25, 24)), false);
         Assertions.assertEquals(arena.verifyWaterCollision(new Position(15, 24)), false);
         Assertions.assertEquals(arena.verifyWaterCollision(new Position(25, 19)), false);
-        Assertions.assertEquals(arena.verifyWaterCollision(new Position(40, 19)), false);
-        Assertions.assertEquals(arena.verifyWaterCollision(new Position(1, 1)), false);
-        Assertions.assertEquals(arena.verifyWaterCollision(new Position(40, 1)), false);
-        Assertions.assertEquals(arena.verifyWaterCollision(new Position(20, 13)), false);
-        Assertions.assertEquals(arena.verifyWaterCollision(new Position(15, 7)), false);
+        Assertions.assertEquals(arena.verifyWaterCollision(new Position(40, 12)), false);
+        Assertions.assertEquals(arena.verifyWaterCollision(new Position(1, 5)), true);
+        Assertions.assertEquals(arena.verifyWaterCollision(new Position(40, 5)), true);
+        Assertions.assertEquals(arena.verifyWaterCollision(new Position(20, 13)), true);
+        Assertions.assertEquals(arena.verifyWaterCollision(new Position(15, 7)), true);
     }
 
     @Test
     public void verifyGrassCollision() {
-        //grass is always at yMin = 26 and yMax = 30
+        //grass is always at yMin = 1 and yMax = 4
         Assertions.assertEquals(arena.verifyGrassCollision(new Position(25, 5)), false);
         Assertions.assertEquals(arena.verifyGrassCollision(new Position(26, 10)), false);
         Assertions.assertEquals(arena.verifyGrassCollision(new Position(27, 15)), false);
         Assertions.assertEquals(arena.verifyGrassCollision(new Position(28, 20)), false);
         Assertions.assertEquals(arena.verifyGrassCollision(new Position(29, 25)), false);
-        Assertions.assertEquals(arena.verifyGrassCollision(new Position(30, 26)), true);
-        Assertions.assertEquals(arena.verifyGrassCollision(new Position(1, 27)), true);
-        Assertions.assertEquals(arena.verifyGrassCollision(new Position(13, 28)), true);
-        Assertions.assertEquals(arena.verifyGrassCollision(new Position(13, 29)), true);
-        Assertions.assertEquals(arena.verifyGrassCollision(new Position(30, 30)), true);
-    }
-
-    @Test
-    public void verifySidewalkCollision() {
-        //TODO: pensar se vamos ter mais do que um passeio
-        //one of the sidewalks is always at yMin = 12 and yMax = 14
-        Assertions.assertEquals(arena.verifySidewalkCollision(new Position(25, 5)), false);
-        Assertions.assertEquals(arena.verifySidewalkCollision(new Position(26, 10)), false);
-        Assertions.assertEquals(arena.verifySidewalkCollision(new Position(12, 30)), false);
-        Assertions.assertEquals(arena.verifySidewalkCollision(new Position(30, 11)), false);
-        Assertions.assertEquals(arena.verifySidewalkCollision(new Position(30, 15)), false);
-        Assertions.assertEquals(arena.verifySidewalkCollision(new Position(1, 12)), true);
-        Assertions.assertEquals(arena.verifySidewalkCollision(new Position(1, 13)), true);
-        Assertions.assertEquals(arena.verifySidewalkCollision(new Position(1, 14)), true);
+        Assertions.assertEquals(arena.verifyGrassCollision(new Position(30, 1)), true);
+        Assertions.assertEquals(arena.verifyGrassCollision(new Position(1, 2)), true);
+        Assertions.assertEquals(arena.verifyGrassCollision(new Position(13, 3)), true);
+        Assertions.assertEquals(arena.verifyGrassCollision(new Position(13, 4)), true);
+        Assertions.assertEquals(arena.verifyGrassCollision(new Position(30, 4)), true);
     }
 
     @Test

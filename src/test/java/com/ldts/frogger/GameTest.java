@@ -10,7 +10,7 @@ import org.mockito.Mockito;
 
 import java.io.IOException;
 
-public class GameTest {
+public class  GameTest {
     private Screen screen;
     private Game game;
     private Arena arena;
