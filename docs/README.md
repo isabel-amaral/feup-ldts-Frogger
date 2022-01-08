@@ -7,6 +7,13 @@ This game is based on the classic Frogger game (https://www.free80sarcade.com/at
 
 This project was developed by Anete Pereira (202008856@edu.fe.up.pt), Isabel Amaral (up202006677@edu.fe.up.pt) and Mafalda Magalhães (up201707066@edu.fe.up.pt) for LDTS 2021-22.
 
+![](images/game.png)
+
+![](images/menu.png)
+
+![](images/victory.png)
+
+![](images/gameOver.png)
 
 ## Implemented Features
 
@@ -52,6 +59,8 @@ us to have subclasses to alter the type of objects that will be created.
 Regarding the implementation, we now have classes which main purpose is to create new movable elements
 (CreateCar, CreateFrog, CreateTurtle and CreateTreeTrunk).
 
+![](images/commandAndFactory.png)
+
 #### Consequences:
 The use of this pattern in the current design allows the following benefits:
 - The Factory Method separates product construction code from the code that actually uses the product, making
@@ -77,6 +86,8 @@ This pattern is implemented by having a single class, the Command class, with a 
 that inherit this execute method, allowing us to overwrite it accordingly to our wishes. The MoveLeft class moves objects to the left and the MoveRight
 class moves them to the right.
 
+![](images/commandAndFactory.png)
+
 #### Consequences:
 Some consequences of using the stated pattern:
 - Promotes the single responsibility principle, which means the Command class and its subclasses are the only
@@ -96,6 +107,8 @@ that lets an object alter its behavior when its internal state changes, appearin
 #### Implementation:
 A State class is responsible for keeping the current state of the game and its methods make it possible to change between the different states of our 
 program - GameState, MenuState, WinState and LoseState.
+
+![](images/state.png)
 
 #### Consequences: 
 The benefits of applying the above pattern are:
