@@ -119,7 +119,9 @@ The benefits of applying the above pattern are:
 
 ## Known Code Smells And Refactoring Suggestions
 #### **Large Class**
+
 The class Arena contains many methods. In our opinion, we need to implement it this way because it is in this class that most of the action occurs (movements of Frog and verify collisions).
+
 
 #### **Refused bequest**
 In an attempt to generalize and simplify our code, we created two abstract classes and one interface so far, resulting in the rising of the **Refused bequest** smell. As a result, some subclasses inherited methods from its parent classes which are neither defined nor used (setPosition()).
