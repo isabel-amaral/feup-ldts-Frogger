@@ -7,6 +7,8 @@ This game is based on the classic Frogger game (https://www.free80sarcade.com/at
 
 This project was developed by Anete Pereira (up202008856@edu.fe.up.pt), Isabel Amaral (up202006677@edu.fe.up.pt) and Mafalda Magalhães (up201707066@edu.fe.up.pt) for LDTS 2021-22.
 
+![](uml.png)
+
 ![](images/game.png)
 
 ![](images/menu.png)
@@ -134,6 +136,9 @@ We use instances of switch cases to handle Key Actions. However, we could not fi
 
 ### Screenshot of coverage report
 
+![](images/coverage1.png)
+
+![](images/coverage2.png)
 
 ## Self-evaluation
 The work was divided equally between all the elements of the group. While some classes and tests were
