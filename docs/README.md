@@ -135,13 +135,10 @@ We use instances of switch cases to handle Key Actions. However, we could not fi
 ### Screenshot of coverage report
 
 
-### Link to mutation testing report
-[Mutation tests](../build/reports/pitest/202105302045/index.html)
-
 ## Self-evaluation
-
-The work was divided in a mutual way and we all contributed with our best. It helped us to enrich our java and
-principle/pattern knwoledge, as well as our team work.
+The work was divided equally between all the elements of the group. While some classes and tests were
+initially started by one of us, eventually everyone contributed to implementing some aditional methods, fixing
+bugs and errors and everyone was always available to help.
 
 - Anete Pereira: 33.3%
 - Isabel Amaral: 33.3%
