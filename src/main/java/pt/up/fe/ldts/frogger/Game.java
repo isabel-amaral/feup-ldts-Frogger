@@ -30,6 +30,8 @@ public class Game {
 
         graphics = screen.newTextGraphics();
 
+        state = new MenuState(this);
+
     }
 
     public Screen getScreen() {

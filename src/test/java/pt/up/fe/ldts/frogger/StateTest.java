@@ -11,16 +11,18 @@ import java.util.List;
 
 public class StateTest {
     private static State state;
+    private static Game game;
 
     @BeforeAll
     public static void setUp() {
+        game = Mockito.mock(Game.class);
         state = Mockito.mock(State.class);
     }
 
     @Test
     public void MenuStateTest() throws IOException {
-        state = new MenuState();
-        //Mockito.verify(state, Mockito.times(1)).MenuState();
+        state = new MenuState(game);
+        //Mockito.verify(state, Mockito.times(1)).onMenu();
     }
 
     @Test
@@ -30,7 +32,7 @@ public class StateTest {
 
     @Test
     public void GameStateTest() throws IOException {
-        state = new GameState();
+        state = new GameState(game);
         //Mockito.verify(state, Mockito.times(1)).GameState();
     }
 
@@ -51,7 +53,7 @@ public class StateTest {
 
     @Test
     public void LoseStateTest() throws IOException {
-        state = new LoseState();
+        state = new LoseState(game);
         //Mockito.verify(state, Mockito.times(1)).LoseState();
     }
 
@@ -62,7 +64,7 @@ public class StateTest {
 
     @Test
     public void WinStateTest() throws IOException {
-        state = new WinState();
+        state = new WinState(game);
         //Mockito.verify(state, Mockito.times(1)).MenuState();
     }
 
