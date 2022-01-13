@@ -15,6 +15,7 @@ public class Game {
     private Screen screen;
     private TextGraphics graphics;
     private Arena arena = new Arena(60, 30);
+    private boolean exit;
     //Add ldts.frogger.Game State
 
     public Game() throws IOException {
@@ -65,14 +66,27 @@ public class Game {
 
     public void playGame() throws IOException {
         //later to run with the state pattern
+        int FPS = 30;
+        int frameTime = 1000/FPS;
+
         while(true) {
+            long startTime = System.currentTimeMillis();
+
             this.draw();
-            KeyStroke key = screen.readInput();
+            KeyStroke key = screen.pollInput();
             this.processKey(key);
             if (key.getKeyType() == KeyType.Character && key.getCharacter() == 'q')
                 screen.close();
             if (key.getKeyType() == KeyType.EOF)
                 break;
+
+            long elapsedTime = System.currentTimeMillis() - startTime;
+            long sleepTime = frameTime - elapsedTime;
+
+            try {
+                if (sleepTime > 0) Thread.sleep(sleepTime);
+            } catch (InterruptedException e) {
+            }
         }
     }
 }

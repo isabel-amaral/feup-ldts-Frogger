@@ -16,4 +16,8 @@ public class Turtle extends MovableElement {
         graphics.enableModifiers(SGR.BOLD);
         graphics.putString(new TerminalPosition(position.getX(), position.getY()),"T");
     }
+
+    public void move(Command command){
+        command.execute(position);
+    }
 }

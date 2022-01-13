@@ -15,4 +15,8 @@ public class Car extends MovableElement {
         graphics.enableModifiers(SGR.BOLD);
         graphics.putString(new TerminalPosition(position.getX(), position.getY()),"C");
     }
+
+    public void move(Command command){
+        command.execute(position);
+    }
 }
