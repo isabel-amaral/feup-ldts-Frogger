@@ -15,6 +15,7 @@ public class Game {
     private Screen screen;
     private TextGraphics graphics;
     private Arena arena = new Arena(60, 30);
+    private State state;
     //Add ldts.frogger.Game State
 
     public Game() throws IOException {
@@ -28,6 +29,7 @@ public class Game {
         screen.doResizeIfNecessary(); // resize screen if necessary
 
         graphics = screen.newTextGraphics();
+
     }
 
     public Screen getScreen() {
@@ -36,6 +38,14 @@ public class Game {
 
     public Arena getArena() {
         return arena;
+    }
+
+    public State getState(){
+        return state;
+    }
+
+    public void setState(State newState){
+        state = newState;
     }
 
     public void draw() throws IOException {
