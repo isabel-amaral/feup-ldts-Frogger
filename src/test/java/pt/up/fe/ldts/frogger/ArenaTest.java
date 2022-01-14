@@ -19,7 +19,7 @@ public class ArenaTest {
         graphics = Mockito.mock(TextGraphics.class);
         Mockito.when(screen.newTextGraphics()).thenReturn(graphics);
 
-        arena = new Arena(30, 60);
+        arena = new Arena(1,30, 60);
         arena.draw(graphics);
     }
 
@@ -27,8 +27,8 @@ public class ArenaTest {
     public void drawArenaTest() {
         Water water = arena.getWater();
         Grass grass = arena.getGrass();
-        Sidewalk sidewalkFirst = arena.getSidewalkFirst();
-        Sidewalk sidewalkSecond = arena.getSidewalkSecond();
+        Sidewalk sidewalkFirst = arena.getFirstSidewalk();
+        Sidewalk sidewalkSecond = arena.getSecondSidewalk();
 
         Mockito.verify(water, Mockito.times(1)).draw(screen.newTextGraphics());
         Mockito.verify(grass, Mockito.times(1)).draw(screen.newTextGraphics());

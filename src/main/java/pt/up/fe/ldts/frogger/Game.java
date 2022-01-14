@@ -14,7 +14,7 @@ import java.io.IOException;
 public class Game {
     private Screen screen;
     private TextGraphics graphics;
-    private Arena arena = new Arena(60, 30);
+    private Arena arena = new Arena(1,60, 30); //TODO: change level initiallization
     //Add ldts.frogger.Game State
 
     public Game() throws IOException {

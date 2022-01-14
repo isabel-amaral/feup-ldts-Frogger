@@ -9,61 +9,103 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Arena {
+    private int level;
     private int width;
     private int height;
     private Frog frog;
-    private List<Car> cars;
-    private List<TreeTrunk> treeTrunks;
-    private List<Turtle> turtles;
+    private List<Car> cars = new ArrayList<>();
+    private List<TreeTrunk> treeTrunks = new ArrayList<>();
+    private List<Turtle> turtles = new ArrayList<>();
     private Water water;
     private Grass grass;
-    private Sidewalk sidewalkSecond;
-    private Sidewalk sidewalkFirst;
+    private Sidewalk firstSidewalk;
+    private Sidewalk secondSidewalk;
 
-    public Arena (int width, int height){
+    public Arena (int level, int width, int height) {
+        this.level = level;
         this.width = width;
         this.height = height;
-        //later to be created using the factory method!
-        this.frog = new Frog(30, 29);
-        this.cars = createCars();
-        this.treeTrunks = createTreeTrunks();
-        this.turtles = createTurtles();
 
-        this.water = new Water(5, 15);
-        this.grass = new Grass(1, 4);
-        this.sidewalkFirst = new Sidewalk(27, 29);
-        this.sidewalkSecond = new Sidewalk(14, 16);
+        //non-movable elements have fixed positions in the arena
+        this.water = new Water(4, 13);
+        this.grass = new Grass(0, 3);
+        this.firstSidewalk = new Sidewalk(27, 29);
+        this.secondSidewalk = new Sidewalk(14, 16);
+        createFrog();
+        createCars();
+        createTreeTrunks();
+        createTurtles();
     }
 
-    public int getWidth(){
-        return width;
+    public void createFrog() {
+        this.frog = (Frog) new MovableElementsFactory(level, "Frog").create().get(0);
     }
-    public int getHeight(){
-        return height;
+
+    public void createCars() {
+        for (int row = secondSidewalk.getPosition().getYMax()+1; row < firstSidewalk.getPosition().getYMin(); row++) {
+            //TODO: check which casting to use
+            List<Car> aux = new ArrayList<>();
+            List<MovableElement> l = new MovableElementsFactory(level, row, "Car").create();
+            for (MovableElement m: l) {
+                if (cars.isEmpty())
+                    cars.add((Car) m);
+                else
+                    aux.add((Car) m);
+            }
+            cars.addAll(aux);
+        }
     }
+
+    public void createTreeTrunks() {
+        for (int row = water.getPosition().getYMin(); row <= water.getPosition().getYMax(); row++) {
+            List<MovableElement> m = new MovableElementsFactory(level, row, "TreeTrunk").create();
+            if (treeTrunks.isEmpty())
+                treeTrunks = new ArrayList<>((List) m);
+            else
+                this.treeTrunks.addAll(new ArrayList<>((List) m));
+        }
+    }
+
+    public void createTurtles() {
+        for (int row = water.getPosition().getYMin(); row <= water.getPosition().getYMax(); row++) {
+            List<MovableElement> m = new MovableElementsFactory(level, row, "Turtle").create();
+            if (turtles.isEmpty())
+                turtles = new ArrayList<>((List) m);
+            else
+                this.turtles.addAll(new ArrayList<>((List) m));
+        }
+    }
+
     public Frog getFrog(){
         return frog;
     }
+
     public List<Car> getCars(){
         return cars;
     }
+
     public List<TreeTrunk> getTreeTrunks(){
         return treeTrunks;
     }
+
     public List<Turtle> getTurtles(){
         return turtles;
     }
+
     public Water getWater(){
         return water;
     }
+
     public Grass getGrass(){
         return grass;
     }
-    public Sidewalk getSidewalkFirst(){
-        return sidewalkFirst;
+
+    public Sidewalk getFirstSidewalk() {
+        return firstSidewalk;
     }
-    public Sidewalk getSidewalkSecond(){
-        return sidewalkSecond;
+
+    public Sidewalk getSecondSidewalk() {
+        return secondSidewalk;
     }
 
     public void draw(TextGraphics graphics){
@@ -71,87 +113,21 @@ public class Arena {
         graphics.fillRectangle(new TerminalPosition(0, 0), new TerminalSize(width, height), ' ');
 
         water.draw(graphics);
-        sidewalkFirst.draw(graphics);
-        sidewalkSecond.draw(graphics);
+        firstSidewalk.draw(graphics);
+        secondSidewalk.draw(graphics);
         grass.draw(graphics);
-        frog.draw(graphics);
         for (Car car: cars)
             car.draw(graphics);
         for(TreeTrunk treeTrunk: treeTrunks)
             treeTrunk.draw(graphics);
         for(Turtle turtle: turtles)
             turtle.draw(graphics);
-    }
-
-    //Later we will use a random method to create the cars, treeTrunks and Turtles
-    public List<Car> createCars() {
-        //TODO: arranjar forma de apenas criar os carros dentro das estradas
-        List<Car> cars = new ArrayList<>();
-        List<Position> positions = new ArrayList<>();
-        for (int i = 0; i < 20; i++) {
-            Car car = new Car(i, i);
-            if((!positions.contains(car.getPosition())) && car.getPosition()!=frog.getPosition()) {
-                cars.add(car);
-                positions.add(car.getPosition());
-            }
-        }
-        return cars;
-    }
-
-    //Later we will use a random method to create the cars, treeTrunks and Turtles
-    public List<TreeTrunk> createTreeTrunks() {
-        //TODO: arranjar forma de apenas criar os troncos dentro da água
-        List<TreeTrunk> treeTrunks = new ArrayList<>();
-        List<Position> positions = new ArrayList<>();
-        for (int i = 0; i < 15; i++) {
-            TreeTrunk treeTrunk = new TreeTrunk(i, i);
-            if((!positions.contains(treeTrunk.getPosition())) && treeTrunk.getPosition()!=frog.getPosition()){
-                treeTrunks.add(treeTrunk);
-                positions.add(treeTrunk.getPosition());
-            }
-        }
-        return treeTrunks;
-    }
-
-    //Later we will use a random method to create the cars, treeTrunks and Turtles
-    public List<Turtle> createTurtles() {
-        //TODO: arranjar forma de apenas criar as tartarugas dentro da água
-        List<Turtle> turtles = new ArrayList<>();
-        List<Position> positions = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
-            Turtle turtle = new Turtle(i, i);
-            if ((!positions.contains(turtle.getPosition())) && turtle.getPosition()!=frog.getPosition()) {
-                turtles.add(turtle);
-                positions.add(turtle.getPosition());
-            }
-        }
-        return turtles;
+        frog.draw(graphics);
     }
 
     public void moveFrog(Position position) {
         if (canFrogMove(position))
             frog.setPosition(position);
-    }
-
-    public boolean canFrogMove(Position position) {
-        int x = position.getX();
-        int y = position.getY();
-
-        if (x <= 0 || x > width || y <= 0 || y > height)
-            return false;
-
-        if (this.verifyCarCollision(position))
-            return false;
-        if (this.verifyWaterCollision(position))
-            return false;
-        if (this.verifyGrassCollision(position))
-            return true;
-        if (this.verifyTreeTrunkCollision(position))
-            return true;
-        if (this.verifyTurtleCollision(position))
-            return true;
-        //TODO: ldts.frogger.Water restriction and ldts.frogger.Grass restriction
-        return true;
     }
 
     //Possibly to change after implementing the state pattern
@@ -202,5 +178,26 @@ public class Arena {
             return true;
         }
         return false;
+    }
+
+    public boolean canFrogMove(Position position) {
+        int x = position.getX();
+        int y = position.getY();
+
+        if (x < 0 || x >= width || y < 0 || y >= height)
+            return false;
+
+        if (this.verifyCarCollision(position))
+            return false;
+        if (this.verifyWaterCollision(position))
+            return false;
+        if (this.verifyGrassCollision(position))
+            return true;
+        if (this.verifyTreeTrunkCollision(position))
+            return true;
+        if (this.verifyTurtleCollision(position))
+            return true;
+        //TODO: ldts.frogger.Water restriction and ldts.frogger.Grass restriction
+        return true;
     }
 }
