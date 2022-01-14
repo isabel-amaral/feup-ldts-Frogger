@@ -38,7 +38,7 @@ public class CreateCar extends MovableElementsFactory {
         for (int i = 0; i < numElements; i++) {
             int x;
             do {
-                x = random.nextInt(59);
+                x = random.nextInt(60);
             } while (checkOverlapping(cars, new Position(x, row)));
             Car car = new Car(x, row);
             cars.add(car);

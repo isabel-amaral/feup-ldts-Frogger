@@ -15,4 +15,6 @@ public abstract class MovableElement implements Element {
     public void setPosition(Position position) {
         this.position = position;
     }
+
+    public abstract String getElementType();
 }

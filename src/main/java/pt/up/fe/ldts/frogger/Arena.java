@@ -43,26 +43,22 @@ public class Arena {
 
     public void createCars() {
         for (int row = secondSidewalk.getPosition().getYMax()+1; row < firstSidewalk.getPosition().getYMin(); row++) {
-            //TODO: check which casting to use
-            List<Car> aux = new ArrayList<>();
-            List<MovableElement> l = new MovableElementsFactory(level, row, "Car").create();
-            for (MovableElement m: l) {
-                if (cars.isEmpty())
-                    cars.add((Car) m);
-                else
-                    aux.add((Car) m);
-            }
-            cars.addAll(aux);
+            List<MovableElement> m = new MovableElementsFactory(level, row, "Car").create();
+            if (cars.isEmpty())
+                cars = new ArrayList<Car>((List) m);
+            else
+                cars.addAll(new ArrayList<Car>((List) m));
         }
     }
 
     public void createTreeTrunks() {
-        for (int row = water.getPosition().getYMin(); row <= water.getPosition().getYMax(); row++) {
+        for (int row = water.getPosition().getYMin()+1; row <= water.getPosition().getYMax(); row++) {
             List<MovableElement> m = new MovableElementsFactory(level, row, "TreeTrunk").create();
             if (treeTrunks.isEmpty())
-                treeTrunks = new ArrayList<>((List) m);
+                treeTrunks = new ArrayList<TreeTrunk>((List) m);
             else
-                this.treeTrunks.addAll(new ArrayList<>((List) m));
+                this.treeTrunks.addAll(new ArrayList<TreeTrunk>((List) m));
+            row++;
         }
     }
 
@@ -70,9 +66,10 @@ public class Arena {
         for (int row = water.getPosition().getYMin(); row <= water.getPosition().getYMax(); row++) {
             List<MovableElement> m = new MovableElementsFactory(level, row, "Turtle").create();
             if (turtles.isEmpty())
-                turtles = new ArrayList<>((List) m);
+                turtles = new ArrayList<Turtle>((List) m);
             else
-                this.turtles.addAll(new ArrayList<>((List) m));
+                this.turtles.addAll(new ArrayList<Turtle>((List) m));
+            row++;
         }
     }
 

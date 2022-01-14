@@ -7,8 +7,8 @@ import java.util.Random;
 public class CreateTurtle extends MovableElementsFactory {
 
     //Turtles will be created after the tree trunks so an extra attribute is needed to check overlapping
-    public CreateTurtle(int level, int row, List<MovableElement> treeTrunks) {
-        super(level, row, treeTrunks);
+    public CreateTurtle(int level, int row) {
+        super(level, row);
     }
 
     //number of tree trunks decreases with the level
@@ -19,14 +19,11 @@ public class CreateTurtle extends MovableElementsFactory {
         if (level == 2)
             return random.nextInt(9 - 6) + 6;
         else //level == 3
-            return random.nextInt(5 - 3) + 3;
+            return random.nextInt(6 - 3) + 3;
     }
 
     //check if the random method isn't accidentally creating two turtles at the same position or in a position where there already is a tree trunk
     public boolean checkOverlapping(List<MovableElement> turtles, Position position) {
-        for (MovableElement treeTrunk: treeTrunks)
-            if (treeTrunk.getPosition().equals(position))
-                return true;
         for (MovableElement turtle: turtles)
             if (turtle.getPosition().equals(position))
                 return true;
@@ -42,7 +39,7 @@ public class CreateTurtle extends MovableElementsFactory {
         for (int i = 0; i < numElements; i++) {
             int x;
             do {
-                x = random.nextInt(59);
+                x = random.nextInt(60);
             } while (checkOverlapping(turtles, new Position(x, row)));
             Turtle turtle = new Turtle(x, row);
             turtles.add(turtle);

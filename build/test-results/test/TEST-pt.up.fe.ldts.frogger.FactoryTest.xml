@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="pt.up.fe.ldts.frogger.FactoryTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2022-01-14T01:10:23" hostname="ISABEL-PC" time="0.024">
-  <properties/>
-  <testcase name="createTreeTrunks()" classname="pt.up.fe.ldts.frogger.FactoryTest" time="0.024"/>
-  <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>

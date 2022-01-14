@@ -38,7 +38,7 @@ public class CreateTreeTrunk extends MovableElementsFactory {
         for (int i = 0; i < numElements; i++) {
             int x;
             do {
-                x = random.nextInt(59);
+                x = random.nextInt(58);
             } while (checkOverlapping(treeTrunks, new Position(x, row)));
             TreeTrunk treeTrunk1 = new TreeTrunk(x, row);
             TreeTrunk treeTrunk2 = new TreeTrunk(x+1, row);
