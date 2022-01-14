@@ -14,11 +14,11 @@ public class CreateTreeTrunk extends MovableElementsFactory {
     public int numElements() {
         Random random = new Random();
         if (level == 1)
-            return random.nextInt(12 - 9) + 9;
+            return random.nextInt(11 - 8) + 8;
         if (level == 2)
-            return random.nextInt(9 - 6) + 6;
+            return random.nextInt(8 - 5) + 5;
         else //level == 3
-            return random.nextInt(6 - 3) + 3;
+            return random.nextInt(5 - 2) + 2;
     }
 
     //check if the random method isn't accidentally creating two tree trunks at the same position
@@ -40,8 +40,12 @@ public class CreateTreeTrunk extends MovableElementsFactory {
             do {
                 x = random.nextInt(59);
             } while (checkOverlapping(treeTrunks, new Position(x, row)));
-            TreeTrunk treeTrunk = new TreeTrunk(x, row);
-            treeTrunks.add(treeTrunk);
+            TreeTrunk treeTrunk1 = new TreeTrunk(x, row);
+            TreeTrunk treeTrunk2 = new TreeTrunk(x+1, row);
+            TreeTrunk treeTrunk3 = new TreeTrunk(x+2, row);
+            treeTrunks.add(treeTrunk1);
+            treeTrunks.add(treeTrunk2);
+            treeTrunks.add(treeTrunk3);
         }
         return treeTrunks;
     }
