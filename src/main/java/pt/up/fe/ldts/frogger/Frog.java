@@ -28,5 +28,9 @@ public class Frog extends MovableElement {
         graphics.enableModifiers(SGR.BOLD);
         graphics.putString(new TerminalPosition(position.getX(), position.getY()),"F");
     }
+
+    public String getElementType() {
+        return "Frog";
+    }
 }
 
