@@ -6,9 +6,16 @@ import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 
 public class TreeTrunk extends MovableElement {
+    //either left or right
+    private String movementDirection;
 
-    public TreeTrunk(int x, int y) {
+    public TreeTrunk(int x, int y, String direction) {
         super(x,y);
+        this.movementDirection = direction;
+    }
+
+    public String getMovementDirection() {
+        return movementDirection;
     }
 
     public void draw(TextGraphics graphics){
@@ -18,6 +25,6 @@ public class TreeTrunk extends MovableElement {
     }
 
     public void move(Command command){
-        command.execute(position);
+        this.position = command.execute(position);
     }
 }

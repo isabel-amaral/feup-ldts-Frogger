@@ -6,8 +6,16 @@ import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 
 public class Car extends MovableElement {
-    public Car(int x, int y) {
+    //either left or right
+    private String movementDirection;
+
+    public Car(int x, int y, String direction) {
         super(x,y);
+        this.movementDirection = direction;
+    }
+
+    public String getMovementDirection() {
+        return movementDirection;
     }
 
     public void draw(TextGraphics graphics){
@@ -17,6 +25,6 @@ public class Car extends MovableElement {
     }
 
     public void move(Command command){
-        command.execute(position);
+        this.position = command.execute(position);
     }
 }

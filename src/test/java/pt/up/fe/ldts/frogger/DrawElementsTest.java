@@ -31,7 +31,7 @@ public class DrawElementsTest {
 
     @Test
     public void drawCarTest() {
-        Car car = new Car(1, 2);
+        Car car = new Car(1, 2, "left");
         car.draw(screen.newTextGraphics());
 
         Mockito.verify(graphics, Mockito.times(1)).setForegroundColor(TextColor.Factory.fromString("#cb4335"));
@@ -40,7 +40,7 @@ public class DrawElementsTest {
 
     @Test
     public void drawTurtleTest() {
-        Turtle turtle = new Turtle(1, 2);
+        Turtle turtle = new Turtle(1, 2, "left");
         turtle.draw(screen.newTextGraphics());
 
         Mockito.verify(graphics, Mockito.times(1)).setForegroundColor(TextColor.Factory.fromString("#e67e22"));
@@ -49,7 +49,7 @@ public class DrawElementsTest {
 
     @Test
     public void drawTreeTrunkTest() {
-        TreeTrunk treeTrunk = new TreeTrunk(1, 2);
+        TreeTrunk treeTrunk = new TreeTrunk(1, 2, "left");
         treeTrunk.draw(screen.newTextGraphics());
 
         Mockito.verify(graphics, Mockito.times(1)).setForegroundColor(TextColor.Factory.fromString("#7e5109"));
