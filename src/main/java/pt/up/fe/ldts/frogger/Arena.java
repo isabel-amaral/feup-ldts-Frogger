@@ -66,6 +66,21 @@ public class Arena {
         return sidewalkSecond;
     }
 
+    //for testing purposes only
+    public void setCars(List<Car> cars) {
+        this.cars = cars;
+    }
+
+    //for testing purposes only
+    public void setTreeTrunks(List<TreeTrunk> treeTrunks) {
+        this.treeTrunks = treeTrunks;
+    }
+
+    //for testing purposes only
+    public void setTurtles(List<Turtle> turtles) {
+        this.turtles = turtles;
+    }
+
     public void draw(TextGraphics graphics){
         graphics.setBackgroundColor(TextColor.Factory.fromString("#FFFFFF"));
         graphics.fillRectangle(new TerminalPosition(0, 0), new TerminalSize(width, height), ' ');
@@ -89,10 +104,19 @@ public class Arena {
         List<Car> cars = new ArrayList<>();
         List<Position> positions = new ArrayList<>();
         for (int i = 0; i < 20; i++) {
-            Car car = new Car(i, i);
-            if((!positions.contains(car.getPosition())) && car.getPosition()!=frog.getPosition()) {
-                cars.add(car);
-                positions.add(car.getPosition());
+            if (i < 10) {
+                Car car = new Car(i, i, "left");
+                if((!positions.contains(car.getPosition())) && car.getPosition()!=frog.getPosition()) {
+                    cars.add(car);
+                    positions.add(car.getPosition());
+                }
+            }
+            else {
+                Car car = new Car(i, i, "right");
+                if((!positions.contains(car.getPosition())) && car.getPosition()!=frog.getPosition()) {
+                    cars.add(car);
+                    positions.add(car.getPosition());
+                }
             }
         }
         return cars;
@@ -104,10 +128,19 @@ public class Arena {
         List<TreeTrunk> treeTrunks = new ArrayList<>();
         List<Position> positions = new ArrayList<>();
         for (int i = 0; i < 15; i++) {
-            TreeTrunk treeTrunk = new TreeTrunk(i, i);
-            if((!positions.contains(treeTrunk.getPosition())) && treeTrunk.getPosition()!=frog.getPosition()){
-                treeTrunks.add(treeTrunk);
-                positions.add(treeTrunk.getPosition());
+            if (i < 10) {
+                TreeTrunk treeTrunk = new TreeTrunk(i, i, "left");
+                if((!positions.contains(treeTrunk.getPosition())) && treeTrunk.getPosition()!=frog.getPosition()){
+                    treeTrunks.add(treeTrunk);
+                    positions.add(treeTrunk.getPosition());
+                }
+            }
+            else {
+                TreeTrunk treeTrunk = new TreeTrunk(i, i, "right");
+                if((!positions.contains(treeTrunk.getPosition())) && treeTrunk.getPosition()!=frog.getPosition()){
+                    treeTrunks.add(treeTrunk);
+                    positions.add(treeTrunk.getPosition());
+                }
             }
         }
         return treeTrunks;
@@ -119,10 +152,19 @@ public class Arena {
         List<Turtle> turtles = new ArrayList<>();
         List<Position> positions = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
-            Turtle turtle = new Turtle(i, i);
-            if ((!positions.contains(turtle.getPosition())) && turtle.getPosition()!=frog.getPosition()) {
-                turtles.add(turtle);
-                positions.add(turtle.getPosition());
+            if (i < 10) {
+                Turtle turtle = new Turtle(i, i, "left");
+                if ((!positions.contains(turtle.getPosition())) && turtle.getPosition()!=frog.getPosition()) {
+                    turtles.add(turtle);
+                    positions.add(turtle.getPosition());
+                }
+            }
+            else {
+                Turtle turtle = new Turtle(i, i, "right");
+                if ((!positions.contains(turtle.getPosition())) && turtle.getPosition()!=frog.getPosition()) {
+                    turtles.add(turtle);
+                    positions.add(turtle.getPosition());
+                }
             }
         }
         return turtles;
@@ -202,5 +244,26 @@ public class Arena {
             return true;
         }
         return false;
+    }
+
+    public void moveMovableElements() {
+        for (Car car: cars) {
+            if (car.getMovementDirection() == "left")
+                car.move(new MoveLeft());
+            else //car.getMovementDirection() == "right"
+                car.move(new MoveRight());
+        }
+        for (TreeTrunk treeTrunk: treeTrunks) {
+            if (treeTrunk.getMovementDirection() == "left")
+                treeTrunk.move(new MoveLeft());
+            else //treeTrunk.getMovementDirection() == "right"
+                treeTrunk.move(new MoveRight());
+        }
+        for (Turtle turtle: turtles) {
+            if (turtle.getMovementDirection() == "left")
+                turtle.move(new MoveLeft());
+            else //turtle.getMovementDirection() == "right"
+                turtle.move(new MoveRight());
+        }
     }
 }

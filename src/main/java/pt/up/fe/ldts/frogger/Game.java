@@ -79,6 +79,7 @@ public class Game {
                 screen.close();
             if (key.getKeyType() == KeyType.EOF)
                 break;
+            arena.moveMovableElements();
 
             long elapsedTime = System.currentTimeMillis() - startTime;
             long sleepTime = frameTime - elapsedTime;
