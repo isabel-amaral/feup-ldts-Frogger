@@ -8,7 +8,7 @@ public interface State {
 
     public void onMenu(Game game) throws IOException;
 
-    public void onWin(Game game);
+    public void onWin(Game game) throws IOException;
 
-    public void onLose(Game game);
+    public void onLose(Game game) throws IOException;
 }

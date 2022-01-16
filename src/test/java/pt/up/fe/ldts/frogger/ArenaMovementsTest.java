@@ -45,7 +45,10 @@ public class ArenaMovementsTest {
         //can't move
         Mockito.when(arena.canFrogMove(Mockito.any())).thenReturn(false);
 
-        arena.getFrog().setPosition(new Position(2, 1));
+        //arena.getFrog().setPosition(new Position(2, 1));
+        Frog frog = new Frog(2,1);
+        Mockito.when(arena.getFrog()).thenReturn(frog);
+
         //positions the frog will be trying to move to
         Position unavailablePosition1 = new Position (2, 2); //try to move up
         Position unavailablePosition2 = new Position(1, 1);  //try to move left

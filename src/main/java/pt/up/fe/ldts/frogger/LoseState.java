@@ -5,10 +5,16 @@ import java.io.IOException;
 public class LoseState implements State{
     private Lose lose;
     private Game game;
+    private boolean gameWasLost = false;
 
-    public LoseState(Game newGame){
+    public LoseState(Game newGame) throws IOException {
         game = newGame;
-        lose = new Lose();
+        lose = new Lose(game);
+        gameWasLost = true;
+    }
+
+    public boolean getGameWasLost(){
+        return gameWasLost;
     }
 
     @Override
@@ -24,13 +30,13 @@ public class LoseState implements State{
     }
 
     @Override
-    public void onWin(Game game) {
+    public void onWin(Game game) throws IOException {
         State state = new WinState(game);
         game.setState(state);
     }
 
     @Override
-    public void onLose(Game game) {
+    public void onLose(Game game) throws IOException {
         State state = new LoseState(game);
         game.setState(state);
 

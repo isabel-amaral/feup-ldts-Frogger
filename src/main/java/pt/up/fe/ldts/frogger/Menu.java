@@ -21,20 +21,18 @@ public class Menu {
     private int width= 60;
     private int height = 30;
     private List<String> options = new ArrayList<String>();
-    private State state;
+    private Game game;
     private int option = 1;
 
-    public Menu() throws IOException {
-        TerminalSize terminalSize = new TerminalSize(width, height);
-        DefaultTerminalFactory terminalFactory = new DefaultTerminalFactory().setInitialTerminalSize(terminalSize);
-        Terminal terminal = terminalFactory.createTerminal();
-        screen = new TerminalScreen(terminal);
+    public Menu(Game newGame) throws IOException {
+        game = newGame;
+        screen = game.getScreen();
 
         screen.setCursorPosition(null);
         screen.startScreen(); // screens must be started
         screen.doResizeIfNecessary(); // resize screen if necessary
 
-        graphics = screen.newTextGraphics();
+        graphics = game.getGraphics();
         options.add("PLAY");
         options.add("INSTRUCTIONS");
         options.add("LEVELS");
@@ -61,7 +59,6 @@ public class Menu {
         positionY = positionY+5;
 
         graphics.putString(26, positionY, options.get(3));
-        positionY = positionY+5;
 
         screen.refresh();
         this.choosingOption();
@@ -139,6 +136,21 @@ public class Menu {
                 this.showOption(option);
                 break;
             case Enter:
+                if (option == 1 ){
+                    State newState = new GameState(game);
+                    newState.onPlay(game);
+                }
+                else if (option == 2 ){
+                    Instruction instruction = new Instruction();
+                    instruction.show();
+                }
+                else if (option == 3 ){
+                    Level level = new Level(game);
+                    level.show();
+                }
+                else if (option == 4 ){
+                    screen.close();
+                }
                 break;
             default:
                 break;
