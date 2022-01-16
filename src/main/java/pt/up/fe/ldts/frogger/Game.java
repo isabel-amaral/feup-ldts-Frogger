@@ -1,6 +1,7 @@
 package pt.up.fe.ldts.frogger;
 
 import com.googlecode.lanterna.TerminalSize;
+import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
@@ -64,6 +65,12 @@ public class Game {
         screen.clear();
         arena.draw(graphics);
         screen.refresh();
+    }
+
+    public void drawText(Position position, String text, String color) {
+        TextGraphics tg = screen.newTextGraphics();
+        tg.setForegroundColor(TextColor.Factory.fromString(color));
+        tg.putString(position.getX(), position.getY(), text);
     }
 
     public void processKey(KeyStroke key) {
