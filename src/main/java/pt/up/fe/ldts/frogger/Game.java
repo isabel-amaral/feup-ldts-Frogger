@@ -77,13 +77,13 @@ public class Game {
 
             this.draw();
             KeyStroke key = screen.pollInput();
-            while (screen.pollInput() != null);
             this.processKey(key);
-            if (key != null &&
-                ((key.getKeyType() == KeyType.Character && key.getCharacter() == 'q') || (key.getKeyType() == KeyType.EOF))) {
+            if (key != null && key.getKeyType() == KeyType.Character && key.getCharacter() == 'q') {
                 screen.close();
                 break;
             }
+            else if (key != null && key.getKeyType() == KeyType.EOF)
+                break;
             arena.moveMovableElements();
 
             long elapsedTime = System.currentTimeMillis() - startTime;
