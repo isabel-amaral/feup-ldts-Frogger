@@ -14,7 +14,7 @@ public class TreeTrunk extends MovableElement {
     public void draw(TextGraphics graphics){
         graphics.setForegroundColor(TextColor.Factory.fromString("#7e5109"));
         graphics.enableModifiers(SGR.BOLD);
-        graphics.putString(new TerminalPosition(position.getX(), position.getY()),"TT");
+        graphics.putString(new TerminalPosition(position.getX(), position.getY()),"v"); //Depois adiciona-se t e u antes
     }
 
     public String getElementType() {

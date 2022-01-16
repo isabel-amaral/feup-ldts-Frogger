@@ -26,7 +26,7 @@ public class Frog extends MovableElement {
     public void draw(TextGraphics graphics){
         graphics.setForegroundColor(TextColor.Factory.fromString("#33cc33"));
         graphics.enableModifiers(SGR.BOLD);
-        graphics.putString(new TerminalPosition(position.getX(), position.getY()),"F");
+        graphics.putString(new TerminalPosition(position.getX(), position.getY()),"f");
     }
 
     public String getElementType() {

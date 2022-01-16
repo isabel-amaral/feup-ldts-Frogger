@@ -8,6 +8,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
+import java.awt.*;
 import java.io.IOException;
 
 public class  GameTest {
@@ -17,7 +18,7 @@ public class  GameTest {
     private TextGraphics graphics;
 
     @BeforeEach
-    public void setUp() throws IOException {
+    public void setUp() throws IOException, FontFormatException {
         game = new Game();
         arena = Mockito.mock(Arena.class);
         screen = Mockito.mock(Screen.class);

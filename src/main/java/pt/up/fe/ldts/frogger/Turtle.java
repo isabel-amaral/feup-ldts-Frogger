@@ -14,7 +14,7 @@ public class Turtle extends MovableElement {
     public void draw(TextGraphics graphics){
         graphics.setForegroundColor(TextColor.Factory.fromString("#e67e22"));
         graphics.enableModifiers(SGR.BOLD);
-        graphics.putString(new TerminalPosition(position.getX(), position.getY()),"T");
+        graphics.putString(new TerminalPosition(position.getX(), position.getY()),"g");
     }
 
     public String getElementType() {
