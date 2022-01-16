@@ -38,6 +38,21 @@ public class Game {
         return arena;
     }
 
+    //for testing purposes only
+    public void setScreen(Screen screen) {
+        this.screen = screen;
+    }
+
+    //for testing purposes only
+    public void setArena(Arena arena) {
+        this.arena = arena;
+    }
+
+    //for testing purposes only
+    public void setGraphics(TextGraphics graphics) {
+        this.graphics = graphics;
+    }
+
     public void draw() throws IOException {
         screen.clear();
         arena.draw(graphics);
