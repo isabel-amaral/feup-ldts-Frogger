@@ -9,10 +9,15 @@ import com.googlecode.lanterna.screen.TerminalScreen;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
 import com.googlecode.lanterna.terminal.swing.AWTTerminalFontConfiguration;
+import com.googlecode.lanterna.terminal.swing.AWTTerminalFrame;
 
 import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.URL;
 
 public class Game {
     private Screen screen;
@@ -20,24 +25,37 @@ public class Game {
     private Arena arena = new Arena(1,60, 30); //TODO: change level initiallization
     //Add ldts.frogger.Game State
 
-    public Game() throws IOException, FontFormatException {
+    public Game() throws IOException, FontFormatException, URISyntaxException {
+        URL resource = getClass().getClassLoader().getResource("FroggerFont.ttf");
+        File fontFile = new File(resource.toURI());
+        Font font =  Font.createFont(Font.TRUETYPE_FONT, fontFile);
 
-        AWTTerminalFontConfiguration fontConfig = loadFroggerFont();
+        GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+        ge.registerFont(font);
 
-        TerminalSize terminalSize = new TerminalSize(60, 30);
-        DefaultTerminalFactory terminalFactory = new DefaultTerminalFactory().setInitialTerminalSize(terminalSize);
-        Terminal terminal = terminalFactory.createTerminal();
+        DefaultTerminalFactory factory = new DefaultTerminalFactory();
 
-        terminalFactory.setForceAWTOverSwing(true);
-        terminalFactory.setTerminalEmulatorFontConfiguration(fontConfig);
+        Font loadedFont = font.deriveFont(Font.PLAIN, 25);
+        AWTTerminalFontConfiguration fontConfig = AWTTerminalFontConfiguration.newInstance(loadedFont);
+        factory.setTerminalEmulatorFontConfiguration(fontConfig);
+        factory.setForceAWTOverSwing(true);
+        factory.setInitialTerminalSize(new TerminalSize(60, 30));
 
-        screen = new TerminalScreen(terminal);
+        Terminal terminal = factory.createTerminal();
+        ((AWTTerminalFrame)terminal).addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                e.getWindow().dispose();
+            }
+        });
 
-        screen.setCursorPosition(null); // we don't need a cursor
-        screen.startScreen(); // screens must be started
-        screen.doResizeIfNecessary(); // resize screen if necessary
+        Screen screen = new TerminalScreen(terminal);
+        screen.setCursorPosition(null);   // we don't need a cursor
+        screen.startScreen();             // screens must be started
+        screen.doResizeIfNecessary();     // resize screen if necessary
 
         graphics = screen.newTextGraphics();
+        screen.refresh();
     }
 
     public Screen getScreen() {
@@ -72,18 +90,6 @@ public class Game {
                 break;
         }
     }
-
-    public AWTTerminalFontConfiguration loadFroggerFont() throws IOException, FontFormatException {
-        File fontFile = new File("src/main/resources/FroggerFont.ttf");
-        Font font = Font.createFont(Font.TRUETYPE_FONT, fontFile);
-
-        GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-        ge.registerFont(font);
-
-        Font loadedFont = font.deriveFont(Font.PLAIN, 25);
-        return AWTTerminalFontConfiguration.newInstance(loadedFont);
-    }
-
 
         public void playGame() throws IOException {
         //later to run with the state pattern

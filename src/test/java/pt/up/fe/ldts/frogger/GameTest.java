@@ -10,6 +10,7 @@ import org.mockito.Mockito;
 
 import java.awt.*;
 import java.io.IOException;
+import java.net.URISyntaxException;
 
 public class  GameTest {
     private Screen screen;
@@ -18,7 +19,7 @@ public class  GameTest {
     private TextGraphics graphics;
 
     @BeforeEach
-    public void setUp() throws IOException, FontFormatException {
+    public void setUp() throws IOException, FontFormatException, URISyntaxException {
         game = new Game();
         arena = Mockito.mock(Arena.class);
         screen = Mockito.mock(Screen.class);
