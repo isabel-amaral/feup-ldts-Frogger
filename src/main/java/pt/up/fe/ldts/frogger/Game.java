@@ -45,6 +45,9 @@ public class Game {
     }
 
     public void processKey(KeyStroke key) {
+        if (key == null)
+            return;
+
         switch(key.getKeyType()){
             case ArrowRight:
                 arena.moveFrog(arena.getFrog().moveRight());
@@ -65,14 +68,31 @@ public class Game {
 
     public void playGame() throws IOException {
         //later to run with the state pattern
+        //TODO: change velocity according ot the level
+        int FPS = 2;
+        int frameTime = 1000/FPS;
+
         while(true) {
+            long startTime = System.currentTimeMillis();
+
             this.draw();
-            KeyStroke key = screen.readInput();
+            KeyStroke key = screen.pollInput();
+            while (screen.pollInput() != null);
             this.processKey(key);
-            if (key.getKeyType() == KeyType.Character && key.getCharacter() == 'q')
+            if (key != null &&
+                ((key.getKeyType() == KeyType.Character && key.getCharacter() == 'q') || (key.getKeyType() == KeyType.EOF))) {
                 screen.close();
-            if (key.getKeyType() == KeyType.EOF)
                 break;
+            }
+            arena.moveMovableElements();
+
+            long elapsedTime = System.currentTimeMillis() - startTime;
+            long sleepTime = frameTime - elapsedTime;
+
+            try {
+                if (sleepTime > 0) Thread.sleep(sleepTime);
+            } catch (InterruptedException e) {
+            }
         }
     }
 }

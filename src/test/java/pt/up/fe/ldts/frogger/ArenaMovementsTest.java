@@ -69,9 +69,9 @@ public class ArenaMovementsTest {
     @Test
     public void verifyCarCollision() {
         List<Car> cars = new ArrayList<>();
-        cars.add(new Car(2, 2));
-        cars.add(new Car(4, 6));
-        cars.add(new Car(1, 2));
+        cars.add(new Car(2, 2, "left"));
+        cars.add(new Car(4, 6, "right"));
+        cars.add(new Car(1, 2, "left"));
         Mockito.when(arena.getCars()).thenReturn(cars);
 
         Assertions.assertEquals(arena.verifyCarCollision(new Position(3, 3)), false);
@@ -85,10 +85,10 @@ public class ArenaMovementsTest {
     @Test
     public void verifyTreeTrunkCollision() {
         List<TreeTrunk> treeTrunks = new ArrayList<>();
-        treeTrunks.add(new TreeTrunk(35, 24));
-        treeTrunks.add(new TreeTrunk(24, 24));
-        treeTrunks.add(new TreeTrunk(4, 24));
-        treeTrunks.add(new TreeTrunk(15, 15));
+        treeTrunks.add(new TreeTrunk(35, 24, "left"));
+        treeTrunks.add(new TreeTrunk(24, 24, "left"));
+        treeTrunks.add(new TreeTrunk(4, 24, "left"));
+        treeTrunks.add(new TreeTrunk(15, 15, "right"));
         Mockito.when(arena.getTreeTrunks()).thenReturn(treeTrunks);
 
         Assertions.assertEquals(arena.verifyTreeTrunkCollision(new Position(1, 1)), false);
@@ -103,9 +103,9 @@ public class ArenaMovementsTest {
     @Test
     public void verifyTurtleCollision() {
         List<Turtle> turtles = new ArrayList<>();
-        turtles.add(new Turtle(36, 19));
-        turtles.add(new Turtle(19, 24));
-        turtles.add(new Turtle(15, 25));
+        turtles.add(new Turtle(36, 19, "left"));
+        turtles.add(new Turtle(19, 24, "right"));
+        turtles.add(new Turtle(15, 25, "right"));
         Mockito.when(arena.getTurtles()).thenReturn(turtles);
 
         Assertions.assertEquals(arena.verifyTurtleCollision(new Position(1, 1)), false);

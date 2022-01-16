@@ -21,6 +21,14 @@ public class CreateCar extends MovableElementsFactory {
             return random.nextInt(16 - 12) + 12; //for level 3 the number of cars in a traffic lane will be between 12 and 15
     }
 
+    public String generateMovementDirection() {
+        Random random = new Random();
+        if (random.nextInt(2) == 0)
+            return "left";
+        else
+            return "right";
+    }
+
     //check if the random method isn't accidentally creating two cars at the same position
     public boolean checkOverlapping(List<MovableElement> cars, Position position) {
         for (MovableElement car: cars)
@@ -35,12 +43,14 @@ public class CreateCar extends MovableElementsFactory {
         List<MovableElement> cars = new ArrayList<>();
 
         int numElements = numElements();
+        String movementDirection = generateMovementDirection();
+
         for (int i = 0; i < numElements; i++) {
             int x;
             do {
                 x = random.nextInt(60);
             } while (checkOverlapping(cars, new Position(x, row)));
-            Car car = new Car(x, row);
+            Car car = new Car(x, row, movementDirection);
             cars.add(car);
         }
         return cars;

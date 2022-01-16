@@ -105,6 +105,21 @@ public class Arena {
         return secondSidewalk;
     }
 
+    //for testing purposes only
+    public void setCars(List<Car> cars) {
+        this.cars = cars;
+    }
+
+    //for testing purposes only
+    public void setTreeTrunks(List<TreeTrunk> treeTrunks) {
+        this.treeTrunks = treeTrunks;
+    }
+
+    //for testing purposes only
+    public void setTurtles(List<Turtle> turtles) {
+        this.turtles = turtles;
+    }
+
     public void draw(TextGraphics graphics){
         graphics.setBackgroundColor(TextColor.Factory.fromString("#FFFFFF"));
         graphics.fillRectangle(new TerminalPosition(0, 0), new TerminalSize(width, height), ' ');
@@ -196,5 +211,26 @@ public class Arena {
             return true;
         //TODO: ldts.frogger.Water restriction and ldts.frogger.Grass restriction
         return true;
+    }
+
+    public void moveMovableElements() {
+        for (Car car: cars) {
+            if (car.getMovementDirection() == "left")
+                car.move(new MoveLeft());
+            else //car.getMovementDirection() == "right"
+                car.move(new MoveRight());
+        }
+        for (TreeTrunk treeTrunk: treeTrunks) {
+            if (treeTrunk.getMovementDirection() == "left")
+                treeTrunk.move(new MoveLeft());
+            else //treeTrunk.getMovementDirection() == "right"
+                treeTrunk.move(new MoveRight());
+        }
+        for (Turtle turtle: turtles) {
+            if (turtle.getMovementDirection() == "left")
+                turtle.move(new MoveLeft());
+            else //turtle.getMovementDirection() == "right"
+                turtle.move(new MoveRight());
+        }
     }
 }
