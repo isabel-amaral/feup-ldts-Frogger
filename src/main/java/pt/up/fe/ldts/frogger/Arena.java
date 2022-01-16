@@ -120,6 +120,10 @@ public class Arena {
         this.turtles = turtles;
     }
 
+    public void setFrog(Frog newFrog){
+        frog = newFrog;
+    }
+
     public void draw(TextGraphics graphics){
         graphics.setBackgroundColor(TextColor.Factory.fromString("#FFFFFF"));
         graphics.fillRectangle(new TerminalPosition(0, 0), new TerminalSize(width, height), ' ');
@@ -174,7 +178,8 @@ public class Arena {
 
     //Possibly to change after implementing the state pattern
     public boolean verifyWaterCollision(Position frogNewPosition) {
-        if (water.getPosition().equals(frogNewPosition)) {
+        if (frogNewPosition.getY() >= water.getPosition().getYMin() && frogNewPosition.getY() <= water.getPosition().getYMax()
+                && !verifyTreeTrunkCollision(frogNewPosition) && !verifyTurtleCollision(frogNewPosition)) {
             //State = lose
             System.out.println("GAME OVER");
             return true;
@@ -184,7 +189,7 @@ public class Arena {
 
     //Possibly to change after implementing the state pattern
     public boolean verifyGrassCollision(Position frogNewPosition) {
-        if (grass.getPosition().equals(frogNewPosition)) {
+        if (frogNewPosition.getY() >= grass.getPosition().getYMin() && frogNewPosition.getY() <= grass.getPosition().getYMax()) {
             //State = win
             System.out.println("YOU WON");
             return true;
