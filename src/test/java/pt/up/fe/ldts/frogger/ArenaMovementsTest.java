@@ -1,214 +1,286 @@
 package pt.up.fe.ldts.frogger;
 
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ArenaMovementsTest {
-    private static Arena arena;
-
-    @BeforeAll
-    public static void setUp() {
-        arena = Mockito.mock(Arena.class);
-    }
 
     @Test
-    public void canMoveFrogTest() {
-        //can move
-        Mockito.when(arena.canFrogMove(new Position (1, 2))).thenReturn(true);
+    public void moveFrogTrueTest() {
+        Arena newArena = new Arena(1, 60, 30);
 
-        arena.getFrog().setPosition(new Position(2, 1));
+        List<Car> cars = new ArrayList<>();
+        cars.add(new Car(2, 2, "left"));
+        cars.add(new Car(4, 6, "right"));
+        newArena.setCars(cars);
+
+        List<TreeTrunk> treeTrunks = new ArrayList<>();
+        treeTrunks.add(new TreeTrunk(35, 24, "left"));
+        treeTrunks.add(new TreeTrunk(24, 24, "right"));
+        newArena.setTreeTrunks(treeTrunks);
+
+        List<Turtle> turtles = new ArrayList<>();
+        turtles.add(new Turtle(36, 19, "left"));
+        turtles.add(new Turtle(19, 24, "right"));
+        newArena.setTurtles(turtles);
+
         //positions the frog will be moving to
-        Position availablePosition1 = new Position (2, 2); //move up
-        Position availablePosition2 = new Position(1, 1);  //move left
-        Position availablePosition3 = new Position(3, 1);  //move right
+        Position availablePositionUp = new Position (30, 28); //move up
+        Position availablePositionLeft = new Position(29, 29);  //move left
+        Position availablePositionRight = new Position(31, 29);  //move right
 
-        arena.moveFrog(availablePosition1);
-        Mockito.verify(arena, Mockito.times(1)).canFrogMove(availablePosition1);
-        Mockito.verify(arena.getFrog(), Mockito.times(1)).setPosition(availablePosition1);
-        Assertions.assertEquals(arena.getFrog().getPosition(), availablePosition1);
+        newArena.moveFrog(availablePositionUp);
+        Assertions.assertEquals(newArena.getFrog().getPosition().getX(), availablePositionUp.getX());
+        Assertions.assertEquals(newArena.getFrog().getPosition().getY(), availablePositionUp.getY());
 
-        arena.getFrog().setPosition(new Position(2, 1));
-        arena.moveFrog(availablePosition2);
-        Assertions.assertEquals(arena.getFrog().getPosition(), availablePosition2);
+        newArena.moveFrog(availablePositionLeft);
+        Assertions.assertEquals(newArena.getFrog().getPosition().getX(), availablePositionLeft.getX());
+        Assertions.assertEquals(newArena.getFrog().getPosition().getY(), availablePositionLeft.getY());
 
-        arena.getFrog().setPosition(new Position(2, 1));
-        arena.moveFrog(availablePosition3);
-        Assertions.assertEquals(arena.getFrog().getPosition(), availablePosition3);
+        newArena.moveFrog(availablePositionRight);
+        Assertions.assertEquals(newArena.getFrog().getPosition().getX(), availablePositionRight.getX());
+        Assertions.assertEquals(newArena.getFrog().getPosition().getY(), availablePositionRight.getY());
     }
 
     @Test
-    public void cantMoveFrogTest() {
-        //can't move
-        Mockito.when(arena.canFrogMove(Mockito.any())).thenReturn(false);
+    public void moveFrogFalseTest() {
+        Arena newArena = new Arena(1, 60, 30);
+        Position expectedPosition = new Position(30, 29);
 
-        arena.getFrog().setPosition(new Position(2, 1));
-        //positions the frog will be trying to move to
-        Position unavailablePosition1 = new Position (2, 2); //try to move up
-        Position unavailablePosition2 = new Position(1, 1);  //try to move left
-        Position unavailablePosition3 = new Position(3, 1);  //try to move right
-        Position expectedPosition = new Position(2, 1);
+        List<Car> cars = new ArrayList<>();
+        cars.add(new Car(30, 28, "left"));
+        cars.add(new Car(29, 29, "right"));
+        cars.add(new Car(31, 29, "left"));
+        newArena.setCars(cars);
 
-        arena.moveFrog(unavailablePosition1);
-        Mockito.verify(arena, Mockito.times(1)).canFrogMove(unavailablePosition1);
-        Mockito.verify(arena.getFrog(), Mockito.times(1)).setPosition(unavailablePosition1);
-        Assertions.assertEquals(arena.getFrog().getPosition(), expectedPosition);
+        List<TreeTrunk> treeTrunks = new ArrayList<>();
+        treeTrunks.add(new TreeTrunk(35, 24, "left"));
+        treeTrunks.add(new TreeTrunk(24, 24, "right"));
+        newArena.setTreeTrunks(treeTrunks);
 
-        arena.getFrog().setPosition(new Position(2, 1));
-        arena.moveFrog(unavailablePosition2);
-        Assertions.assertEquals(arena.getFrog().getPosition(), expectedPosition);
+        List<Turtle> turtles = new ArrayList<>();
+        turtles.add(new Turtle(36, 19, "left"));
+        turtles.add(new Turtle(19, 24, "right"));
+        newArena.setTurtles(turtles);
 
-        arena.getFrog().setPosition(new Position(2, 1));
-        arena.moveFrog(unavailablePosition3);
-        Assertions.assertEquals(arena.getFrog().getPosition(), expectedPosition);
+        //positions the frog will be moving to
+        Position unavailablePositionUp = new Position (30, 28); //move up
+        Position unavailablePositionLeft = new Position(29, 29);  //move left
+        Position unavailablePositionRight = new Position(31, 29);  //move right
+
+        newArena.moveFrog(unavailablePositionUp);
+        Assertions.assertEquals(newArena.getFrog().getPosition().getX(), expectedPosition.getX());
+        Assertions.assertEquals(newArena.getFrog().getPosition().getY(), expectedPosition.getY());
+
+        newArena.moveFrog(unavailablePositionLeft);
+        Assertions.assertEquals(newArena.getFrog().getPosition().getX(), expectedPosition.getX());
+        Assertions.assertEquals(newArena.getFrog().getPosition().getY(), expectedPosition.getY());
+
+        newArena.moveFrog(unavailablePositionRight);
+        Assertions.assertEquals(newArena.getFrog().getPosition().getX(), expectedPosition.getX());
+        Assertions.assertEquals(newArena.getFrog().getPosition().getY(), expectedPosition.getY());
     }
 
     @Test
     public void verifyCarCollision() {
+        Arena newArena = new Arena(1, 60, 30);
         List<Car> cars = new ArrayList<>();
         cars.add(new Car(2, 2, "left"));
         cars.add(new Car(4, 6, "right"));
         cars.add(new Car(1, 2, "left"));
-        Mockito.when(arena.getCars()).thenReturn(cars);
+        newArena.setCars(cars);
 
-        Assertions.assertEquals(arena.verifyCarCollision(new Position(3, 3)), false);
-        Assertions.assertEquals(arena.verifyCarCollision(new Position(7, 4)), false);
-        Assertions.assertEquals(arena.verifyCarCollision(new Position(1, 1)), false);
-        Assertions.assertEquals(arena.verifyCarCollision(new Position(2, 2)), true);
-        Assertions.assertEquals(arena.verifyCarCollision(new Position(4, 6)), true);
-        Assertions.assertEquals(arena.verifyCarCollision(new Position(1, 2)), true);
+        Assertions.assertEquals(false, newArena.verifyCarCollision(new Position(3, 3)));
+        Assertions.assertEquals(false, newArena.verifyCarCollision(new Position(7, 4)));
+        Assertions.assertEquals(false, newArena.verifyCarCollision(new Position(1, 1)));
+        Assertions.assertEquals(true, newArena.verifyCarCollision(new Position(2, 2)));
+        Assertions.assertEquals(true, newArena.verifyCarCollision(new Position(4, 6)));
+        Assertions.assertEquals(true, newArena.verifyCarCollision(new Position(1, 2)));
     }
 
     @Test
     public void verifyTreeTrunkCollision() {
+        Arena newArena = new Arena(1, 60, 30);
         List<TreeTrunk> treeTrunks = new ArrayList<>();
         treeTrunks.add(new TreeTrunk(35, 24, "left"));
         treeTrunks.add(new TreeTrunk(24, 24, "left"));
         treeTrunks.add(new TreeTrunk(4, 24, "left"));
         treeTrunks.add(new TreeTrunk(15, 15, "right"));
-        Mockito.when(arena.getTreeTrunks()).thenReturn(treeTrunks);
+        newArena.setTreeTrunks(treeTrunks);
 
-        Assertions.assertEquals(arena.verifyTreeTrunkCollision(new Position(1, 1)), false);
-        Assertions.assertEquals(arena.verifyTreeTrunkCollision(new Position(15, 14)), false);
-        Assertions.assertEquals(arena.verifyTreeTrunkCollision(new Position(14, 15)), false);
-        Assertions.assertEquals(arena.verifyTreeTrunkCollision(new Position(35, 24)), true);
-        Assertions.assertEquals(arena.verifyTreeTrunkCollision(new Position(24, 24)), true);
-        Assertions.assertEquals(arena.verifyTreeTrunkCollision(new Position(4, 24)), true);
-        Assertions.assertEquals(arena.verifyTreeTrunkCollision(new Position(15, 15)), true);
+        Assertions.assertEquals(false, newArena.verifyTreeTrunkCollision(new Position(1, 1)));
+        Assertions.assertEquals(false, newArena.verifyTreeTrunkCollision(new Position(15, 14)));
+        Assertions.assertEquals(false, newArena.verifyTreeTrunkCollision(new Position(14, 15)));
+        Assertions.assertEquals(true, newArena.verifyTreeTrunkCollision(new Position(35, 24)));
+        Assertions.assertEquals(true, newArena.verifyTreeTrunkCollision(new Position(24, 24)));
+        Assertions.assertEquals(true, newArena.verifyTreeTrunkCollision(new Position(4, 24)));
+        Assertions.assertEquals(true, newArena.verifyTreeTrunkCollision(new Position(15, 15)));
     }
 
     @Test
     public void verifyTurtleCollision() {
+        Arena newArena = new Arena(1, 60, 30);
         List<Turtle> turtles = new ArrayList<>();
         turtles.add(new Turtle(36, 19, "left"));
         turtles.add(new Turtle(19, 24, "right"));
         turtles.add(new Turtle(15, 25, "right"));
-        Mockito.when(arena.getTurtles()).thenReturn(turtles);
+        newArena.setTurtles(turtles);
 
-        Assertions.assertEquals(arena.verifyTurtleCollision(new Position(1, 1)), false);
-        Assertions.assertEquals(arena.verifyTurtleCollision(new Position(15, 14)), false);
-        Assertions.assertEquals(arena.verifyTurtleCollision(new Position(14, 15)), false);
-        Assertions.assertEquals(arena.verifyTurtleCollision(new Position(36, 18)), false);
-        Assertions.assertEquals(arena.verifyTurtleCollision(new Position(36, 19)), true);
-        Assertions.assertEquals(arena.verifyTurtleCollision(new Position(19, 24)), true);
-        Assertions.assertEquals(arena.verifyTurtleCollision(new Position(15, 25)), true);
+        Assertions.assertEquals(false, newArena.verifyTurtleCollision(new Position(1, 1)));
+        Assertions.assertEquals(false, newArena.verifyTurtleCollision(new Position(15, 14)));
+        Assertions.assertEquals(false, newArena.verifyTurtleCollision(new Position(14, 15)));
+        Assertions.assertEquals(false, newArena.verifyTurtleCollision(new Position(36, 18)));
+        Assertions.assertEquals(true, newArena.verifyTurtleCollision(new Position(36, 19)));
+        Assertions.assertEquals(true, newArena.verifyTurtleCollision(new Position(19, 24)));
+        Assertions.assertEquals(true, newArena.verifyTurtleCollision(new Position(15, 25)));
     }
 
     @Test
-    public void verifyWaterCollision1() {
-        //water is always at yMin = 5 and yMax = 15
+    public void verifyWaterCollisionTrueTest() {
+        Arena newArena = new Arena(1, 60, 30);
+
+        List<Turtle> turtles = new ArrayList<>();
+        turtles.add(new Turtle(36, 4, "left"));
+        turtles.add(new Turtle(19, 5, "right"));
+        turtles.add(new Turtle(15, 6, "right"));
+        newArena.setTurtles(turtles);
+
+        List<TreeTrunk> treeTrunks = new ArrayList<>();
+        treeTrunks.add(new TreeTrunk(35, 4, "left"));
+        treeTrunks.add(new TreeTrunk(24, 5, "left"));
+        treeTrunks.add(new TreeTrunk(4, 6, "left"));
+        newArena.setTreeTrunks(treeTrunks);
+
+        //water is always at yMin = 4 and yMax = 13
         //the frog never collides with either a tree trunk or a turtle, therefore it always collides with water
-        Mockito.when(arena.verifyTreeTrunkCollision(Mockito.any())).thenReturn(false);
-        Mockito.when(arena.verifyTurtleCollision(Mockito.any())).thenReturn(false);
-
-        Assertions.assertEquals(arena.verifyWaterCollision(new Position(25, 15)), true);
-        Assertions.assertEquals(arena.verifyWaterCollision(new Position(15, 15)), true);
-        Assertions.assertEquals(arena.verifyWaterCollision(new Position(25, 14)), true);
-        Assertions.assertEquals(arena.verifyWaterCollision(new Position(15, 14)), true);
-        Assertions.assertEquals(arena.verifyWaterCollision(new Position(25, 9)), true);
-        Assertions.assertEquals(arena.verifyWaterCollision(new Position(40, 9)), true);
-        Assertions.assertEquals(arena.verifyWaterCollision(new Position(1, 20)), false);
-        Assertions.assertEquals(arena.verifyWaterCollision(new Position(40, 1)), false);
-        Assertions.assertEquals(arena.verifyWaterCollision(new Position(20, 13)), false);
-        Assertions.assertEquals(arena.verifyWaterCollision(new Position(15, 1)), false);
+        //Positions with water
+        Assertions.assertTrue(newArena.verifyWaterCollision(new Position(25, 4)));
+        Assertions.assertTrue(newArena.verifyWaterCollision(new Position(15, 4)));
+        Assertions.assertTrue(newArena.verifyWaterCollision(new Position(25, 5)));
+        Assertions.assertTrue(newArena.verifyWaterCollision(new Position(15, 5)));
+        Assertions.assertTrue(newArena.verifyWaterCollision(new Position(25, 6)));
+        Assertions.assertTrue(newArena.verifyWaterCollision(new Position(40, 6)));
+        //Positions without water
+        Assertions.assertFalse(newArena.verifyWaterCollision(new Position(1, 20)));
+        Assertions.assertFalse(newArena.verifyWaterCollision(new Position(40, 1)));
+        Assertions.assertFalse(newArena.verifyWaterCollision(new Position(20, 15)));
+        Assertions.assertFalse(newArena.verifyWaterCollision(new Position(15, 1)));
     }
 
     @Test
-    public void verifyWaterCollision2() {
-        //water is always at yMin = 5 and yMax = 15
-        //the frog always collides with either a tree trunk or a turtle, therefore it never collides with water
-        Mockito.when(arena.verifyTreeTrunkCollision(Mockito.any())).thenReturn(true);
-        Mockito.when(arena.verifyTurtleCollision(Mockito.any())).thenReturn(true);
+    public void verifyWaterCollisionFalseTest() {
+        Arena newArena = new Arena(1, 60, 30);
 
-        Assertions.assertEquals(arena.verifyWaterCollision(new Position(25, 25)), false);
-        Assertions.assertEquals(arena.verifyWaterCollision(new Position(15, 25)), false);
-        Assertions.assertEquals(arena.verifyWaterCollision(new Position(25, 24)), false);
-        Assertions.assertEquals(arena.verifyWaterCollision(new Position(15, 24)), false);
-        Assertions.assertEquals(arena.verifyWaterCollision(new Position(25, 19)), false);
-        Assertions.assertEquals(arena.verifyWaterCollision(new Position(40, 12)), false);
-        Assertions.assertEquals(arena.verifyWaterCollision(new Position(1, 5)), true);
-        Assertions.assertEquals(arena.verifyWaterCollision(new Position(40, 5)), true);
-        Assertions.assertEquals(arena.verifyWaterCollision(new Position(20, 13)), true);
-        Assertions.assertEquals(arena.verifyWaterCollision(new Position(15, 7)), true);
+        List<Turtle> turtles = new ArrayList<>();
+        turtles.add(new Turtle(36, 4, "left"));
+        turtles.add(new Turtle(19, 5, "right"));
+        turtles.add(new Turtle(15, 6, "right"));
+        newArena.setTurtles(turtles);
+
+        List<TreeTrunk> treeTrunks = new ArrayList<>();
+        treeTrunks.add(new TreeTrunk(35, 4, "left"));
+        treeTrunks.add(new TreeTrunk(24, 5, "left"));
+        treeTrunks.add(new TreeTrunk(4, 6, "left"));
+        newArena.setTreeTrunks(treeTrunks);
+
+        //water is always at yMin = 4 and yMax = 13
+        //the frog always collides with either a tree trunk or a turtle, therefore it never collides with water
+        Assertions.assertFalse(newArena.verifyWaterCollision(new Position(36, 19)));
+        Assertions.assertFalse(newArena.verifyWaterCollision(new Position(19, 5)));
+        Assertions.assertFalse(newArena.verifyWaterCollision(new Position(15, 6)));
+        Assertions.assertFalse(newArena.verifyWaterCollision(new Position(35, 4)));
+        Assertions.assertFalse(newArena.verifyWaterCollision(new Position(24, 5)));
+        Assertions.assertFalse(newArena.verifyWaterCollision(new Position(4, 6)));
     }
 
     @Test
     public void verifyGrassCollision() {
-        //grass is always at yMin = 1 and yMax = 4
-        Assertions.assertEquals(arena.verifyGrassCollision(new Position(25, 5)), false);
-        Assertions.assertEquals(arena.verifyGrassCollision(new Position(26, 10)), false);
-        Assertions.assertEquals(arena.verifyGrassCollision(new Position(27, 15)), false);
-        Assertions.assertEquals(arena.verifyGrassCollision(new Position(28, 20)), false);
-        Assertions.assertEquals(arena.verifyGrassCollision(new Position(29, 25)), false);
-        Assertions.assertEquals(arena.verifyGrassCollision(new Position(30, 1)), true);
-        Assertions.assertEquals(arena.verifyGrassCollision(new Position(1, 2)), true);
-        Assertions.assertEquals(arena.verifyGrassCollision(new Position(13, 3)), true);
-        Assertions.assertEquals(arena.verifyGrassCollision(new Position(13, 4)), true);
-        Assertions.assertEquals(arena.verifyGrassCollision(new Position(30, 4)), true);
+        Arena newArena = new Arena(1, 60, 30);
+
+        //grass is always at yMin = 0 and yMax = 3
+        Assertions.assertEquals(false, newArena.verifyGrassCollision(new Position(25, 5)));
+        Assertions.assertEquals(false, newArena.verifyGrassCollision(new Position(26, 10)));
+        Assertions.assertEquals(false, newArena.verifyGrassCollision(new Position(27, 15)));
+        Assertions.assertEquals(false, newArena.verifyGrassCollision(new Position(28, 20)));
+        Assertions.assertEquals(false, newArena.verifyGrassCollision(new Position(29, 25)));
+        Assertions.assertEquals(true, newArena.verifyGrassCollision(new Position(30, 1)));
+        Assertions.assertEquals(true, newArena.verifyGrassCollision(new Position(1, 2)));
+        Assertions.assertEquals(true, newArena.verifyGrassCollision(new Position(13, 3)));
     }
 
     @Test
-    public void canFrogMove1() {
-        //the frog doesn't collide with either a car, with water or with grass therefore it can move
-        Mockito.when(arena.verifyCarCollision(Mockito.any())).thenReturn(false);
-        Mockito.when(arena.verifyWaterCollision(Mockito.any())).thenReturn(false);
-        Mockito.when(arena.verifyGrassCollision(Mockito.any())).thenReturn(false); //the game ends when the frog moves to grass
+    public void canFrogMoveTrueTest() {
+        Arena newArena = new Arena(1, 60, 30);
 
-        arena.canFrogMove(new Position(1, 2));
-        Mockito.verify(arena, Mockito.times(1)).verifyCarCollision(new Position (1,2));
-        Mockito.verify(arena, Mockito.times(1)).verifyWaterCollision(new Position (1,2));
-        Mockito.verify(arena, Mockito.times(1)).verifyGrassCollision(new Position (1,2));
+        List<Car> cars = new ArrayList<>();
+        cars.add(new Car(3, 25, "left"));
+        cars.add(new Car(10, 22, "right"));
+        cars.add(new Car(12, 18, "left"));
+        newArena.setCars(cars);
 
-        Assertions.assertEquals(arena.canFrogMove(new Position(1, 2)), true);
-        Assertions.assertEquals(arena.canFrogMove(new Position(3, 3)), true);
-        Assertions.assertEquals(arena.canFrogMove(new Position(12, 9)), true);
+        List<Turtle> turtles = new ArrayList<>();
+        turtles.add(new Turtle(36, 4, "left"));
+        turtles.add(new Turtle(19, 5, "right"));
+        turtles.add(new Turtle(15, 6, "right"));
+        newArena.setTurtles(turtles);
+
+        List<TreeTrunk> treeTrunks = new ArrayList<>();
+        treeTrunks.add(new TreeTrunk(35, 4, "left"));
+        treeTrunks.add(new TreeTrunk(24, 5, "left"));
+        treeTrunks.add(new TreeTrunk(4, 6, "left"));
+        treeTrunks.add(new TreeTrunk(15, 7, "right"));
+        newArena.setTreeTrunks(treeTrunks);
+
+        Assertions.assertEquals(true, newArena.canFrogMove( new Position(1, 22)));
+        Assertions.assertEquals(true, newArena.canFrogMove( new Position(3, 23)));
+        Assertions.assertEquals(true, newArena.canFrogMove( new Position(12, 19)));
+        //Frog is on top of turtle
+        Assertions.assertEquals(true, newArena.canFrogMove( new Position(36, 4)));
+        Assertions.assertEquals(true, newArena.canFrogMove( new Position(19, 5)));
+        //Frog is on top of a tree trunk
+        Assertions.assertEquals(true, newArena.canFrogMove( new Position(35, 4)));
+        Assertions.assertEquals(true, newArena.canFrogMove( new Position(15, 7)));
     }
 
     @Test
-    public void canFrogMove2() {
+    public void canFrogMoveCollisionCarTest() {
         //the frog collides with a car therefore it can't move
-        Mockito.when(arena.verifyCarCollision(Mockito.any())).thenReturn(true);
-        Mockito.when(arena.verifyWaterCollision(Mockito.any())).thenReturn(false);
-        Mockito.when(arena.verifyGrassCollision(Mockito.any())).thenReturn(false);
+        Arena newArena = new Arena(1, 60, 30);
 
-        Assertions.assertEquals(arena.canFrogMove(new Position(1, 2)), false);
-        Assertions.assertEquals(arena.canFrogMove(new Position(3, 3)), false);
-        Assertions.assertEquals(arena.canFrogMove(new Position(12, 9)), false);
+        List<Car> cars = new ArrayList<>();
+        cars.add(new Car(3, 25, "left"));
+        cars.add(new Car(10, 22, "right"));
+        cars.add(new Car(12, 18, "left"));
+        newArena.setCars(cars);
+
+        Assertions.assertFalse(newArena.canFrogMove(new Position(3, 25)));
+        Assertions.assertFalse(newArena.canFrogMove(new Position(10, 22)));
+        Assertions.assertFalse(newArena.canFrogMove(new Position(12, 18)));
     }
 
     @Test
-    public void canFrogMove3() {
-        //the frog collides with water therefore it can't move
-        Mockito.when(arena.verifyCarCollision(Mockito.any())).thenReturn(false);
-        Mockito.when(arena.verifyWaterCollision(Mockito.any())).thenReturn(true);
-        Mockito.when(arena.verifyGrassCollision(Mockito.any())).thenReturn(false);
+    public void canFrogMoveCollisionWaterTest() {
+        Arena newArena = new Arena(1, 60, 30);
 
-        Assertions.assertEquals(arena.canFrogMove(new Position(1, 2)), false);
-        Assertions.assertEquals(arena.canFrogMove(new Position(3, 3)), false);
-        Assertions.assertEquals(arena.canFrogMove(new Position(12, 9)), false);
+        List<Turtle> turtles = new ArrayList<>();
+        turtles.add(new Turtle(36, 4, "left"));
+        turtles.add(new Turtle(19, 5, "right"));
+        turtles.add(new Turtle(15, 6, "right"));
+        newArena.setTurtles(turtles);
+
+        List<TreeTrunk> treeTrunks = new ArrayList<>();
+        treeTrunks.add(new TreeTrunk(35, 4, "left"));
+        treeTrunks.add(new TreeTrunk(24, 5, "left"));
+        treeTrunks.add(new TreeTrunk(4, 6, "left"));
+        treeTrunks.add(new TreeTrunk(15, 7, "right"));
+        newArena.setTreeTrunks(treeTrunks);
+
+        //the frog collides with water therefore it can't move
+        Assertions.assertFalse(newArena.canFrogMove(new Position(1, 4)));
+        Assertions.assertFalse(newArena.canFrogMove(new Position(3, 5)));
+        Assertions.assertFalse(newArena.canFrogMove(new Position(12, 9)));
     }
 }
 
