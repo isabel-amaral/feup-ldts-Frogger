@@ -129,7 +129,7 @@ public class Game {
             this.draw();
             KeyStroke key = screen.pollInput();
             this.processKey(key);
-            if (key != null && key.getKeyType() == KeyType.Character && key.getCharacter() == 'q') {
+            if (key != null && key.getKeyType() == KeyType.Character && key.getCharacter() == 'q' && key.getCharacter() == 'Q') {
                 screen.close();
                 break;
             }
