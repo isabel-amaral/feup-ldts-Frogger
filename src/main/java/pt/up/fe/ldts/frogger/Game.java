@@ -50,6 +50,7 @@ public class Game {
         return arena;
     }
 
+
     public State getState(){
         return state;
     }
@@ -58,8 +59,23 @@ public class Game {
         state = newState;
     }
 
-    public void setLevel(int newLevel){
+    public void setLevel(int newLevel) {
         level.setLevel(newLevel);
+    }
+
+    //for testing purposes only
+    public void setScreen(Screen screen) {
+        this.screen = screen;
+    }
+
+    //for testing purposes only
+    public void setArena(Arena arena) {
+        this.arena = arena;
+    }
+
+    //for testing purposes only
+    public void setGraphics(TextGraphics graphics) {
+        this.graphics = graphics;
     }
 
     public void draw() throws IOException {

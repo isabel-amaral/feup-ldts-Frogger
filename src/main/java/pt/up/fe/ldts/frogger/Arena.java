@@ -105,6 +105,10 @@ public class Arena {
         return secondSidewalk;
     }
 
+    public void setFrog(Frog frog) {
+        this.frog = frog;
+    }
+
     //for testing purposes only
     public void setCars(List<Car> cars) {
         this.cars = cars;
@@ -120,11 +124,23 @@ public class Arena {
         this.turtles = turtles;
     }
 
-    public void setFrog(Frog newFrog){
-        frog = newFrog;
+    public void setWater(Water water) {
+        this.water = water;
     }
 
-    public void draw(TextGraphics graphics){
+    public void setGrass(Grass grass) {
+        this.grass = grass;
+    }
+
+    public void setFirstSidewalk(Sidewalk firstSidewalk) {
+        this.firstSidewalk = firstSidewalk;
+    }
+
+    public void setSecondSidewalk(Sidewalk secondSidewalk) {
+        this.secondSidewalk = secondSidewalk;
+    }
+
+    public void draw(TextGraphics graphics) {
         graphics.setBackgroundColor(TextColor.Factory.fromString("#FFFFFF"));
         graphics.fillRectangle(new TerminalPosition(0, 0), new TerminalSize(width, height), ' ');
 
@@ -204,15 +220,15 @@ public class Arena {
         if (x < 0 || x >= width || y < 0 || y >= height)
             return false;
 
-        if (this.verifyCarCollision(position))
+        if (verifyCarCollision(position))
             return false;
-        if (this.verifyWaterCollision(position))
+        if (verifyWaterCollision(position))
             return false;
-        if (this.verifyGrassCollision(position))
+        if (verifyGrassCollision(position))
             return true;
-        if (this.verifyTreeTrunkCollision(position))
+        if (verifyTreeTrunkCollision(position))
             return true;
-        if (this.verifyTurtleCollision(position))
+        if (verifyTurtleCollision(position))
             return true;
         //TODO: ldts.frogger.Water restriction and ldts.frogger.Grass restriction
         return true;

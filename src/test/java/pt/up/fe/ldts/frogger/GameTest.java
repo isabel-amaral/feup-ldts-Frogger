@@ -4,6 +4,7 @@ import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
 import com.googlecode.lanterna.screen.Screen;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -11,18 +12,24 @@ import org.mockito.Mockito;
 import java.io.IOException;
 
 public class  GameTest {
-    private Screen screen;
-    private Game game;
-    private Arena arena;
-    private TextGraphics graphics;
+    private static Screen screen;
+    private static Game game;
+    private static Arena arena;
+    private static TextGraphics graphics;
+    private static Frog frog;
 
-    @BeforeEach
-    public void setUp() throws IOException {
+    @BeforeAll
+    public static void setUp() throws IOException {
         game = new Game();
         arena = Mockito.mock(Arena.class);
         screen = Mockito.mock(Screen.class);
         graphics = Mockito.mock(TextGraphics.class);
-        Mockito.when(screen.newTextGraphics()).thenReturn(graphics);
+        game.setScreen(screen);
+        game.setArena(arena);
+        game.setGraphics(graphics);
+
+        frog = new Frog(1, 1);
+        Mockito.when(arena.getFrog()).thenReturn(frog);
     }
 
    @Test
@@ -30,7 +37,7 @@ public class  GameTest {
         game.draw();
 
         Mockito.verify(screen, Mockito.times(1)).clear();
-        Mockito.verify(arena, Mockito.times(1)).draw(screen.newTextGraphics());
+        Mockito.verify(arena, Mockito.times(1)).draw(graphics);
         try {
             Mockito.verify(screen, Mockito.times(1)).refresh();
         } catch (IOException e) {
@@ -44,7 +51,7 @@ public class  GameTest {
         Mockito.when(key.getKeyType()).thenReturn(KeyType.ArrowUp);
 
         game.processKey(key);
-        Mockito.verify( arena, Mockito.times(1)).moveFrog(arena.getFrog().moveUp());
+        Mockito.verify(arena, Mockito.times(1)).moveFrog(frog.moveUp());
     }
 
     @Test
@@ -53,7 +60,7 @@ public class  GameTest {
         Mockito.when(key.getKeyType()).thenReturn(KeyType.ArrowDown);
 
         game.processKey(key);
-        Mockito.verify( arena, Mockito.times(1)).moveFrog(arena.getFrog().moveDown());
+        Mockito.verify( arena, Mockito.times(1)).moveFrog(frog.moveDown());
     }
 
     @Test
@@ -62,7 +69,7 @@ public class  GameTest {
         Mockito.when(key.getKeyType()).thenReturn(KeyType.ArrowRight);
 
         game.processKey(key);
-        Mockito.verify( arena, Mockito.times(1)).moveFrog(arena.getFrog().moveRight());
+        Mockito.verify( arena, Mockito.times(1)).moveFrog(frog.moveRight());
     }
 
     @Test
@@ -71,6 +78,6 @@ public class  GameTest {
         Mockito.when(key.getKeyType()).thenReturn(KeyType.ArrowLeft);
 
         game.processKey(key);
-        Mockito.verify( arena, Mockito.times(1)).moveFrog(arena.getFrog().moveLeft());
+        Mockito.verify( arena, Mockito.times(1)).moveFrog(frog.moveLeft());
     }
 }
