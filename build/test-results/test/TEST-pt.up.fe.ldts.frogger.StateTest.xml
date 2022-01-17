@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="pt.up.fe.ldts.frogger.StateTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2022-01-16T19:55:43" hostname="DESKTOP-PGKE5J9" time="10.625">
+<testsuite name="pt.up.fe.ldts.frogger.StateTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2022-01-17T00:03:48" hostname="DESKTOP-PGKE5J9" time="5.164">
   <properties/>
-  <testcase name="MenuStateTest()" classname="pt.up.fe.ldts.frogger.StateTest" time="10.625"/>
-  <system-out><![CDATA[]]></system-out>
+  <testcase name="MenuStateTest()" classname="pt.up.fe.ldts.frogger.StateTest" time="5.164"/>
+  <system-out><![CDATA[Screen closed!
+]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

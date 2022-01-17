@@ -11,6 +11,7 @@ import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
 
 import java.io.IOException;
+import java.util.function.DoubleToIntFunction;
 
 public class Game {
     private Screen screen;
@@ -71,6 +72,11 @@ public class Game {
         TextGraphics tg = screen.newTextGraphics();
         tg.setForegroundColor(TextColor.Factory.fromString(color));
         tg.putString(position.getX(), position.getY(), text);
+    }
+
+    public void closeScreen() throws IOException {
+        screen.close();
+        System.out.println("Screen closed!");
     }
 
     public void processKey(KeyStroke key) {

@@ -12,7 +12,7 @@ public class GameState implements State{
         gameWasPlayed = true;
     }
 
-    public boolean gameWasPlayed(){
+    public boolean getGameWasPlayed(){
         return gameWasPlayed;
     }
 
