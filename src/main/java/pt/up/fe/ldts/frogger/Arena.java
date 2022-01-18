@@ -181,7 +181,7 @@ public class Arena {
     public boolean verifyCarCollision(Position frogNewPosition) {
         for(Car car: cars) {
             if (car.getPosition().equals(frogNewPosition)) {
-                //State = lose
+                //TODO: Lose State
                 System.out.println("GAME OVER");
                 return true;
             }
@@ -211,7 +211,7 @@ public class Arena {
     public boolean verifyWaterCollision(Position frogNewPosition) {
         if (frogNewPosition.getY() >= water.getPosition().getYMin() && frogNewPosition.getY() <= water.getPosition().getYMax()
                 && !verifyTreeTrunkCollision(frogNewPosition) && !verifyTurtleCollision(frogNewPosition)) {
-            //State = lose
+            //TODO: Lose State
             System.out.println("GAME OVER");
             return true;
         }
@@ -229,10 +229,8 @@ public class Arena {
     }
 
     public boolean canFrogMove(Position position) {
-        int x = position.getX();
-        int y = position.getY();
-
-        if (x < 0 || x >= width || y < 0 || y >= height)
+        if (position.getX() < 0 || position.getX() >= width ||
+            position.getY() < 0 || position.getY() >= height)
             return false;
 
         if (verifyCarCollision(position))
@@ -245,7 +243,8 @@ public class Arena {
             return true;
         if (verifyTurtleCollision(position))
             return true;
-        //TODO: ldts.frogger.Water restriction and ldts.frogger.Grass restriction
+        if (verifyGrassCollision(position))
+            return true; //TODO: Win State
         return true;
     }
 
@@ -255,6 +254,8 @@ public class Arena {
                 car.move(new MoveLeft());
             else //car.getMovementDirection() == "right"
                 car.move(new MoveRight());
+            if (car.getPosition().equals(frog.getPosition()))
+                System.out.println("Game over!"); //TODO: Lose State
         }
         for (TreeTrunk treeTrunk: treeTrunks) {
             if (treeTrunk.getMovementDirection() == "left")
