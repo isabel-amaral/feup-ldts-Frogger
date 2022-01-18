@@ -15,12 +15,6 @@ public class Frog extends MovableElement {
         return "Frog";
     }
 
-    public void draw(TextGraphics graphics) {
-        graphics.setForegroundColor(TextColor.Factory.fromString("#33cc33"));
-        graphics.enableModifiers(SGR.BOLD);
-        graphics.putString(new TerminalPosition(position.getX(), position.getY()),"F");
-    }
-
     public Position moveUp(){
         return new Position(position.getX(), position.getY() - 1);
     }
@@ -36,5 +30,10 @@ public class Frog extends MovableElement {
     public Position moveRight() {
         return new Position(position.getX() + 1, position.getY());
     }
-}
 
+    public void draw(TextGraphics graphics){
+        graphics.setForegroundColor(TextColor.Factory.fromString("#33cc33"));
+        graphics.enableModifiers(SGR.BOLD);
+        graphics.putString(new TerminalPosition(position.getX(), position.getY()),"f");
+    }
+}

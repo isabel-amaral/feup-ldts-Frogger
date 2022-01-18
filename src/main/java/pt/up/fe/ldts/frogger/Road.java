@@ -4,14 +4,15 @@ import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 
-public class Sidewalk extends NonMovableElement {
-    public Sidewalk(int min, int max) {
-        super(min,max);
+public class Road extends NonMovableElement {
+    public Road(int min, int max) {
+        super(min, max);
     }
 
-    public void draw(TextGraphics graphics){
+    @Override
+    public void draw(TextGraphics graphics) {
         for (int y = position.getYMin(); y <= position.getYMax(); y++) {
-            graphics.setForegroundColor(TextColor.Factory.fromString("#b175ff"));
+            graphics.setForegroundColor(TextColor.Factory.fromString("#FFFFFF"));
             for (int x = 0; x <= 59; x++)
                 graphics.putString(new TerminalPosition(x, y), String.valueOf(' '));
         }

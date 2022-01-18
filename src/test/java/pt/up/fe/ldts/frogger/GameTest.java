@@ -5,11 +5,12 @@ import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
 import com.googlecode.lanterna.screen.Screen;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
+import java.awt.*;
 import java.io.IOException;
+import java.net.URISyntaxException;
 
 public class  GameTest {
     private static Screen screen;
@@ -19,7 +20,7 @@ public class  GameTest {
     private static Frog frog;
 
     @BeforeAll
-    public static void setUp() throws IOException {
+    public static void setUp() throws IOException, FontFormatException, URISyntaxException {
         game = new Game();
         arena = Mockito.mock(Arena.class);
         screen = Mockito.mock(Screen.class);

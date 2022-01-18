@@ -5,14 +5,16 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
+import java.awt.*;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class StateTest {
 
     @Test
-    public void MenuStateTest() throws IOException {
+    public void MenuStateTest() throws IOException, URISyntaxException, FontFormatException {
         //TODO close screen
         Game game = new Game();
         MenuState menuState = new MenuState(game);
@@ -21,7 +23,7 @@ public class StateTest {
     }
 
     @Test
-    public void fromMenuToGame() throws IOException {
+    public void fromMenuToGame() throws IOException, URISyntaxException, FontFormatException {
         Game game = new Game();
         MenuState state = new MenuState(game);
         state.onPlay(game);
@@ -31,7 +33,7 @@ public class StateTest {
     }
 
     @Test
-    public void GameStateTest() throws IOException {
+    public void GameStateTest() throws IOException, URISyntaxException, FontFormatException {
         Game game = new Game();
         GameState gameState = new GameState(game);
         Assertions.assertTrue(gameState.getGameWasPlayed());
@@ -39,7 +41,7 @@ public class StateTest {
     }
 
     @Test
-    public void fromGameToMenu() throws IOException {
+    public void fromGameToMenu() throws IOException, URISyntaxException, FontFormatException {
         Game game = new Game();
         GameState gameState = new GameState(game);
         gameState.onMenu(game);
@@ -49,7 +51,7 @@ public class StateTest {
     }
 
     @Test
-    public void fromGameToWin() throws IOException {
+    public void fromGameToWin() throws IOException, URISyntaxException, FontFormatException {
         Game game = new Game();
         GameState gameState = new GameState(game);
         gameState.onWin(game);
@@ -59,7 +61,7 @@ public class StateTest {
     }
 
     @Test
-    public void fromGameToLose() throws IOException {
+    public void fromGameToLose() throws IOException, URISyntaxException, FontFormatException {
         Game game = new Game();
         GameState gameState = new GameState(game);
         gameState.onLose(game);
@@ -69,7 +71,7 @@ public class StateTest {
     }
 
     @Test
-    public void LoseStateTest() throws IOException {
+    public void LoseStateTest() throws IOException, URISyntaxException, FontFormatException {
         Game game = new Game();
         LoseState loseState = new LoseState(game);
         Assertions.assertTrue(loseState.getGameWasLost());
@@ -77,7 +79,7 @@ public class StateTest {
     }
 
     @Test
-    public void fromLoseToMenu() throws IOException {
+    public void fromLoseToMenu() throws IOException, URISyntaxException, FontFormatException {
         Game game = new Game();
         LoseState loseState = new LoseState(game);
         loseState.onMenu(game);
@@ -87,7 +89,7 @@ public class StateTest {
     }
 
     @Test
-    public void WinStateTest() throws IOException {
+    public void WinStateTest() throws IOException, URISyntaxException, FontFormatException {
         Game game = new Game();
         WinState winState = new WinState(game);
         Assertions.assertTrue(winState.getGameWasWon());
@@ -95,7 +97,7 @@ public class StateTest {
     }
 
     @Test
-    public void fromWinToMenu() throws IOException {
+    public void fromWinToMenu() throws IOException, URISyntaxException, FontFormatException {
         Game game = new Game();
         WinState winState = new WinState(game);
         winState.onMenu(game);

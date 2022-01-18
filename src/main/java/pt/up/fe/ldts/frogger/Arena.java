@@ -16,6 +16,7 @@ public class Arena {
     private List<Car> cars = new ArrayList<>();
     private List<TreeTrunk> treeTrunks = new ArrayList<>();
     private List<Turtle> turtles = new ArrayList<>();
+    private Road road;
     private Water water;
     private Grass grass;
     private Sidewalk firstSidewalk;
@@ -27,6 +28,7 @@ public class Arena {
         this.height = height;
 
         //non-movable elements have fixed positions in the arena
+        this.road = new Road(17, 26);
         this.water = new Water(4, 13);
         this.grass = new Grass(0, 3);
         this.firstSidewalk = new Sidewalk(27, 29);
@@ -152,6 +154,7 @@ public class Arena {
         graphics.setBackgroundColor(TextColor.Factory.fromString("#FFFFFF"));
         graphics.fillRectangle(new TerminalPosition(0, 0), new TerminalSize(width, height), ' ');
 
+        road.draw(graphics);
         water.draw(graphics);
         firstSidewalk.draw(graphics);
         secondSidewalk.draw(graphics);

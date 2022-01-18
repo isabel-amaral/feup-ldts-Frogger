@@ -26,7 +26,7 @@ public class Car extends MovableElement {
     public void draw(TextGraphics graphics) {
         graphics.setForegroundColor(TextColor.Factory.fromString("#cb4335"));
         graphics.enableModifiers(SGR.BOLD);
-        graphics.putString(new TerminalPosition(position.getX(), position.getY()),"C");
+        graphics.putString(new TerminalPosition(position.getX(), position.getY()),"c");
     }
 
     public void move(Command command) {
