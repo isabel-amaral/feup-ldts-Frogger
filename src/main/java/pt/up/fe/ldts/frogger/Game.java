@@ -28,6 +28,15 @@ public class Game {
     private Level level;
 
     public Game() throws IOException, FontFormatException, URISyntaxException {
+        createScreen();
+        Level newLevel = new Level(this);
+        level = newLevel;
+        state = new MenuState(this);
+
+        screen.refresh();
+    }
+
+    public void createScreen() throws IOException, FontFormatException, URISyntaxException {
         URL resource = getClass().getClassLoader().getResource("Frogger.ttf");
         File fontFile = new File(resource.toURI());
         Font font =  Font.createFont(Font.TRUETYPE_FONT, fontFile);
@@ -52,16 +61,10 @@ public class Game {
         });
 
         screen = new TerminalScreen(terminal);
-        screen.setCursorPosition(null);   // we don't need a cursor
-        screen.startScreen();             // screens must be started
-        screen.doResizeIfNecessary();     // resize screen if necessary
+        screen.setCursorPosition(null);
+        screen.startScreen();
+        screen.doResizeIfNecessary();
         graphics = screen.newTextGraphics();
-
-        Level newLevel = new Level(this);
-        level = newLevel;
-        state = new MenuState(this);
-
-        screen.refresh();
     }
 
     public Screen getScreen() {
