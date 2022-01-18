@@ -134,6 +134,10 @@ public class Arena {
         this.turtles = turtles;
     }
 
+    public void setRoad(Road road) {
+        this.road = road;
+    }
+
     public void setWater(Water water) {
         this.water = water;
     }
