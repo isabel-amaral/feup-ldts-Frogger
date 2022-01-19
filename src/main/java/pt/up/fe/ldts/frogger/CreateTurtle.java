@@ -22,14 +22,6 @@ public class CreateTurtle extends MovableElementsFactory {
             return random.nextInt(6 - 3) + 3;
     }
 
-    public String generateMovementDirection() {
-        Random random = new Random();
-        if (random.nextInt(2) == 0)
-            return "left";
-        else
-            return "right";
-    }
-
     //check if the random method isn't accidentally creating two turtles at the same position or in a position where there already is a tree trunk
     public boolean checkOverlapping(List<MovableElement> turtles, Position position) {
         for (MovableElement turtle: turtles)
@@ -44,14 +36,13 @@ public class CreateTurtle extends MovableElementsFactory {
         List<MovableElement> turtles = new ArrayList<>();
 
         int numElements = numElements();
-        String movementDirection = generateMovementDirection();
 
         for (int i = 0; i < numElements; i++) {
             int x;
             do {
                 x = random.nextInt(60);
             } while (checkOverlapping(turtles, new Position(x, row)));
-            Turtle turtle = new Turtle(x, row, movementDirection);
+            Turtle turtle = new Turtle(x, row, "right");
             turtles.add(turtle);
         }
         return turtles;

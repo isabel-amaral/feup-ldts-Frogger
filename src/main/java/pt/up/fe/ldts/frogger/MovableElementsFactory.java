@@ -1,6 +1,5 @@
 package pt.up.fe.ldts.frogger;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class MovableElementsFactory {
