@@ -166,7 +166,6 @@ public class Arena {
     public boolean verifyCarCollision(Position frogNewPosition) {
         for(Car car: cars) {
             if (car.getPosition().equals(frogNewPosition)) {
-                //TODO: Lose State
                 System.out.println("GAME OVER");
                 return true;
             }
@@ -196,7 +195,6 @@ public class Arena {
     public boolean verifyWaterCollision(Position frogNewPosition) {
         if (frogNewPosition.getY() >= water.getPosition().getYMin() && frogNewPosition.getY() <= water.getPosition().getYMax()
                 && !verifyTreeTrunkCollision(frogNewPosition) && !verifyTurtleCollision(frogNewPosition)) {
-            //TODO: Lose State
             System.out.println("GAME OVER");
             return true;
         }
@@ -206,47 +204,44 @@ public class Arena {
     //Possibly to change after implementing the state pattern
     public boolean verifyGrassCollision(Position frogNewPosition) {
         if (frogNewPosition.getY() >= grass.getPosition().getYMin() && frogNewPosition.getY() <= grass.getPosition().getYMax()) {
-            //State = win
             System.out.println("YOU WON");
             return true;
         }
         return false;
     }
 
-    public boolean canFrogMove(Position position) {
+    public int verifyFrogCollision(Position position) {
         if (position.getX() < 0 || position.getX() >= width ||
             position.getY() < 0 || position.getY() >= height)
-            return false;
+            return 3;
 
         if (verifyCarCollision(position))
-            return false;
+            return 2;
         if (verifyWaterCollision(position))
-            return false;
+            return 2;
         if (verifyGrassCollision(position))
-            return true;
-        if (verifyTreeTrunkCollision(position))
-            return true;
-        if (verifyTurtleCollision(position))
-            return true;
-        if (verifyGrassCollision(position))
-            return true; //TODO: Win State
-        return true;
+            return 1;
+        return 0;
     }
 
-    public void moveFrog(Position position) {
-        if (canFrogMove(position))
+    public int moveFrog(Position position) {
+        if(verifyFrogCollision(position) != 3)
             frog.setPosition(position);
+        return verifyFrogCollision(position);
     }
 
-    public void moveCars() {
+    public int moveCars() {
         for (Car car: cars) {
             if (car.getMovementDirection() == "left")
                 car.move(new MoveLeft());
             else //car.getMovementDirection() == "right"
                 car.move(new MoveRight());
-            if (car.getPosition().equals(frog.getPosition()))
-                System.out.println("Game over!"); //TODO: Lose State
+            if (car.getPosition().equals(frog.getPosition())){
+                System.out.println("GAME OVER");
+                return 2;
+            }
         }
+        return 0;
     }
 
     public void moveTreeTrunks() {
@@ -279,14 +274,15 @@ public class Arena {
         }
     }
 
-    public void moveMovableElements() {
+    public int moveMovableElements() {
         long elapsedTime = System.currentTimeMillis() - startTime;
         if (elapsedTime < frameTimeElements)
-            return;
+            return 0;
         startTime = System.currentTimeMillis();
 
-        moveCars();
+        int value = moveCars();
         moveTreeTrunks();
         moveTurtles();
+        return value;
     }
 }

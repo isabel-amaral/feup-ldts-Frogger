@@ -29,11 +29,13 @@ public class Game {
     private Arena arena = new Arena(1, 60, 30);
     private State state;
     private Level level;
+    private int lives;
 
     public Game() throws IOException, FontFormatException, URISyntaxException {
         createScreen();
         Level newLevel = new Level(this);
         level = newLevel;
+        lives = 3;
         state = new MenuState(this);
 
         screen.refresh();
@@ -87,6 +89,10 @@ public class Game {
         return state;
     }
 
+    public int getLives(){
+        return lives;
+    }
+
     public void setState(State newState){
         state = newState;
     }
@@ -110,11 +116,27 @@ public class Game {
         this.graphics = graphics;
     }
 
+    public void setLives(int newLives){
+        lives = newLives;
+    }
+
+    public void drawLives(){
+        int positionX = 58;
+        for(int i = 0; i < lives; i++){
+            graphics.putString(positionX, 1, "h");
+            positionX = positionX -2;
+        }
+
+    }
+
     public void draw() throws IOException {
         screen.clear();
         arena.draw(graphics);
+        drawLives();
         screen.refresh();
     }
+
+
 
     public void drawText(Position position, String text, String color) {
         TextGraphics tg = screen.newTextGraphics();
@@ -127,56 +149,70 @@ public class Game {
         System.out.println("Screen closed!");
     }
 
-    public void processKey(KeyStroke key) {
+    public int processKey(KeyStroke key) {
+        int value = 0;
         if (key == null)
-            return;
+            return value;
 
         switch(key.getKeyType()){
             case ArrowRight:
-                arena.moveFrog(arena.getFrog().moveRight());
+                value = arena.moveFrog(arena.getFrog().moveRight());
                 break;
             case ArrowLeft:
-                arena.moveFrog(arena.getFrog().moveLeft());
+                value = arena.moveFrog(arena.getFrog().moveLeft());
                 break;
             case ArrowUp:
-                arena.moveFrog(arena.getFrog().moveUp());
+                value = arena.moveFrog(arena.getFrog().moveUp());
                 break;
             case ArrowDown:
-                arena.moveFrog(arena.getFrog().moveDown());
+                value = arena.moveFrog(arena.getFrog().moveDown());
                 break;
             default:
                 break;
         }
+        return value;
     }
 
     public void playGame() throws IOException {
-    //later to run with the state pattern
-    //TODO: change velocity according ot the level
-    int FPSGame = 5;
-    int frameTimeGame = 1000/FPSGame;
+        //TODO: change velocity according ot the level
+        int FPSGame = 5;
+        int frameTimeGame = 1000/FPSGame;
+        int value = 0;
 
-    while(true) {
-        long startTime = System.currentTimeMillis();
+        while(value != 1 && value !=2) {
+            long startTime = System.currentTimeMillis();
 
-        this.draw();
-        KeyStroke key = screen.pollInput();
-        this.processKey(key);
+            this.draw();
+            KeyStroke key = screen.pollInput();
+            value = this.processKey(key);
 
-        if (key != null && key.getKeyType() == KeyType.Character && key.getCharacter() == 'q' && key.getCharacter() == 'Q') {
-            screen.close();
-            break;
+            if (key != null && key.getKeyType() == KeyType.Character && key.getCharacter() == 'q' && key.getCharacter() == 'Q') {
+                screen.close();
+                break;
+            }
+            else if (key != null && key.getKeyType() == KeyType.EOF)
+                break;
+            value = arena.moveMovableElements();
+
+            long elapsedTimeGame = System.currentTimeMillis() - startTime;
+            long sleepTime = frameTimeGame - elapsedTimeGame;
+
+            try {
+                if (sleepTime > 0) Thread.sleep(sleepTime);
+            } catch (InterruptedException e) {
+            }
         }
-        else if (key != null && key.getKeyType() == KeyType.EOF)
-            break;
-        arena.moveMovableElements();
-
-        long elapsedTimeGame = System.currentTimeMillis() - startTime;
-        long sleepTime = frameTimeGame - elapsedTimeGame;
-
-        try {
-            if (sleepTime > 0) Thread.sleep(sleepTime);
-        } catch (InterruptedException e) {
+        if( value == 1){
+            state.onWin(this);
         }
+        if (value == 2){
+            lives--;
+            arena.setFrog((Frog) new MovableElementsFactory(level.getLevel(), "Frog").create().get(0));
+            this.playGame();
+            if (lives == 0){
+                lives = 3;
+                state.onLose(this);
+            }
         }
     }
 }
