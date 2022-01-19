@@ -149,8 +149,8 @@ public class Game {
         public void playGame() throws IOException {
         //later to run with the state pattern
         //TODO: change velocity according ot the level
-        int FPS = 2;
-        int frameTime = 1000/FPS;
+        int FPSGame = 5;
+        int frameTimeGame = 1000/FPSGame;
 
         while(true) {
             long startTime = System.currentTimeMillis();
@@ -166,8 +166,8 @@ public class Game {
                 break;
             arena.moveMovableElements();
 
-            long elapsedTime = System.currentTimeMillis() - startTime;
-            long sleepTime = frameTime - elapsedTime;
+            long elapsedTimeGame = System.currentTimeMillis() - startTime;
+            long sleepTime = frameTimeGame - elapsedTimeGame;
 
             try {
                 if (sleepTime > 0) Thread.sleep(sleepTime);

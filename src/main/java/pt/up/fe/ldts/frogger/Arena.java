@@ -22,6 +22,10 @@ public class Arena {
     private Sidewalk firstSidewalk;
     private Sidewalk secondSidewalk;
 
+    private int FPSElements = 2;
+    private int frameTimeElements = 1000/FPSElements;
+    private long startTime;
+
     public Arena (int level, int width, int height) {
         this.level = level;
         this.width = width;
@@ -37,6 +41,8 @@ public class Arena {
         createCars();
         createTreeTrunks();
         createTurtles();
+
+        startTime = System.currentTimeMillis();
     }
 
     public void createFrog() {
@@ -249,6 +255,11 @@ public class Arena {
     }
 
     public void moveMovableElements() {
+        long elapsedTime = System.currentTimeMillis() - startTime;
+        if (elapsedTime < frameTimeElements)
+            return;
+        startTime = System.currentTimeMillis();
+
         for (Car car: cars) {
             if (car.getMovementDirection() == "left")
                 car.move(new MoveLeft());
