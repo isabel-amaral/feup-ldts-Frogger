@@ -37,6 +37,7 @@ public class Arena {
         this.grass = new Grass(0, 3);
         this.firstSidewalk = new Sidewalk(27, 29);
         this.secondSidewalk = new Sidewalk(14, 16);
+        System.out.println(this.level);
         createFrog();
         createCars();
         createTreeTrunks();
@@ -79,14 +80,6 @@ public class Arena {
                 this.turtles.addAll(new ArrayList<Turtle>((List) m));
             row++;
         }
-    }
-
-    public int getWidth(){
-        return width;
-    }
-
-    public int getHeight(){
-        return height;
     }
 
     public Frog getFrog(){

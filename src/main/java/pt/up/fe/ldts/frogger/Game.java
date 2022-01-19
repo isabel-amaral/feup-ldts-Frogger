@@ -19,24 +19,23 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 public class Game {
+    private int width = 60, height = 30;
     private Screen screen;
     private TextGraphics graphics;
-    private Arena arena = new Arena(1, 60, 30);
+    private Arena arena;
     private State state;
     private Level level;
 
     public Game() throws IOException, FontFormatException, URISyntaxException {
         createScreen();
-        Level newLevel = new Level(this);
+        Level newLevel = new Level(this); //sets default level to 1
         level = newLevel;
-        state = new MenuState(this);
-
         screen.refresh();
+
+        arena = new Arena(level.getLevel(), width, height);
+        state = new MenuState(this);
     }
 
     public void createScreen() throws IOException, FontFormatException, URISyntaxException {
@@ -53,7 +52,7 @@ public class Game {
         AWTTerminalFontConfiguration fontConfig = AWTTerminalFontConfiguration.newInstance(loadedFont);
         factory.setTerminalEmulatorFontConfiguration(fontConfig);
         factory.setForceAWTOverSwing(true);
-        factory.setInitialTerminalSize(new TerminalSize(60, 30));
+        factory.setInitialTerminalSize(new TerminalSize(width, height));
 
         Terminal terminal = factory.createTerminal();
         ((AWTTerminalFrame)terminal).addWindowListener(new WindowAdapter() {
@@ -70,6 +69,14 @@ public class Game {
         graphics = screen.newTextGraphics();
     }
 
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
     public Screen getScreen() {
         return screen;
     }
@@ -77,11 +84,6 @@ public class Game {
     public TextGraphics getGraphics() {
         return graphics;
     }
-
-    public Arena getArena() {
-        return arena;
-    }
-
 
     public State getState(){
         return state;
