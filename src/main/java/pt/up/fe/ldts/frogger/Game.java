@@ -136,8 +136,6 @@ public class Game {
         screen.refresh();
     }
 
-
-
     public void drawText(Position position, String text, String color) {
         TextGraphics tg = screen.newTextGraphics();
         tg.setForegroundColor(TextColor.Factory.fromString(color));
@@ -173,18 +171,36 @@ public class Game {
         return value;
     }
 
+    public void processExitValue(int value) throws IOException {
+        if (value == 0 || value == 3)
+            return;
+        if (value == 1) {
+            state.onWin(this);
+        }
+        if (value == 2) {
+            lives--;
+            arena.setFrog((Frog) new MovableElementsFactory(level.getLevel(), "Frog").create().get(0));
+            if (lives == 0) {
+                lives = 3;
+                state.onLose(this);
+            }
+            this.playGame();
+        }
+    }
+
     public void playGame() throws IOException {
         //TODO: change velocity according ot the level
         int FPSGame = 5;
         int frameTimeGame = 1000/FPSGame;
         int value = 0;
 
-        while(value != 1 && value !=2) {
+        while (true) {
             long startTime = System.currentTimeMillis();
 
             this.draw();
             KeyStroke key = screen.pollInput();
             value = this.processKey(key);
+            processExitValue(value);
 
             if (key != null && key.getKeyType() == KeyType.Character && key.getCharacter() == 'q' && key.getCharacter() == 'Q') {
                 screen.close();
@@ -193,6 +209,7 @@ public class Game {
             else if (key != null && key.getKeyType() == KeyType.EOF)
                 break;
             value = arena.moveMovableElements();
+            processExitValue(value);
 
             long elapsedTimeGame = System.currentTimeMillis() - startTime;
             long sleepTime = frameTimeGame - elapsedTimeGame;
@@ -200,18 +217,6 @@ public class Game {
             try {
                 if (sleepTime > 0) Thread.sleep(sleepTime);
             } catch (InterruptedException e) {
-            }
-        }
-        if( value == 1){
-            state.onWin(this);
-        }
-        if (value == 2){
-            lives--;
-            arena.setFrog((Frog) new MovableElementsFactory(level.getLevel(), "Frog").create().get(0));
-            this.playGame();
-            if (lives == 0){
-                lives = 3;
-                state.onLose(this);
             }
         }
     }
