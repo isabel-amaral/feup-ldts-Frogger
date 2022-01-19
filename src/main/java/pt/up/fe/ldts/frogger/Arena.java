@@ -105,22 +105,6 @@ public class Arena {
         return turtles;
     }
 
-    public Water getWater(){
-        return water;
-    }
-
-    public Grass getGrass(){
-        return grass;
-    }
-
-    public Sidewalk getFirstSidewalk() {
-        return firstSidewalk;
-    }
-
-    public Sidewalk getSecondSidewalk() {
-        return secondSidewalk;
-    }
-
     public void setFrog(Frog frog) {
         this.frog = frog;
     }
@@ -176,11 +160,6 @@ public class Arena {
         for(Turtle turtle: turtles)
             turtle.draw(graphics);
         frog.draw(graphics);
-    }
-
-    public void moveFrog(Position position) {
-        if (canFrogMove(position))
-            frog.setPosition(position);
     }
 
     //Possibly to change after implementing the state pattern
@@ -254,12 +233,12 @@ public class Arena {
         return true;
     }
 
-    public void moveMovableElements() {
-        long elapsedTime = System.currentTimeMillis() - startTime;
-        if (elapsedTime < frameTimeElements)
-            return;
-        startTime = System.currentTimeMillis();
+    public void moveFrog(Position position) {
+        if (canFrogMove(position))
+            frog.setPosition(position);
+    }
 
+    public void moveCars() {
         for (Car car: cars) {
             if (car.getMovementDirection() == "left")
                 car.move(new MoveLeft());
@@ -268,6 +247,9 @@ public class Arena {
             if (car.getPosition().equals(frog.getPosition()))
                 System.out.println("Game over!"); //TODO: Lose State
         }
+    }
+
+    public void moveTreeTrunks() {
         for (TreeTrunk treeTrunk: treeTrunks) {
             if (treeTrunk.getMovementDirection() == "left") {
                 if (treeTrunk.getPosition().equals(frog.getPosition()))
@@ -280,6 +262,9 @@ public class Arena {
                 treeTrunk.move(new MoveRight());
             }
         }
+    }
+
+    public void moveTurtles() {
         for (Turtle turtle: turtles) {
             if (turtle.getMovementDirection() == "left") {
                 if (turtle.getPosition().equals(frog.getPosition()))
@@ -292,5 +277,16 @@ public class Arena {
                 turtle.move(new MoveRight());
             }
         }
+    }
+
+    public void moveMovableElements() {
+        long elapsedTime = System.currentTimeMillis() - startTime;
+        if (elapsedTime < frameTimeElements)
+            return;
+        startTime = System.currentTimeMillis();
+
+        moveCars();
+        moveTreeTrunks();
+        moveTurtles();
     }
 }
