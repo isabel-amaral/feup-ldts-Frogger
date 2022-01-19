@@ -8,7 +8,6 @@ public class GameState implements State{
 
     public GameState(Game newGame) throws IOException {
         game = newGame;
-        newGame.playGame();
         gameWasPlayed = true;
     }
 
@@ -20,6 +19,7 @@ public class GameState implements State{
     public void onPlay(Game game) throws IOException {
         State state = new GameState(game);
         game.setState(state);
+        game.playGame();
     }
 
     @Override
