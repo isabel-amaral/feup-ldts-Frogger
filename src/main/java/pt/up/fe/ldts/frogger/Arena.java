@@ -196,18 +196,18 @@ public class Arena {
     }
 
     //Possibly to change after implementing the state pattern
-    public boolean verifyTurtleCollision(Position frogNewPosition) {
-        for(Turtle turtle : turtles) {
-            if (turtle.getPosition().equals(frogNewPosition))
+    public boolean verifyTreeTrunkCollision(Position frogNewPosition) {
+        for (TreeTrunk treeTrunk : treeTrunks) {
+            if (treeTrunk.getPosition().equals(frogNewPosition))
                 return true;
         }
         return false;
     }
 
     //Possibly to change after implementing the state pattern
-    public boolean verifyTreeTrunkCollision(Position frogNewPosition) {
-        for (TreeTrunk treeTrunk : treeTrunks) {
-            if (treeTrunk.getPosition().equals(frogNewPosition))
+    public boolean verifyTurtleCollision(Position frogNewPosition) {
+        for(Turtle turtle : turtles) {
+            if (turtle.getPosition().equals(frogNewPosition))
                 return true;
         }
         return false;
@@ -269,16 +269,28 @@ public class Arena {
                 System.out.println("Game over!"); //TODO: Lose State
         }
         for (TreeTrunk treeTrunk: treeTrunks) {
-            if (treeTrunk.getMovementDirection() == "left")
+            if (treeTrunk.getMovementDirection() == "left") {
+                if (treeTrunk.getPosition().equals(frog.getPosition()))
+                    frog.move(new MoveLeft());
                 treeTrunk.move(new MoveLeft());
-            else //treeTrunk.getMovementDirection() == "right"
+            }
+            else { //treeTrunk.getMovementDirection() == "right"
+                if (treeTrunk.getPosition().equals(frog.getPosition()))
+                    frog.move(new MoveRight());
                 treeTrunk.move(new MoveRight());
+            }
         }
         for (Turtle turtle: turtles) {
-            if (turtle.getMovementDirection() == "left")
+            if (turtle.getMovementDirection() == "left") {
+                if (turtle.getPosition().equals(frog.getPosition()))
+                    frog.move(new MoveLeft());
                 turtle.move(new MoveLeft());
-            else //turtle.getMovementDirection() == "right"
+            }
+            else { //turtle.getMovementDirection() == "right"
+                if (turtle.getPosition().equals(frog.getPosition()))
+                    frog.move(new MoveRight());
                 turtle.move(new MoveRight());
+            }
         }
     }
 }

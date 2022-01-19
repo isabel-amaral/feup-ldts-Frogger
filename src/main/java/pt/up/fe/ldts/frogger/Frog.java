@@ -31,6 +31,11 @@ public class Frog extends MovableElement {
         return new Position(position.getX() + 1, position.getY());
     }
 
+    //this method is used when frog is on top of a treeTrunk or a turtle in order to move alongside with it
+    public void move(Command command) {
+        this.position = command.execute(position);
+    }
+
     public void draw(TextGraphics graphics){
         graphics.setForegroundColor(TextColor.Factory.fromString("#33cc33"));
         graphics.enableModifiers(SGR.BOLD);

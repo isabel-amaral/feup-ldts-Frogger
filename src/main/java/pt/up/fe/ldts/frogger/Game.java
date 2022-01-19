@@ -19,6 +19,9 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class Game {
     private Screen screen;
@@ -146,18 +149,46 @@ public class Game {
         }
     }
 
+/*    public void processKey(KeyType key) {
+        switch(key){
+            case ArrowRight:
+                arena.moveFrog(arena.getFrog().moveRight());
+                break;
+            case ArrowLeft:
+                arena.moveFrog(arena.getFrog().moveLeft());
+                break;
+            case ArrowUp:
+                arena.moveFrog(arena.getFrog().moveUp());
+                break;
+            case ArrowDown:
+                arena.moveFrog(arena.getFrog().moveDown());
+                break;
+            default:
+                break;
+        }
+    }*/
+
         public void playGame() throws IOException {
         //later to run with the state pattern
         //TODO: change velocity according ot the level
         int FPSGame = 5;
         int frameTimeGame = 1000/FPSGame;
 
-        while(true) {
+        /*int count = 0;
+        List<KeyType> keys = Arrays.asList(KeyType.ArrowUp, KeyType.ArrowUp, KeyType.ArrowUp, KeyType.ArrowUp, KeyType.ArrowUp,
+                KeyType.ArrowUp, KeyType.ArrowUp, KeyType.ArrowUp, KeyType.ArrowUp, KeyType.ArrowUp, KeyType.ArrowUp, KeyType.ArrowUp,
+                KeyType.ArrowUp, KeyType.ArrowUp, KeyType.ArrowUp, KeyType.ArrowUp, KeyType.ArrowLeft, KeyType.ArrowLeft, KeyType.ArrowLeft);*/
+
+        while(true /*count < keys.size()*/) {
             long startTime = System.currentTimeMillis();
 
             this.draw();
             KeyStroke key = screen.pollInput();
             this.processKey(key);
+/*            if (keys.get(count) == KeyType.ArrowLeft)
+                System.out.println("Hey froger!");
+            this.processKey(keys.get(count));
+            count++;*/
             if (key != null && key.getKeyType() == KeyType.Character && key.getCharacter() == 'q' && key.getCharacter() == 'Q') {
                 screen.close();
                 break;
