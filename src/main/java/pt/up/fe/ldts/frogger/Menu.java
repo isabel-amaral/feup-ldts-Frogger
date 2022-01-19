@@ -143,7 +143,7 @@ public class Menu {
                     newState.onPlay(game);
                 }
                 else if (option == 2 ){
-                    Instruction instruction = new Instruction();
+                    Instruction instruction = new Instruction(game);
                     instruction.show();
                 }
                 else if (option == 3 ){
