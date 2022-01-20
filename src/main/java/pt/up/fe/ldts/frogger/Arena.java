@@ -44,7 +44,7 @@ public class Arena {
 
     public void setLevel(int newLevel){
         level = newLevel;
-       refresh();
+        refresh();
     }
 
     public void refresh() {
@@ -59,6 +59,7 @@ public class Arena {
     }
 
     public void createCars() {
+        cars.clear();
         for (int row = secondSidewalk.getPosition().getYMax()+1; row < firstSidewalk.getPosition().getYMin(); row++) {
             List<MovableElement> m = new MovableElementsFactory(level, row, "Car").create();
             if (cars.isEmpty())
@@ -69,6 +70,7 @@ public class Arena {
     }
 
     public void createTreeTrunks() {
+        treeTrunks.clear();
         for (int row = water.getPosition().getYMin()+1; row <= water.getPosition().getYMax(); row++) {
             List<MovableElement> m = new MovableElementsFactory(level, row, "TreeTrunk").create();
             if (treeTrunks.isEmpty())
@@ -80,6 +82,7 @@ public class Arena {
     }
 
     public void createTurtles() {
+        turtles.clear();
         for (int row = water.getPosition().getYMin(); row <= water.getPosition().getYMax(); row++) {
             List<MovableElement> m = new MovableElementsFactory(level, row, "Turtle").create();
             if (turtles.isEmpty())

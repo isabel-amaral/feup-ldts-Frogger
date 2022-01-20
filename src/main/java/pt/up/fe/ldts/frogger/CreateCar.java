@@ -16,9 +16,9 @@ public class CreateCar extends MovableElementsFactory {
         if (level == 1)
             return random.nextInt(8 - 5) + 5; //for level 1 the number of cars in a traffic lane will be between 5 and 7
         if (level == 2)
-            return random.nextInt(12 - 8) + 8; //for level 2 the number of cars in a traffic lane will be between 8 and 11
+            return random.nextInt(10 - 8) + 8; //for level 2 the number of cars in a traffic lane will be between 8 and 11
         else //level == 3
-            return random.nextInt(16 - 12) + 12; //for level 3 the number of cars in a traffic lane will be between 12 and 15
+            return random.nextInt(14 - 10) + 10; //for level 3 the number of cars in a traffic lane will be between 12 and 15
     }
 
     public String generateMovementDirection() {
