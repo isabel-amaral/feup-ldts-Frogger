@@ -8,7 +8,7 @@ import java.util.List;
 public class ArenaMovementsTest {
 
     @Test
-    public void moveFrogTrueTest() {
+    public void moveFrogTest() {
         Arena newArena = new Arena(1, 60, 30);
 
         List<Car> cars = new ArrayList<>();
@@ -45,9 +45,8 @@ public class ArenaMovementsTest {
     }
 
     @Test
-    public void moveFrogFalseTest() {
+    public void moveFrogDieTest() {
         Arena newArena = new Arena(1, 60, 30);
-        Position expectedPosition = new Position(30, 29);
 
         List<Car> cars = new ArrayList<>();
         cars.add(new Car(30, 28, "left"));
@@ -71,16 +70,16 @@ public class ArenaMovementsTest {
         Position unavailablePositionRight = new Position(31, 29);  //move right
 
         newArena.moveFrog(unavailablePositionUp);
-        Assertions.assertEquals(newArena.getFrog().getPosition().getX(), expectedPosition.getX());
-        Assertions.assertEquals(newArena.getFrog().getPosition().getY(), expectedPosition.getY());
+        Assertions.assertEquals(newArena.getFrog().getPosition().getX(), 30);
+        Assertions.assertEquals(newArena.getFrog().getPosition().getY(), 28);
 
         newArena.moveFrog(unavailablePositionLeft);
-        Assertions.assertEquals(newArena.getFrog().getPosition().getX(), expectedPosition.getX());
-        Assertions.assertEquals(newArena.getFrog().getPosition().getY(), expectedPosition.getY());
+        Assertions.assertEquals(newArena.getFrog().getPosition().getX(), 29);
+        Assertions.assertEquals(newArena.getFrog().getPosition().getY(), 29);
 
         newArena.moveFrog(unavailablePositionRight);
-        Assertions.assertEquals(newArena.getFrog().getPosition().getX(), expectedPosition.getX());
-        Assertions.assertEquals(newArena.getFrog().getPosition().getY(), expectedPosition.getY());
+        Assertions.assertEquals(newArena.getFrog().getPosition().getX(), 31);
+        Assertions.assertEquals(newArena.getFrog().getPosition().getY(), 29);
     }
 
     @Test
@@ -245,7 +244,7 @@ public class ArenaMovementsTest {
     }
 
     @Test
-    public void canFrogMoveCollisionCarTest() {
+    public void canFrogMoveCarCollisionTest() {
         //the frog collides with a car therefore it can't move
         Arena newArena = new Arena(1, 60, 30);
 
@@ -261,7 +260,7 @@ public class ArenaMovementsTest {
     }
 
     @Test
-    public void canFrogMoveCollisionWaterTest() {
+    public void canFrogMoveWaterCollisionTest() {
         Arena newArena = new Arena(1, 60, 30);
 
         List<Turtle> turtles = new ArrayList<>();
