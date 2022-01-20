@@ -3,6 +3,8 @@ package pt.up.fe.ldts.frogger;
 import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
+import com.googlecode.lanterna.input.KeyStroke;
+import com.googlecode.lanterna.input.KeyType;
 import com.googlecode.lanterna.screen.Screen;
 
 import java.io.*;
@@ -17,11 +19,16 @@ public class Instruction {
     private int width= 60;
     private int height = 30;
 
-    public Instruction(Game option2) throws FileNotFoundException {
+    public Instruction(Game option2) throws IOException {
         instructionsFile =  new File("src/main/resources/Instructions.txt");
         reader = new Scanner(instructionsFile);
         game = option2;
         screen = game.getScreen();
+
+        screen.setCursorPosition(null);
+        screen.startScreen(); // screens must be started
+        screen.doResizeIfNecessary(); // resize screen if necessary
+
         graphics = game.getGraphics();
     }
 
@@ -79,6 +86,23 @@ public class Instruction {
         for (int y = 23; y < height; y++)
             graphics.putString(new TerminalPosition(0, y), empty);
         screen.refresh();
+        this.choosingOption();
     }
+
+    public void choosingOption() throws IOException {
+        screen.refresh();
+        while(true) {
+            KeyStroke key = screen.readInput();
+            //this.processKey(key);
+            if (key.getKeyType() == KeyType.Character && (key.getCharacter() == 'q' || key.getCharacter() == 'Q'))
+                screen.close();
+            if (key.getKeyType() == KeyType.EOF)
+                break;
+            if(key.getKeyType() == KeyType.Enter ){
+                game.getState().onMenu(game);
+            }
+        }
+    }
+
 }
 
