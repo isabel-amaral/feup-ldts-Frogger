@@ -191,15 +191,15 @@ public class Game {
         if (value == 0 || value == 3)
             return;
         if (value == 1) {
+            lives = 3;
+            arena.setFrog((Frog) new MovableElementsFactory(level.getLevel(), "Frog").create().get(0));
             state.onWin(this);
         }
         if (value == 2) {
-            //System.out.println(state);
             lives--;
             arena.setFrog((Frog) new MovableElementsFactory(level.getLevel(), "Frog").create().get(0));
             if (lives == 0) {
                 lives = 3;
-                //System.out.println(state);
                 state.onLose(this);
             }
             this.playGame();
