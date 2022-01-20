@@ -140,24 +140,20 @@ public class Level {
                 if (option == 1) {
                     level = 1;
                     game.setLevel(level);
-                    State newState = new MenuState(game);
-                    newState.onMenu(game);
+                    game.getState().onMenu(game);
                 }
                 else if (option == 2) {
                     level = 2;
                     game.setLevel(level);
-                    State newState = new MenuState(game);
-                    newState.onMenu(game);
+                    game.getState().onMenu(game);
                 }
                 else if (option == 3) {
                     level = 3;
                     game.setLevel(level);
-                    State newState = new MenuState(game);
-                    newState.onMenu(game);
+                    game.getState().onMenu(game);
                 }
                 else if (option == 4) {
-                    State newState = new MenuState(game);
-                    newState.onMenu(game);
+                    game.getState().onMenu(game);
                 }
                 break;
             default:

@@ -30,13 +30,13 @@ public class Game {
 
     public Game() throws IOException, FontFormatException, URISyntaxException {
         createScreen();
-        Level newLevel = new Level(this); //sets default level to 1
-        level = newLevel;
+        level = new Level(this); //sets default level to 1
         screen.refresh();
 
         arena = new Arena(level.getLevel(), width, height);
         state = new MenuState(this);
     }
+
 
     public void createScreen() throws IOException, FontFormatException, URISyntaxException {
         URL resource = getClass().getClassLoader().getResource("Frogger.ttf");
@@ -89,12 +89,17 @@ public class Game {
         return state;
     }
 
+    public int getLevel(){
+        return level.getLevel();
+    }
+
     public void setState(State newState){
         state = newState;
     }
 
     public void setLevel(int newLevel) {
         level.setLevel(newLevel);
+        arena.setLevel(newLevel);
     }
 
     //for testing purposes only
@@ -178,6 +183,7 @@ public class Game {
         try {
             if (sleepTime > 0) Thread.sleep(sleepTime);
         } catch (InterruptedException e) {
+            e.printStackTrace();
         }
         }
     }

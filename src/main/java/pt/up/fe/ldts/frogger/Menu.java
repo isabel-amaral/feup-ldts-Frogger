@@ -130,8 +130,7 @@ public class Menu {
                 break;
             case Enter:
                 if (option == 1) {
-                    State newState = new GameState(game);
-                    newState.onPlay(game);
+                    game.getState().onPlay(game);
                 }
                 else if (option == 2) {
                     Instruction instruction = new Instruction();

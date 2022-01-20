@@ -4,11 +4,10 @@ import java.io.IOException;
 
 public class MenuState implements State {
     private Menu menu;
-    private Game game;
     private boolean menuWasCreated = false;
 
-    public MenuState(Game newGame) throws IOException {
-        game = newGame;
+    public MenuState(Game game) throws IOException {
+        game.setState(this);
         menu = new Menu(game);
         menuWasCreated = true;
     }
@@ -18,27 +17,13 @@ public class MenuState implements State {
     }
 
     @Override
-    public void onPlay(Game game) throws IOException {
-        State state = new GameState(game);
-        game.setState(state);
-    }
-
-    @Override
-    public void onMenu(Game game) throws IOException {
-        State state = new MenuState(game);
-        game.setState(state);
-    }
-
-    @Override
     public void onWin(Game game) throws IOException {
-        State state = new WinState(game);
-        game.setState(state);
+        throw new IllegalStateException("Cannot win while on menu state");
     }
 
     @Override
     public void onLose(Game game) throws IOException {
-        State state = new LoseState(game);
-        game.setState(state);
-
+        throw new IllegalStateException("Cannot lose while on menu state");
     }
+
 }

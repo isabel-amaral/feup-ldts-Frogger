@@ -37,13 +37,21 @@ public class Arena {
         this.grass = new Grass(0, 3);
         this.firstSidewalk = new Sidewalk(27, 29);
         this.secondSidewalk = new Sidewalk(14, 16);
-        System.out.println(this.level);
+        refresh();
+
+        startTime = System.currentTimeMillis();
+    }
+
+    public void setLevel(int newLevel){
+        level = newLevel;
+       refresh();
+    }
+
+    public void refresh() {
         createFrog();
         createCars();
         createTreeTrunks();
         createTurtles();
-
-        startTime = System.currentTimeMillis();
     }
 
     public void createFrog() {
