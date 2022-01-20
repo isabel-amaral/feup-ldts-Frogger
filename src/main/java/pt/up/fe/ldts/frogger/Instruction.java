@@ -1,16 +1,11 @@
 package pt.up.fe.ldts.frogger;
 
 import com.googlecode.lanterna.TerminalPosition;
-import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.screen.Screen;
-import com.googlecode.lanterna.screen.TerminalScreen;
-import com.googlecode.lanterna.terminal.Terminal;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class Instruction {
@@ -32,10 +27,8 @@ public class Instruction {
 
     public void show() throws IOException {
         screen.clear();
-        graphics.setBackgroundColor(TextColor.Factory.fromString("#FFFFFF"));
-        graphics.setForegroundColor(TextColor.Factory.fromString("#000000"));
-
-        //graphics.fillRectangle(new TerminalPosition(0, 0), new TerminalSize(width, height), ' ');
+        graphics.setBackgroundColor(TextColor.Factory.fromString("#000000"));
+        graphics.setForegroundColor(TextColor.Factory.fromString("#FFFFFF"));
 
         String Title = reader.nextLine();
         String r1 = reader.nextLine();
@@ -48,19 +41,33 @@ public class Instruction {
         String r4c = reader.nextLine();
         String r5 = reader.nextLine();
         String r6 = reader.nextLine();
+        String empty = "                                                                            ";
+
         reader.close();
 
-        graphics.putString(new TerminalPosition(1, 1), Title);
-        graphics.putString(new TerminalPosition(1, 3), r1);
-        graphics.putString(new TerminalPosition(1, 4), r1c);
-        graphics.putString(new TerminalPosition(1, 6), r2);
-        graphics.putString(new TerminalPosition(1, 7), r2c);
-        graphics.putString(new TerminalPosition(1, 9), r3);
-        graphics.putString(new TerminalPosition(1, 10), r3c);
-        graphics.putString(new TerminalPosition(1, 12), r4);
-        graphics.putString(new TerminalPosition(1, 13), r4c);
-        graphics.putString(new TerminalPosition(1, 15), r5);
-        graphics.putString(new TerminalPosition(1, 17), r6);
+        graphics.putString(new TerminalPosition(0, 0), empty);
+        graphics.putString(new TerminalPosition(0, 1), Title);
+        graphics.putString(new TerminalPosition(0, 2), empty);
+        graphics.putString(new TerminalPosition(0, 3), r1);
+        graphics.putString(new TerminalPosition(0, 4), r1c);
+        graphics.putString(new TerminalPosition(0, 5), empty);
+        graphics.putString(new TerminalPosition(0, 6), r2);
+        graphics.putString(new TerminalPosition(0, 7), r2c);
+        graphics.putString(new TerminalPosition(0, 8), empty);
+        graphics.putString(new TerminalPosition(0, 9), r3);
+        graphics.putString(new TerminalPosition(0, 10), r3c);
+        graphics.putString(new TerminalPosition(0, 11), empty);
+        graphics.putString(new TerminalPosition(0, 12), r4);
+        graphics.putString(new TerminalPosition(0, 13), r4c);
+        graphics.putString(new TerminalPosition(0, 14), empty);
+        graphics.putString(new TerminalPosition(0, 15), r5);
+        graphics.putString(new TerminalPosition(0, 16), empty);
+        graphics.putString(new TerminalPosition(0, 17), r6);
+
+        for (int y = 18; y < height; y++)
+            for (int x = 0; x < width; x++)
+                graphics.putString(new TerminalPosition(x, y), " ");
+
 
         screen.refresh();
     }

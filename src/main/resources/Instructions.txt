@@ -1,14 +1,22 @@
-        ***********fFROGGER GAME RULESf***********
--YOU WILL START THE GAME WITH 3 LIVES AND THE FIRST FROG
-IS SHOWN ON THE SIDEWALK BELOW THE TRAFFIC.
--PRESS THE ARROW KEYS UP, DOWN, LEFT AND RIGHT TO HOP
-IN THOSE DIRECTIONS.
--YOU WILL ONLY GO TO THE NEXT LEVEL IF YOU MANAGE TO
-GET 3 FROGS TO THEIR HOUSE WITHOUT LOSING THE 3 LIVES.
--AFTER YOU'VE FINISHED THE GAME, YOU CAN PRESS ENTER
-TO GO BACK TO THE MENU.
--PRESS q or Q TO QUIT THE GAME.
--HAVE FUN!!!
+      *********** f FROGGER GAME RULES f ***********                                                        q
+-YOU WILL START THE GAME WITH 3 LIVES AND THE FIRST FROG                                                  q
+IS SHOWN ON THE SIDEWALK BELOW THE TRAFFIC.                                                               q
+-PRESS THE ARROW KEYS UP, DOWN, LEFT AND RIGHT TO HOP                                                     q
+IN THOSE DIRECTIONS.                                                                                      q
+-YOU WILL ONLY GO TO THE NEXT LEVEL IF YOU MANAGE TO                                                      q
+GET 3 FROGS TO THEIR HOUSE WITHOUT LOSING THE 3 LIVES.                                                    q
+-AFTER YOU'VE FINISHED THE GAME, YOU CAN PRESS ENTER                                                      q
+TO GO BACK TO THE MENU.                                                                                   q
+-PRESS q or Q TO QUIT THE GAME.                                                                           q
+-HAVE FUN!!!                                                                                              q
+
+
+
+
+
+
+
+
 
 
 
