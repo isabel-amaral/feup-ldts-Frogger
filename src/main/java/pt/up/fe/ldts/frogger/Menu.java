@@ -23,10 +23,6 @@ public class Menu {
         game = newGame;
         screen = game.getScreen();
 
-/*        screen.setCursorPosition(null);
-        screen.startScreen(); // screens must be started
-        screen.doResizeIfNecessary(); // resize screen if necessary*/
-
         graphics = game.getGraphics();
         options.add("PLAY");
         options.add("INSTRUCTIONS");
@@ -130,7 +126,7 @@ public class Menu {
                 if (option == 1)
                     game.getState().onPlay(game);
                 else if (option == 2) {
-                    Instruction instruction = new Instruction(game);
+                    Instructions instruction = new Instructions(game);
                     instruction.show();
                 }
                 else if (option == 3) {
