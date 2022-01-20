@@ -73,7 +73,7 @@ public class Level {
         while(true) {
             KeyStroke key = screen.readInput();
             this.processKey(key);
-            if (key.getKeyType() == KeyType.Character && key.getCharacter() == 'q')
+            if (key.getKeyType() == KeyType.Character && (key.getCharacter() == 'q' || key.getCharacter() == 'Q'))
                 screen.close();
             if (key.getKeyType() == KeyType.EOF)
                 break;

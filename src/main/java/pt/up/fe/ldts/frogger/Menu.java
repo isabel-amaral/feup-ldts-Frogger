@@ -65,7 +65,7 @@ public class Menu {
         while(true) {
             KeyStroke key = screen.readInput();
             this.processKey(key);
-            if (key.getKeyType() == KeyType.Character && key.getCharacter() == 'q' && key.getCharacter() == 'Q'){
+            if (key != null && key.getKeyType() == KeyType.Character && (key.getCharacter() == 'q' || key.getCharacter() == 'Q')){
                 screen.close();
                 break;
             }

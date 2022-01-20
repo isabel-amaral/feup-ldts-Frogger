@@ -214,15 +214,17 @@ public class Game {
 
             this.draw();
             KeyStroke key = screen.pollInput();
+
             value = this.processKey(key);
             processExitValue(value);
 
-            if (key != null && key.getKeyType() == KeyType.Character && key.getCharacter() == 'q' && key.getCharacter() == 'Q') {
+            if (key != null && key.getKeyType() == KeyType.Character && (key.getCharacter() == 'q' || key.getCharacter() == 'Q')) {
                 screen.close();
                 break;
             }
             else if (key != null && key.getKeyType() == KeyType.EOF)
                 break;
+
             value = arena.moveMovableElements();
             processExitValue(value);
 
