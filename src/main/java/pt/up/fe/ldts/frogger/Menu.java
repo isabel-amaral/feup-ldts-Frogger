@@ -13,12 +13,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Menu {
+    private Game game;
     private Screen screen;
     private TextGraphics graphics;
-    private int width= 60;
-    private int height = 30;
-    private List<String> options = new ArrayList<String>();
-    private Game game;
+    private List<String> options = new ArrayList<>();
     private int option = 1;
 
     public Menu(Game newGame) throws IOException {
@@ -42,7 +40,7 @@ public class Menu {
         screen.clear();
         graphics.setBackgroundColor(TextColor.Factory.fromString("#FFFFFF"));
         //graphics.setForegroundColor(TextColor.Factory.fromString("#336699"));
-        graphics.fillRectangle(new TerminalPosition(0, 0), new TerminalSize(width, height), ' ');
+        graphics.fillRectangle(new TerminalPosition(0, 0), new TerminalSize(game.getWidth(), game.getHeight()), ' ');
 
         int positionY = 10;
         graphics.putString(26, positionY, options.get(0));
@@ -117,7 +115,7 @@ public class Menu {
     }
 
     public void processKey(KeyStroke key) throws IOException {
-        switch(key.getKeyType()){
+        switch (key.getKeyType()) {
             case ArrowUp:
                 if (option > 1)
                     option--;
@@ -129,9 +127,8 @@ public class Menu {
                 this.showOption(option);
                 break;
             case Enter:
-                if (option == 1) {
+                if (option == 1)
                     game.getState().onPlay(game);
-                }
                 else if (option == 2) {
                     Instruction instruction = new Instruction(game);
                     instruction.show();
@@ -140,9 +137,8 @@ public class Menu {
                     Level level = new Level(game);
                     level.show();
                 }
-                else if (option == 4) {
+                else if (option == 4)
                     screen.close();
-                }
                 break;
             default:
                 break;

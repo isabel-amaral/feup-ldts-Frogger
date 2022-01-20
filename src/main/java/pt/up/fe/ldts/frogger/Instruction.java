@@ -9,20 +9,18 @@ import java.io.*;
 import java.util.Scanner;
 
 public class Instruction {
-    TextGraphics graphics;
-    Game game;
-    Screen screen;
-    File instructionsFile;
-    Scanner reader;
-    private int width= 60;
-    private int height = 30;
+    private Game game;
+    private Screen screen;
+    private TextGraphics graphics;
+    private File instructionsFile;
+    private Scanner reader;
 
-    public Instruction(Game option2) throws FileNotFoundException {
-        instructionsFile =  new File("src/main/resources/Instructions.txt");
-        reader = new Scanner(instructionsFile);
-        game = option2;
-        screen = game.getScreen();
-        graphics = game.getGraphics();
+    public Instruction(Game game) throws FileNotFoundException {
+        this.instructionsFile =  new File("src/main/resources/Instructions.txt");
+        this.reader = new Scanner(instructionsFile);
+        this.game = game;
+        this.screen = game.getScreen();
+        this.graphics = game.getGraphics();
     }
 
     public void show() throws IOException {
@@ -47,7 +45,6 @@ public class Instruction {
         String r14 = reader.nextLine();
         String r15 = reader.nextLine();
         String empty = "                                                                            ";
-
         reader.close();
 
         graphics.putString(new TerminalPosition(0, 0), empty);
@@ -76,7 +73,7 @@ public class Instruction {
         graphics.putString(new TerminalPosition(0, 23), empty);
         graphics.putString(new TerminalPosition(0, 24), r15);
 
-        for (int y = 23; y < height; y++)
+        for (int y = 23; y < game.getHeight(); y++)
             graphics.putString(new TerminalPosition(0, y), empty);
         screen.refresh();
     }

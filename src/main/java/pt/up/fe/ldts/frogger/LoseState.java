@@ -3,16 +3,16 @@ package pt.up.fe.ldts.frogger;
 import java.io.IOException;
 
 public class LoseState implements State{
-    private Lose lose;
     private Game game;
-    private boolean gameWasLost = false;
+    private boolean gameWasLost;
 
     public LoseState(Game newGame) throws IOException {
         game = newGame;
-        lose = new Lose(game);
+        new Lose(game);
         gameWasLost = true;
     }
 
+    //for testing purposes only
     public boolean getGameWasLost(){
         return gameWasLost;
     }

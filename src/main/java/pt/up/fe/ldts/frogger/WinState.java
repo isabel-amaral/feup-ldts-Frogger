@@ -3,16 +3,16 @@ package pt.up.fe.ldts.frogger;
 import java.io.IOException;
 
 public class WinState implements State{
-    private Win win;
     private Game game;
-    private boolean gameWasWon = false;
+    private boolean gameWasWon;
 
     public WinState(Game newGame) throws IOException {
         game = newGame;
-        win = new Win(game);
+        new Win(game);
         gameWasWon = true;
     }
 
+    //for testing purposes only
     public boolean getGameWasWon(){
         return gameWasWon;
     }

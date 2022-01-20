@@ -3,15 +3,15 @@ package pt.up.fe.ldts.frogger;
 import java.io.IOException;
 
 public class MenuState implements State {
-    private Menu menu;
-    private boolean menuWasCreated = false;
+    private boolean menuWasCreated;
 
     public MenuState(Game game) throws IOException {
         game.setState(this);
-        menu = new Menu(game);
+        new Menu(game);
         menuWasCreated = true;
     }
 
+    //for testing purposes only
     public boolean getMenuWasCreated(){
         return menuWasCreated;
     }
