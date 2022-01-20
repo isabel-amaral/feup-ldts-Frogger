@@ -27,10 +27,13 @@ public class Game {
     private Arena arena;
     private State state;
     private Level level;
+    private int lives;
 
     public Game() throws IOException, FontFormatException, URISyntaxException {
         createScreen();
+
         level = new Level(this); //sets default level to 1
+        lives = 3;
         screen.refresh();
 
         arena = new Arena(level.getLevel(), width, height);
@@ -41,7 +44,7 @@ public class Game {
     public void createScreen() throws IOException, FontFormatException, URISyntaxException {
         URL resource = getClass().getClassLoader().getResource("Frogger.ttf");
         File fontFile = new File(resource.toURI());
-        Font font =  Font.createFont(Font.TRUETYPE_FONT, fontFile);
+        Font font = Font.createFont(Font.TRUETYPE_FONT, fontFile);
 
         GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
         ge.registerFont(font);
@@ -55,7 +58,7 @@ public class Game {
         factory.setInitialTerminalSize(new TerminalSize(width, height));
 
         Terminal terminal = factory.createTerminal();
-        ((AWTTerminalFrame)terminal).addWindowListener(new WindowAdapter() {
+        ((AWTTerminalFrame) terminal).addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
                 e.getWindow().dispose();
@@ -85,15 +88,20 @@ public class Game {
         return graphics;
     }
 
-    public State getState(){
+    public State getState() {
         return state;
     }
 
-    public int getLevel(){
+
+    public int getLevel() {
         return level.getLevel();
     }
 
-    public void setState(State newState){
+    public int getLives() {
+        return lives;
+    }
+
+    public void setState(State newState) {
         state = newState;
     }
 
@@ -117,11 +125,26 @@ public class Game {
         this.graphics = graphics;
     }
 
+    public void setLives(int newLives) {
+        lives = newLives;
+    }
+
+    public void drawLives() {
+        int positionX = 58;
+        for (int i = 0; i < lives; i++) {
+            graphics.putString(positionX, 1, "h");
+            positionX = positionX - 2;
+        }
+
+    }
+
     public void draw() throws IOException {
         screen.clear();
         arena.draw(graphics);
+        drawLives();
         screen.refresh();
     }
+
 
     public void drawText(Position position, String text, String color) {
         TextGraphics tg = screen.newTextGraphics();
@@ -134,57 +157,80 @@ public class Game {
         System.out.println("Screen closed!");
     }
 
-    public void processKey(KeyStroke key) {
+    public int processKey(KeyStroke key) {
+        int value = 0;
         if (key == null)
-            return;
+            return value;
 
-        switch(key.getKeyType()){
+        switch (key.getKeyType()) {
             case ArrowRight:
-                arena.moveFrog(arena.getFrog().moveRight());
+                value = arena.moveFrog(arena.getFrog().moveRight());
                 break;
             case ArrowLeft:
-                arena.moveFrog(arena.getFrog().moveLeft());
+                value = arena.moveFrog(arena.getFrog().moveLeft());
                 break;
             case ArrowUp:
-                arena.moveFrog(arena.getFrog().moveUp());
+                value = arena.moveFrog(arena.getFrog().moveUp());
                 break;
             case ArrowDown:
-                arena.moveFrog(arena.getFrog().moveDown());
+                value = arena.moveFrog(arena.getFrog().moveDown());
                 break;
             default:
                 break;
         }
+        return value;
+    }
+
+    public void processExitValue(int value) throws IOException {
+        if (value == 0 || value == 3)
+            return;
+        if (value == 1) {
+            state.onWin(this);
+        }
+        if (value == 2) {
+            //System.out.println(state);
+            lives--;
+            arena.setFrog((Frog) new MovableElementsFactory(level.getLevel(), "Frog").create().get(0));
+            if (lives == 0) {
+                lives = 3;
+                //System.out.println(state);
+                state.onLose(this);
+            }
+            this.playGame();
+        }
     }
 
     public void playGame() throws IOException {
-    //later to run with the state pattern
-    //TODO: change velocity according ot the level
-    int FPSGame = 5;
-    int frameTimeGame = 1000/FPSGame;
+        //TODO: change velocity according ot the level
+        int FPSGame = 5;
+        int frameTimeGame = 1000/FPSGame;
+        int value = 0;
 
-    while(true) {
-        long startTime = System.currentTimeMillis();
+        while (true) {
+            long startTime = System.currentTimeMillis();
 
-        this.draw();
-        KeyStroke key = screen.pollInput();
-        this.processKey(key);
+            this.draw();
+            KeyStroke key = screen.pollInput();
+            value = this.processKey(key);
+            processExitValue(value);
 
-        if (key != null && key.getKeyType() == KeyType.Character && key.getCharacter() == 'q' && key.getCharacter() == 'Q') {
-            screen.close();
-            break;
-        }
-        else if (key != null && key.getKeyType() == KeyType.EOF)
-            break;
-        arena.moveMovableElements();
+            if (key != null && key.getKeyType() == KeyType.Character && key.getCharacter() == 'q' && key.getCharacter() == 'Q') {
+                screen.close();
+                break;
+            }
+            else if (key != null && key.getKeyType() == KeyType.EOF)
+                break;
+            value = arena.moveMovableElements();
+            processExitValue(value);
 
-        long elapsedTimeGame = System.currentTimeMillis() - startTime;
-        long sleepTime = frameTimeGame - elapsedTimeGame;
+            long elapsedTimeGame = System.currentTimeMillis() - startTime;
+            long sleepTime = frameTimeGame - elapsedTimeGame;
 
-        try {
-            if (sleepTime > 0) Thread.sleep(sleepTime);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+            try {
+                if (sleepTime > 0) Thread.sleep(sleepTime);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
     }
 }
