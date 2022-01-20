@@ -188,12 +188,10 @@ public class Game {
             state.onWin(this);
         }
         if (value == 2) {
-            //System.out.println(state);
             lives--;
             arena.setFrog((Frog) new MovableElementsFactory(level.getLevel(), "Frog").create().get(0));
             if (lives == 0) {
                 lives = 3;
-                //System.out.println(state);
                 state.onLose(this);
             }
             this.playGame();
@@ -201,7 +199,6 @@ public class Game {
     }
 
     public void playGame() throws IOException {
-        //TODO: change velocity according ot the level
         int FPSGame = 5;
         int frameTimeGame = 1000/FPSGame;
         int value = 0;

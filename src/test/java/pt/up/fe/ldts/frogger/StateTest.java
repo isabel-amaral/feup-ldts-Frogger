@@ -17,7 +17,7 @@ public class StateTest {
     public void MenuStateTest() throws IOException, URISyntaxException, FontFormatException {
         //TODO close screen
         Game game = new Game();
-        MenuState menuState = new MenuState(game);
+        MenuState menuState = (MenuState) game.getState();
         game.closeScreen();
         Assertions.assertTrue(menuState.getMenuWasCreated());
     }
