@@ -8,7 +8,7 @@ import java.util.List;
 public class ArenaMovementsTest {
 
     @Test
-    public void moveFrogTrueTest() {
+    public void moveFrogTest() {
         Arena newArena = new Arena(1, 60, 30);
 
         List<Car> cars = new ArrayList<>();
@@ -45,9 +45,8 @@ public class ArenaMovementsTest {
     }
 
     @Test
-    public void moveFrogFalseTest() {
+    public void moveFrogDieTest() {
         Arena newArena = new Arena(1, 60, 30);
-        Position expectedPosition = new Position(30, 29);
 
         List<Car> cars = new ArrayList<>();
         cars.add(new Car(30, 28, "left"));
@@ -71,16 +70,16 @@ public class ArenaMovementsTest {
         Position unavailablePositionRight = new Position(31, 29);  //move right
 
         newArena.moveFrog(unavailablePositionUp);
-        Assertions.assertEquals(newArena.getFrog().getPosition().getX(), expectedPosition.getX());
-        Assertions.assertEquals(newArena.getFrog().getPosition().getY(), expectedPosition.getY());
+        Assertions.assertEquals(newArena.getFrog().getPosition().getX(), 30);
+        Assertions.assertEquals(newArena.getFrog().getPosition().getY(), 28);
 
         newArena.moveFrog(unavailablePositionLeft);
-        Assertions.assertEquals(newArena.getFrog().getPosition().getX(), expectedPosition.getX());
-        Assertions.assertEquals(newArena.getFrog().getPosition().getY(), expectedPosition.getY());
+        Assertions.assertEquals(newArena.getFrog().getPosition().getX(), 29);
+        Assertions.assertEquals(newArena.getFrog().getPosition().getY(), 29);
 
         newArena.moveFrog(unavailablePositionRight);
-        Assertions.assertEquals(newArena.getFrog().getPosition().getX(), expectedPosition.getX());
-        Assertions.assertEquals(newArena.getFrog().getPosition().getY(), expectedPosition.getY());
+        Assertions.assertEquals(newArena.getFrog().getPosition().getX(), 31);
+        Assertions.assertEquals(newArena.getFrog().getPosition().getY(), 29);
     }
 
     @Test
@@ -211,7 +210,7 @@ public class ArenaMovementsTest {
     }
 
     @Test
-    public void canFrogMoveTrueTest() {
+    public void verifyFrogCollisionTrueTest() {
         Arena newArena = new Arena(1, 60, 30);
 
         List<Car> cars = new ArrayList<>();
@@ -233,19 +232,19 @@ public class ArenaMovementsTest {
         treeTrunks.add(new TreeTrunk(15, 7, "right"));
         newArena.setTreeTrunks(treeTrunks);
 
-        Assertions.assertEquals(true, newArena.canFrogMove( new Position(1, 22)));
-        Assertions.assertEquals(true, newArena.canFrogMove( new Position(3, 23)));
-        Assertions.assertEquals(true, newArena.canFrogMove( new Position(12, 19)));
+        Assertions.assertEquals(0, newArena.verifyFrogCollision( new Position(1, 22)));
+        Assertions.assertEquals(0, newArena.verifyFrogCollision( new Position(3, 23)));
+        Assertions.assertEquals(0, newArena.verifyFrogCollision( new Position(12, 19)));
         //Frog is on top of turtle
-        Assertions.assertEquals(true, newArena.canFrogMove( new Position(36, 4)));
-        Assertions.assertEquals(true, newArena.canFrogMove( new Position(19, 5)));
+        Assertions.assertEquals(0, newArena.verifyFrogCollision( new Position(36, 4)));
+        Assertions.assertEquals(0, newArena.verifyFrogCollision( new Position(19, 5)));
         //Frog is on top of a tree trunk
-        Assertions.assertEquals(true, newArena.canFrogMove( new Position(35, 4)));
-        Assertions.assertEquals(true, newArena.canFrogMove( new Position(15, 7)));
+        Assertions.assertEquals(0, newArena.verifyFrogCollision( new Position(35, 4)));
+        Assertions.assertEquals(0, newArena.verifyFrogCollision( new Position(15, 7)));
     }
 
     @Test
-    public void canFrogMoveCollisionCarTest() {
+    public void canFrogMoveCarCollisionTest() {
         //the frog collides with a car therefore it can't move
         Arena newArena = new Arena(1, 60, 30);
 
@@ -255,13 +254,13 @@ public class ArenaMovementsTest {
         cars.add(new Car(12, 18, "left"));
         newArena.setCars(cars);
 
-        Assertions.assertFalse(newArena.canFrogMove(new Position(3, 25)));
-        Assertions.assertFalse(newArena.canFrogMove(new Position(10, 22)));
-        Assertions.assertFalse(newArena.canFrogMove(new Position(12, 18)));
+        Assertions.assertEquals(2, newArena.verifyFrogCollision(new Position(3, 25)));
+        Assertions.assertEquals(2, newArena.verifyFrogCollision(new Position(10, 22)));
+        Assertions.assertEquals(2, newArena.verifyFrogCollision(new Position(12, 18)));
     }
 
     @Test
-    public void canFrogMoveCollisionWaterTest() {
+    public void canFrogMoveWaterCollisionTest() {
         Arena newArena = new Arena(1, 60, 30);
 
         List<Turtle> turtles = new ArrayList<>();
@@ -277,10 +276,10 @@ public class ArenaMovementsTest {
         treeTrunks.add(new TreeTrunk(15, 7, "right"));
         newArena.setTreeTrunks(treeTrunks);
 
-        //the frog collides with water therefore it can't move
-        Assertions.assertFalse(newArena.canFrogMove(new Position(1, 4)));
-        Assertions.assertFalse(newArena.canFrogMove(new Position(3, 5)));
-        Assertions.assertFalse(newArena.canFrogMove(new Position(12, 9)));
+        //the frog collides with water therefore it dies
+        Assertions.assertEquals(2, newArena.verifyFrogCollision(new Position(1, 4)));
+        Assertions.assertEquals(2, newArena.verifyFrogCollision(new Position(3, 5)));
+        Assertions.assertEquals(2, newArena.verifyFrogCollision(new Position(12, 9)));
     }
 }
 

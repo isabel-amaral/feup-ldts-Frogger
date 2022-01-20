@@ -1,6 +1,7 @@
 package pt.up.fe.ldts.frogger;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -8,6 +9,15 @@ import java.util.List;
 
 public class MoveMovableElementsTest {
     private static Arena arena = new Arena(1,60, 30);
+
+    @BeforeEach
+    public void setUp() {
+        long sleepTime = 1000/2;
+        try {
+            Thread.sleep(sleepTime);
+        } catch (InterruptedException e) {
+        }
+    }
 
     @Test
     public void moveCars() {

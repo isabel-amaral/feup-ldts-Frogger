@@ -18,27 +18,17 @@ public class WinState implements State{
     }
 
     @Override
-    public void onPlay(Game game) throws IOException {
-        State state = new GameState(game);
-        game.setState(state);
-    }
-
-    @Override
-    public void onMenu(Game game) throws IOException {
-        State state = new MenuState(game);
-        game.setState(state);
-    }
-
-    @Override
     public void onWin(Game game) throws IOException {
-        State state = new WinState(game);
-        game.setState(state);
+        throw new IllegalStateException("Cannot win while on win state");
     }
 
     @Override
     public void onLose(Game game) throws IOException {
-        State state = new LoseState(game);
-        game.setState(state);
+        throw new IllegalStateException("Cannot lose while on win state");
+    }
 
+    @Override
+    public void onPlay(Game game) throws IOException {
+        throw new IllegalStateException("Cannot play while on win state");
     }
 }

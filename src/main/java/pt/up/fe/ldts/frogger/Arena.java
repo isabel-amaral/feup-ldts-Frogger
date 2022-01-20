@@ -22,6 +22,10 @@ public class Arena {
     private Sidewalk firstSidewalk;
     private Sidewalk secondSidewalk;
 
+    private int FPSElements = 2;
+    private int frameTimeElements = 1000/FPSElements;
+    private long startTime;
+
     public Arena (int level, int width, int height) {
         this.level = level;
         this.width = width;
@@ -33,6 +37,17 @@ public class Arena {
         this.grass = new Grass(0, 3);
         this.firstSidewalk = new Sidewalk(27, 29);
         this.secondSidewalk = new Sidewalk(14, 16);
+        refresh();
+
+        startTime = System.currentTimeMillis();
+    }
+
+    public void setLevel(int newLevel){
+        level = newLevel;
+        refresh();
+    }
+
+    public void refresh() {
         createFrog();
         createCars();
         createTreeTrunks();
@@ -44,6 +59,7 @@ public class Arena {
     }
 
     public void createCars() {
+        cars.clear();
         for (int row = secondSidewalk.getPosition().getYMax()+1; row < firstSidewalk.getPosition().getYMin(); row++) {
             List<MovableElement> m = new MovableElementsFactory(level, row, "Car").create();
             if (cars.isEmpty())
@@ -54,6 +70,7 @@ public class Arena {
     }
 
     public void createTreeTrunks() {
+        treeTrunks.clear();
         for (int row = water.getPosition().getYMin()+1; row <= water.getPosition().getYMax(); row++) {
             List<MovableElement> m = new MovableElementsFactory(level, row, "TreeTrunk").create();
             if (treeTrunks.isEmpty())
@@ -65,6 +82,7 @@ public class Arena {
     }
 
     public void createTurtles() {
+        turtles.clear();
         for (int row = water.getPosition().getYMin(); row <= water.getPosition().getYMax(); row++) {
             List<MovableElement> m = new MovableElementsFactory(level, row, "Turtle").create();
             if (turtles.isEmpty())
@@ -73,14 +91,6 @@ public class Arena {
                 this.turtles.addAll(new ArrayList<Turtle>((List) m));
             row++;
         }
-    }
-
-    public int getWidth(){
-        return width;
-    }
-
-    public int getHeight(){
-        return height;
     }
 
     public Frog getFrog(){
@@ -97,22 +107,6 @@ public class Arena {
 
     public List<Turtle> getTurtles(){
         return turtles;
-    }
-
-    public Water getWater(){
-        return water;
-    }
-
-    public Grass getGrass(){
-        return grass;
-    }
-
-    public Sidewalk getFirstSidewalk() {
-        return firstSidewalk;
-    }
-
-    public Sidewalk getSecondSidewalk() {
-        return secondSidewalk;
     }
 
     public void setFrog(Frog frog) {
@@ -172,28 +166,13 @@ public class Arena {
         frog.draw(graphics);
     }
 
-    public void moveFrog(Position position) {
-        if (canFrogMove(position))
-            frog.setPosition(position);
-    }
-
     //Possibly to change after implementing the state pattern
     public boolean verifyCarCollision(Position frogNewPosition) {
         for(Car car: cars) {
             if (car.getPosition().equals(frogNewPosition)) {
-                //TODO: Lose State
                 System.out.println("GAME OVER");
                 return true;
             }
-        }
-        return false;
-    }
-
-    //Possibly to change after implementing the state pattern
-    public boolean verifyTurtleCollision(Position frogNewPosition) {
-        for(Turtle turtle : turtles) {
-            if (turtle.getPosition().equals(frogNewPosition))
-                return true;
         }
         return false;
     }
@@ -208,10 +187,18 @@ public class Arena {
     }
 
     //Possibly to change after implementing the state pattern
+    public boolean verifyTurtleCollision(Position frogNewPosition) {
+        for(Turtle turtle : turtles) {
+            if (turtle.getPosition().equals(frogNewPosition))
+                return true;
+        }
+        return false;
+    }
+
+    //Possibly to change after implementing the state pattern
     public boolean verifyWaterCollision(Position frogNewPosition) {
         if (frogNewPosition.getY() >= water.getPosition().getYMin() && frogNewPosition.getY() <= water.getPosition().getYMax()
                 && !verifyTreeTrunkCollision(frogNewPosition) && !verifyTurtleCollision(frogNewPosition)) {
-            //TODO: Lose State
             System.out.println("GAME OVER");
             return true;
         }
@@ -221,53 +208,85 @@ public class Arena {
     //Possibly to change after implementing the state pattern
     public boolean verifyGrassCollision(Position frogNewPosition) {
         if (frogNewPosition.getY() >= grass.getPosition().getYMin() && frogNewPosition.getY() <= grass.getPosition().getYMax()) {
-            //State = win
             System.out.println("YOU WON");
             return true;
         }
         return false;
     }
 
-    public boolean canFrogMove(Position position) {
+    public int verifyFrogCollision(Position position) {
         if (position.getX() < 0 || position.getX() >= width ||
             position.getY() < 0 || position.getY() >= height)
-            return false;
+            return 3;
 
         if (verifyCarCollision(position))
-            return false;
+            return 2;
         if (verifyWaterCollision(position))
-            return false;
+            return 2;
         if (verifyGrassCollision(position))
-            return true;
-        if (verifyTreeTrunkCollision(position))
-            return true;
-        if (verifyTurtleCollision(position))
-            return true;
-        if (verifyGrassCollision(position))
-            return true; //TODO: Win State
-        return true;
+            return 1;
+        return 0;
     }
 
-    public void moveMovableElements() {
+    public int moveFrog(Position position) {
+        if(verifyFrogCollision(position) != 3)
+            frog.setPosition(position);
+        return verifyFrogCollision(position);
+    }
+
+    public int moveCars() {
         for (Car car: cars) {
             if (car.getMovementDirection() == "left")
                 car.move(new MoveLeft());
             else //car.getMovementDirection() == "right"
                 car.move(new MoveRight());
-            if (car.getPosition().equals(frog.getPosition()))
-                System.out.println("Game over!"); //TODO: Lose State
+            if (car.getPosition().equals(frog.getPosition())){
+                System.out.println("GAME OVER");
+                return 2;
+            }
         }
+        return 0;
+    }
+
+    public void moveTreeTrunks() {
         for (TreeTrunk treeTrunk: treeTrunks) {
-            if (treeTrunk.getMovementDirection() == "left")
+            if (treeTrunk.getMovementDirection() == "left") {
+                if (treeTrunk.getPosition().equals(frog.getPosition()))
+                    frog.move(new MoveLeft());
                 treeTrunk.move(new MoveLeft());
-            else //treeTrunk.getMovementDirection() == "right"
+            }
+            else { //treeTrunk.getMovementDirection() == "right"
+                if (treeTrunk.getPosition().equals(frog.getPosition()))
+                    frog.move(new MoveRight());
                 treeTrunk.move(new MoveRight());
+            }
         }
+    }
+
+    public void moveTurtles() {
         for (Turtle turtle: turtles) {
-            if (turtle.getMovementDirection() == "left")
+            if (turtle.getMovementDirection() == "left") {
+                if (turtle.getPosition().equals(frog.getPosition()))
+                    frog.move(new MoveLeft());
                 turtle.move(new MoveLeft());
-            else //turtle.getMovementDirection() == "right"
+            }
+            else { //turtle.getMovementDirection() == "right"
+                if (turtle.getPosition().equals(frog.getPosition()))
+                    frog.move(new MoveRight());
                 turtle.move(new MoveRight());
+            }
         }
+    }
+
+    public int moveMovableElements() {
+        long elapsedTime = System.currentTimeMillis() - startTime;
+        if (elapsedTime < frameTimeElements)
+            return 0;
+        startTime = System.currentTimeMillis();
+
+        int value = moveCars();
+        moveTreeTrunks();
+        moveTurtles();
+        return value;
     }
 }
