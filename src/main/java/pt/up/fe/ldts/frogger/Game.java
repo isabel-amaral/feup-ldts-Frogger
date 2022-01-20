@@ -129,6 +129,12 @@ public class Game {
         lives = newLives;
     }
 
+    public void drawLevel() {
+        String levelStr = "LEVEL";
+        graphics.putString(53, 0, levelStr);
+        graphics.putString(59, 0, Integer.toString(level.getLevel()));
+    }
+
     public void drawLives() {
         int positionX = 58;
         for (int i = 0; i < lives; i++) {
@@ -141,10 +147,10 @@ public class Game {
     public void draw() throws IOException {
         screen.clear();
         arena.draw(graphics);
+        drawLevel();
         drawLives();
         screen.refresh();
     }
-
 
     public void drawText(Position position, String text, String color) {
         TextGraphics tg = screen.newTextGraphics();
