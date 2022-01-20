@@ -170,7 +170,7 @@ public class Arena {
     public boolean verifyCarCollision(Position frogNewPosition) {
         for(Car car: cars) {
             if (car.getPosition().equals(frogNewPosition)) {
-                System.out.println("GAME OVER");
+                System.out.println("YOU WERE HIT BY A CAR");
                 return true;
             }
         }
@@ -199,7 +199,7 @@ public class Arena {
     public boolean verifyWaterCollision(Position frogNewPosition) {
         if (frogNewPosition.getY() >= water.getPosition().getYMin() && frogNewPosition.getY() <= water.getPosition().getYMax()
                 && !verifyTreeTrunkCollision(frogNewPosition) && !verifyTurtleCollision(frogNewPosition)) {
-            System.out.println("GAME OVER");
+            System.out.println("YOU FELL INTO THE RIVER");
             return true;
         }
         return false;
@@ -241,7 +241,7 @@ public class Arena {
             else //car.getMovementDirection() == "right"
                 car.move(new MoveRight());
             if (car.getPosition().equals(frog.getPosition())){
-                System.out.println("GAME OVER");
+                System.out.println("YOU WERE HIT BY A CAR");
                 return 2;
             }
         }
