@@ -36,7 +36,7 @@ public class Win {
         graphics.setBackgroundColor(TextColor.Factory.fromString("#FFFFFF"));
         //graphics.setForegroundColor(TextColor.Factory.fromString("#336699"));
         graphics.fillRectangle(new TerminalPosition(0, 0), new TerminalSize(width, height), ' ');
-
+        
         graphics.putString(26, 15, gameWon);
 
         screen.refresh();
