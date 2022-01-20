@@ -12,12 +12,7 @@ public class CreateFrog extends MovableElementsFactory {
     @Override
     public List<MovableElement> create() {
         List<MovableElement> frog = new ArrayList<>();
-        if (level == 1)
-            frog.add(new Frog(30, 29));
-        if (level == 2)
-            frog.add(new Frog(45, 27));
-        else //level == 3
-            frog.add(new Frog(3, 27));
+        frog.add(new Frog(30, 29));
         return frog;
     }
 }
