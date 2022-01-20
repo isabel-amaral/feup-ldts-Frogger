@@ -21,10 +21,10 @@ public class FactoryTest {
 
         Assertions.assertEquals(frog1.getPosition().getX(), 30);
         Assertions.assertEquals(frog1.getPosition().getY(), 29);
-        Assertions.assertEquals(frog2.getPosition().getX(), 45);
-        Assertions.assertEquals(frog2.getPosition().getY(), 27);
-        Assertions.assertEquals(frog3.getPosition().getX(), 3);
-        Assertions.assertEquals(frog2.getPosition().getY(), 27);
+        Assertions.assertEquals(frog2.getPosition().getX(), 30);
+        Assertions.assertEquals(frog2.getPosition().getY(), 29);
+        Assertions.assertEquals(frog3.getPosition().getX(), 30);
+        Assertions.assertEquals(frog2.getPosition().getY(), 29);
     }
 
     @Test
@@ -37,24 +37,24 @@ public class FactoryTest {
         CreateCar createCar3 = new CreateCar(3, 20);
         List<MovableElement> cars3 = createCar3.create();
 
-        Assertions.assertTrue(cars1.size() >= 5);
-        Assertions.assertTrue(cars1.size() < 8);
+        Assertions.assertTrue(cars1.size() >= 4);
+        Assertions.assertTrue(cars1.size() < 7);
         for (MovableElement car: cars1) {
             Assertions.assertTrue(car.getPosition().getX() >= 0);
             Assertions.assertTrue(car.getPosition().getX() < 60);
             Assertions.assertEquals(car.getPosition().getY(), 17);
         }
 
-        Assertions.assertTrue(cars2.size() >= 8);
-        Assertions.assertTrue(cars2.size() < 12);
+        Assertions.assertTrue(cars2.size() >= 7);
+        Assertions.assertTrue(cars2.size() < 10);
         for (MovableElement car: cars2) {
             Assertions.assertTrue(car.getPosition().getX() >= 0);
             Assertions.assertTrue(car.getPosition().getX() < 60);
             Assertions.assertEquals(car.getPosition().getY(), 18);
         }
 
-        Assertions.assertTrue(cars3.size() >= 12);
-        Assertions.assertTrue(cars3.size() < 16);
+        Assertions.assertTrue(cars3.size() >= 10);
+        Assertions.assertTrue(cars3.size() < 14);
         for (MovableElement car: cars3) {
             Assertions.assertTrue(car.getPosition().getX() >= 0);
             Assertions.assertTrue(car.getPosition().getX() < 60);
