@@ -32,15 +32,20 @@ public class Instruction {
 
         String Title = reader.nextLine();
         String r1 = reader.nextLine();
-        String r1c = reader.nextLine();
         String r2 = reader.nextLine();
-        String r2c = reader.nextLine();
         String r3 = reader.nextLine();
-        String r3c = reader.nextLine();
         String r4 = reader.nextLine();
-        String r4c = reader.nextLine();
         String r5 = reader.nextLine();
         String r6 = reader.nextLine();
+        String r7 = reader.nextLine();
+        String r8 = reader.nextLine();
+        String r9 = reader.nextLine();
+        String r10 = reader.nextLine();
+        String r11 = reader.nextLine();
+        String r12 = reader.nextLine();
+        String r13 = reader.nextLine();
+        String r14 = reader.nextLine();
+        String r15 = reader.nextLine();
         String empty = "                                                                            ";
 
         reader.close();
@@ -49,26 +54,30 @@ public class Instruction {
         graphics.putString(new TerminalPosition(0, 1), Title);
         graphics.putString(new TerminalPosition(0, 2), empty);
         graphics.putString(new TerminalPosition(0, 3), r1);
-        graphics.putString(new TerminalPosition(0, 4), r1c);
+        graphics.putString(new TerminalPosition(0, 4), r2);
         graphics.putString(new TerminalPosition(0, 5), empty);
-        graphics.putString(new TerminalPosition(0, 6), r2);
-        graphics.putString(new TerminalPosition(0, 7), r2c);
+        graphics.putString(new TerminalPosition(0, 6), r3);
+        graphics.putString(new TerminalPosition(0, 7), r4);
         graphics.putString(new TerminalPosition(0, 8), empty);
-        graphics.putString(new TerminalPosition(0, 9), r3);
-        graphics.putString(new TerminalPosition(0, 10), r3c);
-        graphics.putString(new TerminalPosition(0, 11), empty);
-        graphics.putString(new TerminalPosition(0, 12), r4);
-        graphics.putString(new TerminalPosition(0, 13), r4c);
-        graphics.putString(new TerminalPosition(0, 14), empty);
-        graphics.putString(new TerminalPosition(0, 15), r5);
-        graphics.putString(new TerminalPosition(0, 16), empty);
-        graphics.putString(new TerminalPosition(0, 17), r6);
+        graphics.putString(new TerminalPosition(0, 9), r5);
+        graphics.putString(new TerminalPosition(0, 10), r6);
+        graphics.putString(new TerminalPosition(0, 11), r7);
+        graphics.putString(new TerminalPosition(0, 12), empty);
+        graphics.putString(new TerminalPosition(0, 13), r8);
+        graphics.putString(new TerminalPosition(0, 14), r9);
+        graphics.putString(new TerminalPosition(0, 15), empty);
+        graphics.putString(new TerminalPosition(0, 16), r10);
+        graphics.putString(new TerminalPosition(0, 17), empty);
+        graphics.putString(new TerminalPosition(0, 18), r11);
+        graphics.putString(new TerminalPosition(0, 19), r12);
+        graphics.putString(new TerminalPosition(0, 20), r13);
+        graphics.putString(new TerminalPosition(0, 21), empty);
+        graphics.putString(new TerminalPosition(0, 22), r14);
+        graphics.putString(new TerminalPosition(0, 23), empty);
+        graphics.putString(new TerminalPosition(0, 24), r15);
 
-        for (int y = 18; y < height; y++)
-            for (int x = 0; x < width; x++)
-                graphics.putString(new TerminalPosition(x, y), " ");
-
-
+        for (int y = 23; y < height; y++)
+            graphics.putString(new TerminalPosition(0, y), empty);
         screen.refresh();
     }
 }

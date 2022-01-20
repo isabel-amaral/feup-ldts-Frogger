@@ -1,24 +1,16 @@
-      *********** f FROGGER GAME RULES f ***********                                                        q
--YOU WILL START THE GAME WITH 3 LIVES AND THE FIRST FROG                                                  q
-IS SHOWN ON THE SIDEWALK BELOW THE TRAFFIC.                                                               q
--PRESS THE ARROW KEYS UP, DOWN, LEFT AND RIGHT TO HOP                                                     q
+      *********** f FROGGER GAME RULES f ***********                                                      q
+- YOU WILL START THE GAME WITH 3 LIVES AND THE FROG IS SHOWN                                              q
+ON THE SIDEWALK NEXT TO THE TRAFFIC.                                                                      q
+- YOUR JOB IS TO BRING THE FROG SAFELY TO THE GRASS.                                                      q
+DE CAREFUL NOT TO DIE WHILE CROSSING THE BUSY ROAD AND                                                    q
+NAVIGATING A RIVER FULL OF DANGERS                                                                        q
+- PRESS THE ARROW KEYS: UP, DOWN, LEFT AND RIGHT TO HOP                                                   q
 IN THOSE DIRECTIONS.                                                                                      q
--YOU WILL ONLY GO TO THE NEXT LEVEL IF YOU MANAGE TO                                                      q
-GET 3 FROGS TO THEIR HOUSE WITHOUT LOSING THE 3 LIVES.                                                    q
--AFTER YOU'VE FINISHED THE GAME, YOU CAN PRESS ENTER                                                      q
-TO GO BACK TO THE MENU.                                                                                   q
--PRESS q or Q TO QUIT THE GAME.                                                                           q
--HAVE FUN!!!                                                                                              q
-
-
-
-
-
-
-
-
-
-
-
-
-
+- ON THE MAIN MENU YOU CAN CHOOSE 1 OF 3 LEVELS WITH                                                      q
+INCREASING DIFFICULTIES                                                                                   q
+- ON EVERY LEVEL YOU HAVE 3 LIVES TO TRY TO WIN                                                           q
+- AFTER YOU FINISHED THE GAME, YOU CAN PRESS ENTER TO GO                                                  q
+BACK TO THE MENU AND CHOOSE ANOTHER LEVEL OR PLAY                                                         q
+THE SAME ONE                                                                                              q
+- AT ANY TIME DURING THE GAME PRESS q TO QUIT THE GAME.                                                   q
+- HAVE FUN!!!                                                                                             q
