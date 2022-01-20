@@ -32,7 +32,9 @@ public class LivesTest {
         newArena.setFrog(frog);
         game.setArena(newArena);
 
-        newArena.moveFrog(new Position(30, 28));
+        if(newArena.moveFrog(new Position(30, 28)) == 2){
+            game.looseLife();
+        }
 
         int lives = game.getLives();
         Assertions.assertEquals(2, lives);
@@ -52,8 +54,12 @@ public class LivesTest {
         newArena.setFrog(frog);
         game.setArena(newArena);
 
-        newArena.moveFrog(new Position(30, 28));
-        newArena.moveFrog(new Position (30, 5));
+        if(newArena.moveFrog(new Position(30, 28)) == 2){
+            game.looseLife();
+        }
+        if(newArena.moveFrog(new Position(30, 5)) == 2){
+            game.looseLife();
+        }
 
         int lives = game.getLives();
         Assertions.assertEquals(1, lives);
@@ -73,9 +79,18 @@ public class LivesTest {
         newArena.setFrog(frog);
         game.setArena(newArena);
 
-        newArena.moveFrog(new Position(30, 28));
-        newArena.moveFrog(new Position (30, 5));
-        newArena.moveFrog(new Position (30, 6));
+        if(newArena.moveFrog(new Position(30, 28)) == 2){
+            game.looseLife();
+            System.out.println("lives: " + game.getLives());
+        }
+        if(newArena.moveFrog(new Position(30, 5)) == 2){
+            game.looseLife();
+            System.out.println("lives: " + game.getLives());
+        }
+        if(newArena.moveFrog(new Position(30, 6)) == 2){
+            game.looseLife();
+            System.out.println("lives: " + game.getLives());
+        }
 
         int lives = game.getLives();
 

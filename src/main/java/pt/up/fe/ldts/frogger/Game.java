@@ -129,6 +129,10 @@ public class Game {
         lives = newLives;
     }
 
+    public void looseLife(){
+        lives--;
+    }
+
     public void drawLevel() {
         String levelStr = "LEVEL";
         graphics.putString(53, 0, levelStr);
