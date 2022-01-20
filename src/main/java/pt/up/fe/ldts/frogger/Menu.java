@@ -23,9 +23,9 @@ public class Menu {
         game = newGame;
         screen = game.getScreen();
 
-        screen.setCursorPosition(null);
+/*        screen.setCursorPosition(null);
         screen.startScreen(); // screens must be started
-        screen.doResizeIfNecessary(); // resize screen if necessary
+        screen.doResizeIfNecessary(); // resize screen if necessary*/
 
         graphics = game.getGraphics();
         options.add("PLAY");
@@ -39,7 +39,7 @@ public class Menu {
     public void draw() throws IOException {
         screen.clear();
         graphics.setBackgroundColor(TextColor.Factory.fromString("#FFFFFF"));
-        //graphics.setForegroundColor(TextColor.Factory.fromString("#336699"));
+        graphics.setForegroundColor(TextColor.Factory.fromString("#336699"));
         graphics.fillRectangle(new TerminalPosition(0, 0), new TerminalSize(game.getWidth(), game.getHeight()), ' ');
 
         int positionY = 10;
