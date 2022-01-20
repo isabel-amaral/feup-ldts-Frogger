@@ -34,9 +34,14 @@ public class Win {
     public void draw() throws IOException {
         screen.clear();
         graphics.setBackgroundColor(TextColor.Factory.fromString("#FFFFFF"));
-        //graphics.setForegroundColor(TextColor.Factory.fromString("#336699"));
+        graphics.setForegroundColor(TextColor.Factory.fromString("#336699"));
         graphics.fillRectangle(new TerminalPosition(0, 0), new TerminalSize(width, height), ' ');
 
+        int positionX = 26;
+        for (int i = 0; i < 7; i++) {
+            graphics.putString(positionX, 13, "w");
+            positionX++;
+        }
         graphics.putString(26, 15, gameWon);
 
         screen.refresh();
