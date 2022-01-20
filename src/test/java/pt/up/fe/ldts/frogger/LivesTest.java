@@ -24,17 +24,14 @@ public class LivesTest {
         game.setState(new GameState(game));
 
         Arena newArena = new Arena(1, 60, 30);
-        java.util.List<Car> cars = new ArrayList<>();
+        List<Car> cars = new ArrayList<>();
         cars.add(new Car(30, 28, "left"));
         newArena.setCars(cars);
 
         Frog frog = new Frog(1,1);
         newArena.setFrog(frog);
         game.setArena(newArena);
-
-        if(newArena.moveFrog(new Position(30, 28)) == 2){
-            game.looseLife();
-        }
+        game.processExitValue(newArena.moveFrog(new Position(30, 28)));
 
         int lives = game.getLives();
         Assertions.assertEquals(2, lives);
@@ -46,20 +43,15 @@ public class LivesTest {
         game.setState(new GameState(game));
 
         Arena newArena = new Arena(1, 60, 30);
-        java.util.List<Car> cars = new ArrayList<>();
+        List<Car> cars = new ArrayList<>();
         cars.add(new Car(30, 28, "left"));
         newArena.setCars(cars);
 
         Frog frog = new Frog(1,1);
         newArena.setFrog(frog);
         game.setArena(newArena);
-
-        if(newArena.moveFrog(new Position(30, 28)) == 2){
-            game.looseLife();
-        }
-        if(newArena.moveFrog(new Position(30, 5)) == 2){
-            game.looseLife();
-        }
+        game.processExitValue(newArena.moveFrog(new Position(30, 28)));
+        game.processExitValue(newArena.moveFrog(new Position(30, 28)));
 
         int lives = game.getLives();
         Assertions.assertEquals(1, lives);
@@ -78,23 +70,14 @@ public class LivesTest {
         Frog frog = new Frog(1,1);
         newArena.setFrog(frog);
         game.setArena(newArena);
-
-        if(newArena.moveFrog(new Position(30, 28)) == 2){
-            game.looseLife();
-            System.out.println("lives: " + game.getLives());
-        }
-        if(newArena.moveFrog(new Position(30, 5)) == 2){
-            game.looseLife();
-            System.out.println("lives: " + game.getLives());
-        }
-        if(newArena.moveFrog(new Position(30, 6)) == 2){
-            game.looseLife();
-            System.out.println("lives: " + game.getLives());
-        }
+        game.processExitValue(newArena.moveFrog(new Position(30, 28)));
+        game.processExitValue(newArena.moveFrog(new Position(30, 28)));
+        game.processExitValue(newArena.moveFrog(new Position(30, 28)));
 
         int lives = game.getLives();
 
-        Assertions.assertEquals(0, lives);
+        //when all lives are lost the number return to 3 for the new game
+        Assertions.assertEquals(3, lives);
         LoseState lostGame = (LoseState) game.getState();
         Assertions.assertTrue(lostGame.getGameWasLost());
     }
