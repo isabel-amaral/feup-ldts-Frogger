@@ -34,7 +34,7 @@ This project was developed by Anete Pereira (up202008856@edu.fe.up.pt), Isabel A
 - **Different levels** - 3 different levels with an increasing difficulty to be implemented (the velocity of the cars, tree trunks and turtles will be higher and there will be more cars and less tree trunks and turtles, making it more difficult to reach the grass).
 - **Elements creation** - The creation of our movable game elements will be done randomly and according to the current game level.
 - **Animations** - Some cool animations will be incorporated in this game, when you win or lose the game or when you lose a life.
-
+ 
 
 ## Design
 

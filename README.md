@@ -12,14 +12,40 @@ For a more detailed version of this description click [here](./docs/README.md).
 
 The following mockups illustrate our goal to the general look of our game:
 
+
 ### Game preview
-![](./docs/images/game.png)
+![](./docs/gifs/winningTheGame.gif)
 
 ### Menus
-![](./docs/images/menu.png)
+![](./docs/gifs/navigatingMenu.gif)
 
 ### Victory Screen
-![](./docs/images/victory.png)
+![](./docs/images/victoryScreen.png)
 
 ### Game Over Screen
-![](./docs/images/gameOver.png)
+![](./docs/gifs/losingTheGame.gif)
+
+### Instructions Menu
+![](./docs/gifs/seeingInstructions.gif)
+
+### Getting out of Screen
+![](./docs/gifs/gettingOutOfScreen.gif)
+
+
+
+
+[comment]: <> (### Game preview)
+
+[comment]: <> (![]&#40;./docs/images/game.png&#41;)
+
+[comment]: <> (### Menus)
+
+[comment]: <> (![]&#40;./docs/images/menu.png&#41;)
+
+[comment]: <> (### Victory Screen)
+
+[comment]: <> (![]&#40;./docs/images/victory.png&#41;)
+
+[comment]: <> (### Game Over Screen)
+
+[comment]: <> (![]&#40;./docs/images/gameOver.png&#41;)
