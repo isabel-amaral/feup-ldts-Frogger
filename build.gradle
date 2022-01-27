@@ -17,6 +17,7 @@ repositories {
 pitest {
     junit5PluginVersion = '0.12'
     pitestVersion = '1.6.7'
+    verbose = true
 }
 
 dependencies {

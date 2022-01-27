@@ -57,6 +57,7 @@ public class LivesTest {
         Assertions.assertEquals(1, lives);
     }
 
+
     @Test
     public void LostTheGame() throws IOException, URISyntaxException, FontFormatException {
         Game game = new Game();
