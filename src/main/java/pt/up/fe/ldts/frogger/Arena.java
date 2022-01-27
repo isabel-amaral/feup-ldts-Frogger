@@ -229,9 +229,10 @@ public class Arena {
     }
 
     public int moveFrog(Position position) {
-        if(verifyFrogCollision(position) != 3)
+        int value = verifyFrogCollision(position);
+        if (value != 3)
             frog.setPosition(position);
-        return verifyFrogCollision(position);
+        return value;
     }
 
     public int moveCars() {

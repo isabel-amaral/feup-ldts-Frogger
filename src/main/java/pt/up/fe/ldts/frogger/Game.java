@@ -187,7 +187,6 @@ public class Game {
                 lives = 3;
                 state.onLose(this);
             }
-            this.playGame();
         }
     }
 

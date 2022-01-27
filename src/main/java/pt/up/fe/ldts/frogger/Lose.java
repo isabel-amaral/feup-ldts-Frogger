@@ -9,8 +9,6 @@ import com.googlecode.lanterna.input.KeyType;
 import com.googlecode.lanterna.screen.Screen;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Lose {
 
@@ -47,24 +45,10 @@ public class Lose {
     }
 
     public void returnToMenu() throws IOException {
-
-        while(true) {
-            KeyStroke key = screen.readInput();
-            this.processKey(key);
-            if (key.getKeyType() == KeyType.Character && key.getCharacter() == 'q' && key.getCharacter() == 'Q'){
-                screen.close();
-                break;
-            }
-            if (key.getKeyType() == KeyType.EOF)
-                break;
-        }
-    }
-
-    public void processKey(KeyStroke key) throws IOException {
+        KeyStroke key = screen.readInput();
         if (key.getKeyType() == KeyType.Enter) {
             State newState = new MenuState(game);
             newState.onMenu(game);
         }
     }
-
 }
