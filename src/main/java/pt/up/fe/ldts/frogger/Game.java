@@ -36,7 +36,6 @@ public class Game {
         arena = new Arena(level.getLevel(), width, height);
     }
 
-
     public void createScreen() throws IOException, FontFormatException, URISyntaxException {
         URL resource = getClass().getClassLoader().getResource("Frogger.ttf");
         File fontFile = new File(resource.toURI());
