@@ -50,20 +50,7 @@ public class Win {
     }
 
     public void returnToMenu() throws IOException {
-
-        while(true) {
-            KeyStroke key = screen.readInput();
-            this.processKey(key);
-            if (key.getKeyType() == KeyType.Character && key.getCharacter() == 'q' && key.getCharacter() == 'Q'){
-                screen.close();
-                break;
-            }
-            if (key.getKeyType() == KeyType.EOF)
-                break;
-        }
-    }
-
-    public void processKey(KeyStroke key) throws IOException {
+        KeyStroke key = screen.readInput();
         if (key.getKeyType() == KeyType.Enter) {
             game.getState().onMenu(game);
         }

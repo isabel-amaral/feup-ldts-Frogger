@@ -1,7 +1,6 @@
 package pt.up.fe.ldts.frogger;
 
 import com.googlecode.lanterna.TerminalSize;
-import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
@@ -34,10 +33,7 @@ public class Game {
 
         level = new Level(this); //sets default level to 1
         lives = 3;
-        screen.refresh();
-
         arena = new Arena(level.getLevel(), width, height);
-        state = new MenuState(this);
     }
 
 
@@ -72,6 +68,10 @@ public class Game {
         graphics = screen.newTextGraphics();
     }
 
+    public void initializeNewGame() throws IOException {
+        state = new MenuState(this);
+    }
+
     public int getWidth() {
         return width;
     }
@@ -90,11 +90,6 @@ public class Game {
 
     public State getState() {
         return state;
-    }
-
-
-    public int getLevel() {
-        return level.getLevel();
     }
 
     public int getLives() {
@@ -148,12 +143,6 @@ public class Game {
         screen.refresh();
     }
 
-    public void drawText(Position position, String text, String color) {
-        TextGraphics tg = screen.newTextGraphics();
-        tg.setForegroundColor(TextColor.Factory.fromString(color));
-        tg.putString(position.getX(), position.getY(), text);
-    }
-
     public void closeScreen() throws IOException {
         screen.close();
         System.out.println("Screen closed!");
@@ -198,7 +187,6 @@ public class Game {
                 lives = 3;
                 state.onLose(this);
             }
-            this.playGame();
         }
     }
 
