@@ -1,24 +1,33 @@
 package pt.up.fe.ldts.frogger;
 
+import com.googlecode.lanterna.input.KeyStroke;
+import com.googlecode.lanterna.input.KeyType;
+import com.googlecode.lanterna.screen.Screen;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
+import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
 import java.net.URISyntaxException;
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class StateTest {
 
     @Test
     public void MenuStateTest() throws IOException, URISyntaxException, FontFormatException {
-        //TODO close screen
+        KeyStroke key = Mockito.mock(KeyStroke.class);
+        Mockito.when(key.getKeyType()).thenReturn(KeyType.Character);
         Game game = new Game();
+        Screen screen = Mockito.mock(Screen.class);
+        game.setScreen(screen);
+        Mockito.when(screen.pollInput()).thenReturn(key);
+
+        game.initializeNewGame();
         MenuState menuState = (MenuState) game.getState();
-        game.closeScreen();
+        
         Assertions.assertTrue(menuState.getMenuWasCreated());
     }
 

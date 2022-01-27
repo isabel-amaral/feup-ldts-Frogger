@@ -18,6 +18,7 @@ public class Menu {
     private TextGraphics graphics;
     private List<String> options = new ArrayList<>();
     private int option = 1;
+    private boolean stayOnMenu = true;
 
     public Menu(Game newGame) throws IOException {
         game = newGame;
@@ -30,6 +31,7 @@ public class Menu {
         options.add("EXIT");
 
         this.draw();
+        this.choosingOption();
     }
 
     public void draw() throws IOException {
@@ -48,7 +50,6 @@ public class Menu {
         graphics.putString(26, positionY, options.get(3));
 
         screen.refresh();
-        this.choosingOption();
     }
 
     public void choosingOption() throws IOException {
@@ -56,15 +57,23 @@ public class Menu {
         graphics.putString(32, 10, "f");
         screen.refresh();
 
-        while(true) {
-            KeyStroke key = screen.readInput();
+        while(stayOnMenu) {
+            this.draw();
+
+            KeyStroke key = screen.pollInput();
             this.processKey(key);
             if (key != null && key.getKeyType() == KeyType.Character && (key.getCharacter() == 'q' || key.getCharacter() == 'Q')){
                 screen.close();
                 break;
             }
-            if (key.getKeyType() == KeyType.EOF)
+            if (key != null && key.getKeyType() == KeyType.EOF)
                 break;
+
+            try {
+                Thread.sleep(10);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -111,6 +120,9 @@ public class Menu {
     }
 
     public void processKey(KeyStroke key) throws IOException {
+        if (key == null)
+            return;
+
         switch (key.getKeyType()) {
             case ArrowUp:
                 if (option > 1)
@@ -123,6 +135,7 @@ public class Menu {
                 this.showOption(option);
                 break;
             case Enter:
+                stayOnMenu = false;
                 if (option == 1)
                     game.getState().onPlay(game);
                 else if (option == 2) {
@@ -137,6 +150,7 @@ public class Menu {
                     screen.close();
                 break;
             default:
+                stayOnMenu = false;
                 break;
         }
     }
