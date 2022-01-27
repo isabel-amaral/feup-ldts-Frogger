@@ -47,8 +47,7 @@ public class Lose {
     public void returnToMenu() throws IOException {
         KeyStroke key = screen.readInput();
         if (key.getKeyType() == KeyType.Enter) {
-            State newState = new MenuState(game);
-            newState.onMenu(game);
+            game.getState().onMenu(game);
         }
     }
 }
