@@ -7,15 +7,12 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
-import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
 import java.net.URISyntaxException;
-import java.util.Arrays;
-import java.util.List;
 
 public class StateTest {
-
+    /*
     @Test
     public void MenuStateTest() throws IOException, URISyntaxException, FontFormatException {
         KeyStroke key = Mockito.mock(KeyStroke.class);
@@ -113,5 +110,5 @@ public class StateTest {
         MenuState menuState = (MenuState) game.getState();
         Assertions.assertTrue(menuState.getMenuWasCreated());
         game.closeScreen();
-    }
+    } */
 }
