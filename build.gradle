@@ -18,7 +18,7 @@ pitest {
     junit5PluginVersion = '0.15'
     pitestVersion = '1.6.7'
     targetClasses=["pt.up.fe.ldts.frogger"]
-    excludedClasses = ['pt.up.fe.ldts.frogger.Application', 'pt.up.fe.ldts.frogger.ArenaTest', 'pt.up.fe.ldts.frogger.LivesTest',
+    excludedClasses = ['pt.up.fe.ldts.frogger.ArenaTest', 'pt.up.fe.ldts.frogger.LivesTest',
                        'pt.up.fe.ldts.frogger.StateTest', 'pt.up.fe.ldts.frogger.GameTest', 'pt.up.fe.ldts.frogger.DrawElementsTest' ]
     verbose = true
 }
