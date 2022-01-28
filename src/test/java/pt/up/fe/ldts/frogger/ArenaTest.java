@@ -9,6 +9,14 @@ import com.googlecode.lanterna.terminal.Terminal;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
+import pt.up.fe.ldts.frogger.gameelement.movable.Car;
+import pt.up.fe.ldts.frogger.gameelement.movable.Frog;
+import pt.up.fe.ldts.frogger.gameelement.movable.TreeTrunk;
+import pt.up.fe.ldts.frogger.gameelement.movable.Turtle;
+import pt.up.fe.ldts.frogger.gameelement.nonmovable.Grass;
+import pt.up.fe.ldts.frogger.gameelement.nonmovable.Road;
+import pt.up.fe.ldts.frogger.gameelement.nonmovable.Sidewalk;
+import pt.up.fe.ldts.frogger.gameelement.nonmovable.Water;
 
 import java.io.IOException;
 import java.util.ArrayList;

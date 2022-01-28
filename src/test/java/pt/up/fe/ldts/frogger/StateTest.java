@@ -12,19 +12,14 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 
 public class StateTest {
+    //All State pattern Tests are commented because we couldn´t force the screen to close (it needed user input)
+    // Although, if closed manually, all Tests pass
     /*
     @Test
     public void MenuStateTest() throws IOException, URISyntaxException, FontFormatException {
-        KeyStroke key = Mockito.mock(KeyStroke.class);
-        Mockito.when(key.getKeyType()).thenReturn(KeyType.Character);
         Game game = new Game();
-        Screen screen = Mockito.mock(Screen.class);
-        game.setScreen(screen);
-        Mockito.when(screen.pollInput()).thenReturn(key);
-
-        game.initializeNewGame();
         MenuState menuState = (MenuState) game.getState();
-        
+        game.closeScreen();
         Assertions.assertTrue(menuState.getMenuWasCreated());
     }
 
