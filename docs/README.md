@@ -120,14 +120,22 @@ The benefits of applying the above pattern are:
 
 ## Known Code Smells And Refactoring Suggestions
 #### **Large Class**
-The class Arena contains many methods. In our opinion, we need to implement it this way because it is in this class that most of the action occurs (movements of Frog and verify collisions).
-
+The class Arena contains many methods. In our opinion, we need to implement it this way because it is in this
+class that most of the action occurs (movements of Frog and verify collisions).
+The overall structure of the code could have been improved if we had used the Model-View-Controller design pattern, since
+this would have allowed us to keep each one of our classes very focused on one specific task.
 
 #### **Refused bequest**
-In an attempt to generalize and simplify our code, we created some abstract classes and some interfaces, resulting in the rising of the **Refused bequest** smell. As a result, some subclasses inherited methods from its parent classes which are neither defined nor used (setPosition()).
+In an attempt to generalize and simplify our code, we created some abstract classes and some interfaces, resulting
+in the rising of the **Refused bequest** smell. As a result, some subclasses inherited methods from its parent 
+classes which are neither defined nor used (ex: State subclasses).
+
+#### **Duplicate code**
+In some parts of the code we have some kind of similar logics being executed several times in different methods.
 
 #### **Switch statements**
-We use instances of switch cases to handle Key Actions. However, we could not find an easier way to read the input given by the user and the switch statement performs a really simple task.
+We use instances of switch cases to handle Key Actions. However, we could not find an easier way to read the input
+given by the user and the switch statement performs a really simple task.
 
 
 ## Testing
