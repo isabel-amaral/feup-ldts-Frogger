@@ -6,11 +6,9 @@ import pt.up.fe.ldts.frogger.menus.Lose;
 import java.io.IOException;
 
 public class LoseState implements State {
-    private Game game;
     private boolean gameWasLost;
 
-    public LoseState(Game newGame) throws IOException {
-        game = newGame;
+    public LoseState(Game game) throws IOException {
         new Lose(game);
         gameWasLost = true;
     }

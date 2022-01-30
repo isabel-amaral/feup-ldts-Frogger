@@ -6,11 +6,9 @@ import pt.up.fe.ldts.frogger.menus.Win;
 import java.io.IOException;
 
 public class WinState implements State {
-    private Game game;
     private boolean gameWasWon;
 
-    public WinState(Game newGame) throws IOException {
-        game = newGame;
+    public WinState(Game game) throws IOException {
         new Win(game);
         gameWasWon = true;
     }
