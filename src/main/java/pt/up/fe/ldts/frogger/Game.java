@@ -147,11 +147,6 @@ public class Game {
         screen.refresh();
     }
 
-    public void closeScreen() throws IOException {
-        screen.close();
-        System.out.println("Screen closed!");
-    }
-
     public int processKey(KeyStroke key) {
         int value = 0;
         if (key == null)
