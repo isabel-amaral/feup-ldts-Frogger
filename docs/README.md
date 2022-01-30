@@ -74,7 +74,7 @@ to fix bugs and easier to change.
 #### Problem in Context:
 Most of our MovableElement objects (the cars, tree trunks and turtles) will be in constant motion, either to the
 left or to the right. This movement will be independent of the object's class. Whether the object is a Car, a TreeTrunk
-or a Turtle, it will always move either to the left or to the right, according to the lane traffic/river lane
+or a Turtle, it will always move either to the left or to the right, according to the traffic/river lane 
 where it's located, and in a certain speed.
 
 #### The Pattern:
@@ -132,6 +132,7 @@ classes which are neither defined nor used (ex: State subclasses).
 
 #### **Duplicate code**
 In some parts of the code we have some kind of similar logics being executed several times in different methods.
+For example, in the moveTurtles and moveTreeTrunks methods the code is similar and perform the same job, but for different elements.
 
 #### **Switch statements**
 We use instances of switch cases to handle Key Actions. However, we could not find an easier way to read the input
