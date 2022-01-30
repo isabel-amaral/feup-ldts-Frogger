@@ -9,13 +9,15 @@ This project was developed by Anete Pereira (up202008856@edu.fe.up.pt), Isabel A
 
 ![](uml.png)
 
-![](images/game.png)
+![](images/level2.png)
 
 ![](images/menu.png)
 
-![](images/victory.png)
+![](images/instructions.png)
 
-![](images/gameOver.png)
+![](images/victory_screen.png)
+
+![](images/game_over.png)
 
 ## Implemented Features
 

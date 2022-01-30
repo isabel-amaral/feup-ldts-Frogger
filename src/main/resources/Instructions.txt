@@ -2,7 +2,7 @@
 - YOU WILL START THE GAME WITH 3 LIVES AND THE FROG IS SHOWN                                              q
 ON THE SIDEWALK NEXT TO THE TRAFFIC.                                                                      q
 - YOUR JOB IS TO BRING THE FROG SAFELY TO THE GRASS.                                                      q
-DE CAREFUL NOT TO DIE WHILE CROSSING THE BUSY ROAD AND                                                    q
+- BE CAREFUL NOT TO DIE WHILE CROSSING THE BUSY ROAD AND                                                    q
 NAVIGATING A RIVER FULL OF DANGERS                                                                        q
 - PRESS THE ARROW KEYS: UP, DOWN, LEFT AND RIGHT TO HOP                                                   q
 IN THOSE DIRECTIONS.                                                                                      q
