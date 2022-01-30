@@ -51,7 +51,6 @@ public class Lose {
         if (key.getKeyType() == KeyType.Enter) {
             State newState = new MenuState(game);
             newState.onMenu(game);
-            game.getState().onMenu(game);
         }
     }
 }

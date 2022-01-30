@@ -17,19 +17,4 @@ public class WinState implements State {
     public boolean getGameWasWon(){
         return gameWasWon;
     }
-
-    @Override
-    public void onWin(Game game) throws IOException {
-        throw new IllegalStateException("Cannot win while on win state");
-    }
-
-    @Override
-    public void onLose(Game game) throws IOException {
-        throw new IllegalStateException("Cannot lose while on win state");
-    }
-
-    @Override
-    public void onPlay(Game game) throws IOException {
-        throw new IllegalStateException("Cannot play while on win state");
-    }
 }

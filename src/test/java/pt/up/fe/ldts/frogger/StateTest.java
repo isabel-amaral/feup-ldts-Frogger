@@ -1,11 +1,7 @@
 package pt.up.fe.ldts.frogger;
 
-import com.googlecode.lanterna.input.KeyStroke;
-import com.googlecode.lanterna.input.KeyType;
-import com.googlecode.lanterna.screen.Screen;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 import pt.up.fe.ldts.frogger.state.GameState;
 import pt.up.fe.ldts.frogger.state.LoseState;
 import pt.up.fe.ldts.frogger.state.MenuState;
@@ -22,6 +18,7 @@ public class StateTest {
     @Test
     public void MenuStateTest() throws IOException, URISyntaxException, FontFormatException {
         Game game = new Game();
+        game.initializeNewGame();
         MenuState menuState = (MenuState) game.getState();
         Assertions.assertTrue(menuState.getMenuWasCreated());
     }

@@ -18,15 +18,4 @@ public class MenuState implements State {
     public boolean getMenuWasCreated(){
         return menuWasCreated;
     }
-
-    @Override
-    public void onWin(Game game) throws IOException {
-        throw new IllegalStateException("Cannot win while on menu state");
-    }
-
-    @Override
-    public void onLose(Game game) throws IOException {
-        throw new IllegalStateException("Cannot lose while on menu state");
-    }
-
 }
