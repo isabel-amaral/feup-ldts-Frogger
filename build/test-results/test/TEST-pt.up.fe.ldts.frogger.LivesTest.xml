@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="pt.up.fe.ldts.frogger.LivesTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2022-01-29T23:49:51" hostname="DESKTOP-PGKE5J9" time="9.79">
+  <properties/>
+  <testcase name="LostTheGame()" classname="pt.up.fe.ldts.frogger.LivesTest" time="9.79"/>
+  <system-out><![CDATA[YOU WERE HIT BY A CAR
+YOU WERE HIT BY A CAR
+YOU WERE HIT BY A CAR
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
