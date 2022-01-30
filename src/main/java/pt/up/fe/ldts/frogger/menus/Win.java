@@ -52,7 +52,8 @@ public class Win {
 
     public void returnToMenu() throws IOException {
         KeyStroke key = screen.readInput();
-        if (key.getKeyType() == KeyType.Enter)
+        if (key.getKeyType() == KeyType.Enter) {
             game.getState().onMenu(game);
+        }
     }
 }

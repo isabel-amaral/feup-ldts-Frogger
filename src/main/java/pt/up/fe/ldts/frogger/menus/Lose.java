@@ -8,11 +8,12 @@ import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
 import com.googlecode.lanterna.screen.Screen;
 import pt.up.fe.ldts.frogger.Game;
+import pt.up.fe.ldts.frogger.state.MenuState;
+import pt.up.fe.ldts.frogger.state.State;
 
 import java.io.IOException;
 
 public class Lose {
-
     private Screen screen;
     private TextGraphics graphics;
     private int width= 60;
@@ -47,7 +48,10 @@ public class Lose {
 
     public void returnToMenu() throws IOException {
         KeyStroke key = screen.readInput();
-        if (key.getKeyType() == KeyType.Enter)
+        if (key.getKeyType() == KeyType.Enter) {
+            State newState = new MenuState(game);
+            newState.onMenu(game);
             game.getState().onMenu(game);
+        }
     }
 }
