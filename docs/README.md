@@ -24,16 +24,13 @@ This project was developed by Anete Pereira (up202008856@edu.fe.up.pt), Isabel A
 - **Arena creation** - The arena is drawn in the Game class.
 - **Elements creation** - All elements (movable and non-movable) are created at the beginning of the game.
 - **Collisions detection** - Collisions between the frog and the remaining elements are verified. (Ex: Frog, Car, Turtle, Water, TreeTrunk, Grass).
-
-
-## Planned Features
-
 - **Keyboard Control** - The keyboard inputs are interpreted according to the current game state.
 - **Buttons on the Menu** - Functional and interactive buttons.
-- **Connected Menus** - The user has the capability of browsing through the different menus. (Ex: Main Menu, Instructions, Play, Levels and Pause).
-- **Different levels** - 3 different levels with an increasing difficulty to be implemented (the velocity of the cars, tree trunks and turtles will be higher and there will be more cars and less tree trunks and turtles, making it more difficult to reach the grass).
-- **Elements creation** - The creation of our movable game elements will be done randomly and according to the current game level.
-- **Animations** - Some cool animations will be incorporated in this game, when you win or lose the game or when you lose a life.
+- **Connected Menus** - The user has the capability of browsing through the different menus. (Main Menu, Instructions, Play and Levels).
+- **Different levels** - 3 different levels with an increasing difficulty (the velocity of the cars, tree trunks and turtles will be higher and there will be more cars and less tree trunks and turtles, making it more difficult to reach the grass).
+- **Elements creation** - The creation of our movable game elements is be done randomly and according to the current game level.
+- **Animations** - Some cool animations are incorporated in this game, when you win or lose the game or when you lose a life.
+- **Quit** - The key 'q' or 'Q' can be used at any time to close the game.
  
 
 ## Design
@@ -42,7 +39,7 @@ This project was developed by Anete Pereira (up202008856@edu.fe.up.pt), Isabel A
 
 We began this project by doing some tests for the basic classes - Game and Arena. Then, we made a UML to help us understand better the structure of our game. Since our game is dealing with a GUI and is divided by different gameStates, we found three design patterns that would be able to fullfil our features to be implemented in our game.
 
-The three main patterns that were applied to the project, the **_Factory Method Pattern_**, which will be used to create the movable elements in our project, the **_Command Pattern_** which will allow us to keep constantly moving cars, turtles and tree trunks either to the left or to the right and the **_State Pattern_** which is a behavioral design pattern that lets an object alter its behavior as its internal state changes - in this case the four states are GameState (the user is playing), MenuState (the user is in the Menu screen), WinState (the user won the game) and the loseState (the user lost the game). There may be the need to add more states as we implement new features.
+The three main patterns that were applied to the project, the **_Factory Method Pattern_**, which is used to create the movable elements in our project, the **_Command Pattern_** which allows us to keep constantly moving cars, turtles and tree trunks either to the left or to the right and the **_State Pattern_** which is a behavioral design pattern that lets an object alter its behavior as its internal state changes - in this case the four states are GameState (the user is playing), MenuState (the user is in the Menu screen), WinState (the user won the game) and the loseState (the user lost the game). 
 
 ### Creation of Elements
 
@@ -121,12 +118,11 @@ The benefits of applying the above pattern are:
 
 ## Known Code Smells And Refactoring Suggestions
 #### **Large Class**
-
 The class Arena contains many methods. In our opinion, we need to implement it this way because it is in this class that most of the action occurs (movements of Frog and verify collisions).
 
 
 #### **Refused bequest**
-In an attempt to generalize and simplify our code, we created two abstract classes and one interface so far, resulting in the rising of the **Refused bequest** smell. As a result, some subclasses inherited methods from its parent classes which are neither defined nor used (setPosition()).
+In an attempt to generalize and simplify our code, we created some abstract classes and some interfaces, resulting in the rising of the **Refused bequest** smell. As a result, some subclasses inherited methods from its parent classes which are neither defined nor used (setPosition()).
 
 #### **Switch statements**
 We use instances of switch cases to handle Key Actions. However, we could not find an easier way to read the input given by the user and the switch statement performs a really simple task.
@@ -139,6 +135,10 @@ We use instances of switch cases to handle Key Actions. However, we could not fi
 ![](images/coverage1.png)
 
 ![](images/coverage2.png)
+
+![](images/coverage3.png)
+
+![](images/coverage4.png)
 
 ## Self-evaluation
 The work was divided equally between all the elements of the group. While some classes and tests were
