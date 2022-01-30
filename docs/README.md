@@ -142,7 +142,7 @@ We use instances of switch cases to handle Key Actions. However, we could not fi
 
 ### Pitest
 
-Check the [link](https://https://github.com/FEUP-LDTS-2021/ldts-project-assignment-g0607/tree/master/build/reports/pitest/202201292224) of the mutation test!  
+Check the [link](https://github.com/FEUP-LDTS-2021/ldts-project-assignment-g0607/tree/master/build/reports/pitest/202201292224) of the mutation test!  
 
 ## Self-evaluation
 The work was divided equally between all the elements of the group. While some classes and tests were
