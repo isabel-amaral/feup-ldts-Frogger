@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import pt.up.fe.ldts.frogger.gameelement.movable.Car;
 import pt.up.fe.ldts.frogger.gameelement.movable.Frog;
 import pt.up.fe.ldts.frogger.state.GameState;
+import pt.up.fe.ldts.frogger.state.LoseState;
 
 import java.awt.*;
 import java.io.IOException;
@@ -60,9 +61,9 @@ public class LivesTest {
         Assertions.assertEquals(1, lives);
     }
 
-    //This Test is commented because we couldn´t force the screen to close (it needed user input)
+    //We couldn´t force the screen to close (it needed user input)
     // Although, if closed manually, all Tests pass
-    /*
+
     @Test
     public void LostTheGame() throws IOException, URISyntaxException, FontFormatException {
         Game game = new Game();
@@ -86,5 +87,5 @@ public class LivesTest {
         Assertions.assertEquals(3, lives);
         LoseState lostGame = (LoseState) game.getState();
         Assertions.assertTrue(lostGame.getGameWasLost());
-    } */
+    }
 }

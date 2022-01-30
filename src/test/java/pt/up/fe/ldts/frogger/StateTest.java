@@ -6,15 +6,19 @@ import com.googlecode.lanterna.screen.Screen;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
+import pt.up.fe.ldts.frogger.state.GameState;
+import pt.up.fe.ldts.frogger.state.LoseState;
+import pt.up.fe.ldts.frogger.state.MenuState;
+import pt.up.fe.ldts.frogger.state.WinState;
 
 import java.awt.*;
 import java.io.IOException;
 import java.net.URISyntaxException;
 
 public class StateTest {
-    //All State pattern Tests are commented because we couldn´t force the screen to close (it needed user input)
+
+    //We couldn´t force the screen to close (it needed user input)
     // Although, if closed manually, all Tests pass
-    /*
     @Test
     public void MenuStateTest() throws IOException, URISyntaxException, FontFormatException {
         Game game = new Game();
@@ -105,5 +109,5 @@ public class StateTest {
         MenuState menuState = (MenuState) game.getState();
         Assertions.assertTrue(menuState.getMenuWasCreated());
         game.closeScreen();
-    } */
+    }
 }
