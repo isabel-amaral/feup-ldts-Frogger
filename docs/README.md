@@ -60,7 +60,7 @@ us to have subclasses to alter the type of objects that will be created.
 Regarding the implementation, we now have classes which main purpose is to create new movable elements
 (CreateCar, CreateFrog, CreateTurtle and CreateTreeTrunk).
 
-![](images/commandAndFactory.png)
+![](images/factoryMethod.png)
 
 #### Consequences:
 The use of this pattern in the current design allows the following benefits:
@@ -87,7 +87,7 @@ This pattern is implemented by having a single class, the Command class, with a 
 that inherit this execute method, allowing us to overwrite it accordingly to our wishes. The MoveLeft class moves objects to the left and the MoveRight
 class moves them to the right.
 
-![](images/commandAndFactory.png)
+![](images/command.png)
 
 #### Consequences:
 Some consequences of using the stated pattern:
