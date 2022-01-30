@@ -7,7 +7,7 @@ This game is based on the classic Frogger game (https://www.free80sarcade.com/at
 
 This project was developed by Anete Pereira (up202008856@edu.fe.up.pt), Isabel Amaral (up202006677@edu.fe.up.pt) and Mafalda Magalhães (up201707066@edu.fe.up.pt) for LDTS 2021-22.
 
-![](uml.png)
+![](images/uml.png)
 
 ![](images/game.png)
 
