@@ -24,8 +24,5 @@ The following screenshots ilustrate the general look of our game.
 ### Game Over
 ![](./docs/gifs/losingTheGame.gif)
 
-### Frog Moving Out of the Screen
-![](./docs/gifs/gettingOutOfScreen.gif)
-
 ### The Different Menus
 ![](./docs/gifs/navigatingMenu.gif)

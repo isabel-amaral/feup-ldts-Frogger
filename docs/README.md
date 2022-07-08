@@ -22,10 +22,6 @@ This project was developed by Anete Pereira (up202008856@edu.fe.up.pt), Isabel A
 
 ![](images/level2.png)
 
-![](images/victory_screen.png)
-
-![](images/game_over.png)
-
 ## Implemented Features
 
 - **Keyboard Control** -The keyboard inputs are received through the respective events and 
