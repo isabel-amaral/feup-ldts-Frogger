@@ -1,6 +1,15 @@
-# LDTS_T06_G07 - FROGGER
+## LDTS_T06_G07 - FROGGER
 
-## Game Description
+> **2021/2022** - 2nd Year, 1st Semester
+>
+> **Course** - LDTS (Laboratório de Desenho e Teste de Software)
+>
+> **Project developed by**
+> - Anete Pereira (up202008856)
+> - Isabel Amaral (up202006677)
+> - Mafalda Magalhães (up201707066)
+
+### Game Description
 
 The objective of the game is to direct Mr. Frog to its home (the grass) across three different
 levels. The final destination is reached by crossing a busy road and navigating a river full 
@@ -9,20 +18,17 @@ loss of a life. The only player control is the 4-direction keyboard arrow keys, 
 navigate the frog. Each click in one direction causes the frog to hop once in that same 
 direction.
 
-This project was developed by Anete Pereira (up202008856@edu.fe.up.pt), Isabel Amaral 
-(up202006677@edu.fe.up.pt) and Mafalda Magalhães (up201707066@edu.fe.up.pt) for LDTS 2021-22.
-
 For a more detailed version of this description click [here](./docs/README.md).
 
-## Game Preview
+### Game Preview
 
 The following screenshots ilustrate the general look of our game.
 
-### The Game
+#### The Game
 ![](./docs/gifs/winningTheGame.gif)
 
-### Game Over
+#### Game Over
 ![](./docs/gifs/losingTheGame.gif)
 
-### The Different Menus
+#### The Different Menus
 ![](./docs/gifs/navigatingMenu.gif)
