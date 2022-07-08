@@ -58,7 +58,7 @@ trunks and turtles, making it more difficult to reach the grass).
 We began this project by doing some tests for the basic classes - Game and Arena. Then, we 
 made a UML class diagram to help us understand better the structure of our game. Since our 
 game is dealing with a GUI and is divided by different gameStates, we found three design 
-patterns that would be able to fulfil our features to be implemented in our game.
+patterns that would be able to fulfil the features to be implemented in our game.
 
 The three main patterns that were applied to the project were the **Factory Method Pattern**, 
 which is used to create the movable elements in our project, the **Command Pattern** which 
