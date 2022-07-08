@@ -1,7 +1,7 @@
-package pt.up.fe.ldts.frogger.gameelement.nonmovable;
+package pt.up.fe.ldts.frogger.element.nonmovable;
 
 import pt.up.fe.ldts.frogger.PositionRange;
-import pt.up.fe.ldts.frogger.gameelement.Element;
+import pt.up.fe.ldts.frogger.element.Element;
 
 public abstract class NonMovableElement implements Element {
     protected PositionRange position;

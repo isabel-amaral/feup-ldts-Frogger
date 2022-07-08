@@ -1,11 +1,10 @@
-package pt.up.fe.ldts.frogger.gameelement.movable;
+package pt.up.fe.ldts.frogger.element.movable;
 
 import com.googlecode.lanterna.SGR;
 import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
-import pt.up.fe.ldts.frogger.gameelement.elementcommand.Command;
-import pt.up.fe.ldts.frogger.gameelement.movable.MovableElement;
+import pt.up.fe.ldts.frogger.element.command.Command;
 
 public class TreeTrunk extends MovableElement {
     //either left or right

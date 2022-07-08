@@ -3,9 +3,9 @@ package pt.up.fe.ldts.frogger;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import pt.up.fe.ldts.frogger.gameelement.movable.Car;
-import pt.up.fe.ldts.frogger.gameelement.movable.TreeTrunk;
-import pt.up.fe.ldts.frogger.gameelement.movable.Turtle;
+import pt.up.fe.ldts.frogger.element.movable.Car;
+import pt.up.fe.ldts.frogger.element.movable.TreeTrunk;
+import pt.up.fe.ldts.frogger.element.movable.Turtle;
 
 import java.util.ArrayList;
 import java.util.List;

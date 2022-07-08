@@ -1,9 +1,8 @@
-package pt.up.fe.ldts.frogger.gameelement.nonmovable;
+package pt.up.fe.ldts.frogger.element.nonmovable;
 
 import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
-import pt.up.fe.ldts.frogger.gameelement.nonmovable.NonMovableElement;
 
 public class Water extends NonMovableElement {
     public Water(int min, int max) {

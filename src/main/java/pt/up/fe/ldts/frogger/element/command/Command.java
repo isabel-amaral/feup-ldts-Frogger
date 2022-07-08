@@ -1,4 +1,4 @@
-package pt.up.fe.ldts.frogger.gameelement.elementcommand;
+package pt.up.fe.ldts.frogger.element.command;
 
 import pt.up.fe.ldts.frogger.Position;
 

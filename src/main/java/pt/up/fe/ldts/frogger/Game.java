@@ -10,9 +10,9 @@ import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
 import com.googlecode.lanterna.terminal.swing.AWTTerminalFontConfiguration;
 import com.googlecode.lanterna.terminal.swing.AWTTerminalFrame;
-import pt.up.fe.ldts.frogger.gameelement.elementfactory.MovableElementsFactory;
-import pt.up.fe.ldts.frogger.gameelement.movable.Frog;
-import pt.up.fe.ldts.frogger.menus.Level;
+import pt.up.fe.ldts.frogger.element.factory.MovableElementsFactory;
+import pt.up.fe.ldts.frogger.element.movable.Frog;
+import pt.up.fe.ldts.frogger.menu.Level;
 import pt.up.fe.ldts.frogger.state.MenuState;
 import pt.up.fe.ldts.frogger.state.State;
 

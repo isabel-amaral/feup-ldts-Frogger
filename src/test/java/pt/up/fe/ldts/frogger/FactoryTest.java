@@ -2,12 +2,12 @@ package pt.up.fe.ldts.frogger;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import pt.up.fe.ldts.frogger.gameelement.elementfactory.CreateCar;
-import pt.up.fe.ldts.frogger.gameelement.elementfactory.CreateFrog;
-import pt.up.fe.ldts.frogger.gameelement.elementfactory.CreateTreeTrunk;
-import pt.up.fe.ldts.frogger.gameelement.elementfactory.CreateTurtle;
-import pt.up.fe.ldts.frogger.gameelement.movable.Frog;
-import pt.up.fe.ldts.frogger.gameelement.movable.MovableElement;
+import pt.up.fe.ldts.frogger.element.factory.CreateCar;
+import pt.up.fe.ldts.frogger.element.factory.CreateFrog;
+import pt.up.fe.ldts.frogger.element.factory.CreateTreeTrunk;
+import pt.up.fe.ldts.frogger.element.factory.CreateTurtle;
+import pt.up.fe.ldts.frogger.element.movable.Frog;
+import pt.up.fe.ldts.frogger.element.movable.MovableElement;
 
 import java.util.List;
 

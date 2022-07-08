@@ -1,6 +1,6 @@
-package pt.up.fe.ldts.frogger.gameelement.elementfactory;
+package pt.up.fe.ldts.frogger.element.factory;
 
-import pt.up.fe.ldts.frogger.gameelement.movable.MovableElement;
+import pt.up.fe.ldts.frogger.element.movable.MovableElement;
 
 import java.util.List;
 

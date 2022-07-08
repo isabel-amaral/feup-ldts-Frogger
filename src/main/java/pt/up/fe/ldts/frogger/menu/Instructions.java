@@ -1,4 +1,4 @@
-package pt.up.fe.ldts.frogger.menus;
+package pt.up.fe.ldts.frogger.menu;
 
 import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TextColor;

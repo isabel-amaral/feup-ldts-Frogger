@@ -1,7 +1,7 @@
-package pt.up.fe.ldts.frogger.gameelement.movable;
+package pt.up.fe.ldts.frogger.element.movable;
 
 import pt.up.fe.ldts.frogger.Position;
-import pt.up.fe.ldts.frogger.gameelement.Element;
+import pt.up.fe.ldts.frogger.element.Element;
 
 public abstract class MovableElement implements Element {
 

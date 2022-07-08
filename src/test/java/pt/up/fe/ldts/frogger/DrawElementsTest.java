@@ -7,13 +7,13 @@ import com.googlecode.lanterna.screen.Screen;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
-import pt.up.fe.ldts.frogger.gameelement.movable.Car;
-import pt.up.fe.ldts.frogger.gameelement.movable.Frog;
-import pt.up.fe.ldts.frogger.gameelement.movable.TreeTrunk;
-import pt.up.fe.ldts.frogger.gameelement.movable.Turtle;
-import pt.up.fe.ldts.frogger.gameelement.nonmovable.Grass;
-import pt.up.fe.ldts.frogger.gameelement.nonmovable.Sidewalk;
-import pt.up.fe.ldts.frogger.gameelement.nonmovable.Water;
+import pt.up.fe.ldts.frogger.element.movable.Car;
+import pt.up.fe.ldts.frogger.element.movable.Frog;
+import pt.up.fe.ldts.frogger.element.movable.TreeTrunk;
+import pt.up.fe.ldts.frogger.element.movable.Turtle;
+import pt.up.fe.ldts.frogger.element.nonmovable.Grass;
+import pt.up.fe.ldts.frogger.element.nonmovable.Sidewalk;
+import pt.up.fe.ldts.frogger.element.nonmovable.Water;
 
 public class DrawElementsTest {
     private Screen screen;

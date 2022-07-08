@@ -1,8 +1,8 @@
-package pt.up.fe.ldts.frogger.gameelement.elementfactory;
+package pt.up.fe.ldts.frogger.element.factory;
 
-import pt.up.fe.ldts.frogger.gameelement.movable.MovableElement;
+import pt.up.fe.ldts.frogger.element.movable.MovableElement;
 import pt.up.fe.ldts.frogger.Position;
-import pt.up.fe.ldts.frogger.gameelement.movable.Turtle;
+import pt.up.fe.ldts.frogger.element.movable.Turtle;
 
 import java.util.ArrayList;
 import java.util.List;

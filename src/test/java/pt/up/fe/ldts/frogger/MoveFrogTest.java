@@ -3,7 +3,7 @@ package pt.up.fe.ldts.frogger;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import pt.up.fe.ldts.frogger.gameelement.movable.Frog;
+import pt.up.fe.ldts.frogger.element.movable.Frog;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

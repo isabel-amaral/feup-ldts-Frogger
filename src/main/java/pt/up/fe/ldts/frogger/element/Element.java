@@ -1,4 +1,4 @@
-package pt.up.fe.ldts.frogger.gameelement;
+package pt.up.fe.ldts.frogger.element;
 
 import com.googlecode.lanterna.graphics.TextGraphics;
 

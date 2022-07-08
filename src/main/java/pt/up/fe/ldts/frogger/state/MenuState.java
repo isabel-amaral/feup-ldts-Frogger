@@ -1,7 +1,7 @@
 package pt.up.fe.ldts.frogger.state;
 
 import pt.up.fe.ldts.frogger.Game;
-import pt.up.fe.ldts.frogger.menus.Menu;
+import pt.up.fe.ldts.frogger.menu.Menu;
 
 import java.io.IOException;
 
