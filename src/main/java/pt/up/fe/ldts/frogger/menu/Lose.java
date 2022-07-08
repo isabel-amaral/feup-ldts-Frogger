@@ -37,7 +37,7 @@ public class Lose {
     public void draw() throws IOException {
         screen.clear();
         graphics.setBackgroundColor(TextColor.Factory.fromString("#FFFFFF"));
-        graphics.setForegroundColor(TextColor.Factory.fromString("#336699"));
+        graphics.setForegroundColor(TextColor.Factory.fromString("#33cc33"));
         graphics.fillRectangle(new TerminalPosition(0, 0), new TerminalSize(width, height), ' ');
 
         graphics.putString(26, 15, gameOver);

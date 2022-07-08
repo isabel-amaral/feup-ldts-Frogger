@@ -36,7 +36,7 @@ public class Menu {
     public void draw() throws IOException {
         screen.clear();
         graphics.setBackgroundColor(TextColor.Factory.fromString("#FFFFFF"));
-        graphics.setForegroundColor(TextColor.Factory.fromString("#336699"));
+        graphics.setForegroundColor(TextColor.Factory.fromString("#33cc33"));
         graphics.fillRectangle(new TerminalPosition(0, 0), new TerminalSize(game.getWidth(), game.getHeight()), ' ');
 
         int positionY = 10;

@@ -29,7 +29,7 @@ public class Instructions {
     public void show() throws IOException {
         screen.clear();
         graphics.setBackgroundColor(TextColor.Factory.fromString("#FFFFFF"));
-        graphics.setForegroundColor(TextColor.Factory.fromString("#336699"));
+        graphics.setForegroundColor(TextColor.Factory.fromString("#33cc33"));
 
         String Title = reader.nextLine();
         String r1 = reader.nextLine();
