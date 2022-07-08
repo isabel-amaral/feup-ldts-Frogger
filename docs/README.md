@@ -32,7 +32,7 @@ This project was developed by Anete Pereira (up202008856@edu.fe.up.pt), Isabel A
 interpreted according to the current game state.
 - **Player control** - The player may move with the keyboard control.
 <br>
-<br>
+
 - **Arena creation** - The arena is drawn in the Game class.
 - **Elements creation** - All elements (movable and non-movable) are created at the beginning 
 of the game. The creation of the movable game elements is done randomly and according to the 
@@ -43,7 +43,7 @@ Turtle, Water, TreeTrunk, Grass) are verified.
 the cars, tree trunks and turtles will be higher and there will be more cars and less tree
 trunks and turtles, making it more difficult to reach the grass).
 <br>
-<br>
+
 - **Menu Buttons** - Functional and interactive buttons.
 - **Connected Menus** - The user has the capability of browsing through the different menus. 
 (Main Menu, Instructions, Play and Levels).
