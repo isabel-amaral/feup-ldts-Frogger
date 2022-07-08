@@ -1,7 +1,10 @@
 .idea/
 .gradle/
 gradle/
-build/
+build/*
+!build/reports
+build/reports/*
+!build/reports/pitest
 gradlew
 gradlew.bat
 
